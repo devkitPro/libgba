@@ -1,3 +1,32 @@
+/*
+	"$Id: gba_video.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+
+	Header file for libgba video definitions
+
+	Copyright 2003-2004 by Dave Murphy.
+
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Library General Public
+	License as published by the Free Software Foundation; either
+	version 2 of the License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+	Library General Public License for more details.
+
+	You should have received a copy of the GNU Library General Public
+	License along with this library; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+	USA.
+
+	Please report all bugs and problems through the bug tracker at
+	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
+
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+
+*/
+
 //---------------------------------------------------------------------------------
 #ifndef _gba_video_h_
 #define _gba_video_h_
@@ -31,6 +60,18 @@
 #define	WIN0_ON		(1<<13)	// enable window 0
 #define	WIN1_ON		(1<<14)	// enable window 1
 #define	OBJ_WIN_ON	(1<<15)	// enable obj window
+
+#define BG0_ENABLE		BG0_ON
+#define BG1_ENABLE		BG1_ON
+#define BG2_ENABLE		BG2_ON
+#define BG3_ENABLE		BG3_ON
+#define OBJ_ENABLE		OBJ_ON
+#define WIN0_ENABLE		WIN0_ON
+#define WIN1_ENABLE		WIN1_ON
+#define OBJ_WIN_ENABLE	BG0_ON
+
+#define	BG_ALL_ON		BG0_ON | BG1_ON | BG2_ON | BG3_ON 	    // All BG ON
+#define	BG_ALL_ENABLE	BG0_ON | BG1_ON | BG2_ON | BG3_ON 	    // All BG ON
 
 #define	REG_DISPSTAT	*(vu16 *)(REG_BASE + 0x04)
 
@@ -86,7 +127,6 @@ typedef struct
 #define MAP_BASE_ADR(m)		((void *)(VRAM + ((m) << 11)))
 #define SCREEN_BASE(m)		((m) << 8)
 
-#define	BG_ALL_ON	BG0_ON | BG1_ON | BG2_ON | BG3_ON 	    // All BG ON
 
 #define BG_PRIORITY(m)		((m))
 #define BG_PALETTE(m)		((m)<<12)
@@ -121,8 +161,8 @@ typedef u16 MODE5_LINE[160];
 //---------------------------------------------------------------------------------
 #define SetMode(mode)	(REG_DISPCNT = mode)
 
-#define RGB5(r,g,b) ((r)|((g)<<5)|((b)<<10))
-#define RGB8(r,g,b)  ( (((b)>>3)<<10) | (((g)>>3)<<5) | ((r)>>3) )
+#define RGB5(r,g,b)	((r)|((g)<<5)|((b)<<10))
+#define RGB8(r,g,b)	( (((b)>>3)<<10) | (((g)>>3)<<5) | ((r)>>3) )
 
 //---------------------------------------------------------------------------------
 #endif // _gba_video_h_

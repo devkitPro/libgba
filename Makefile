@@ -12,7 +12,7 @@ ASFLAGS	:=	-g -Wa,--warn -mthumb -mthumb-interwork
 #---------------------------------------------------------------------------------
 # path to tools - this can be deleted if you set the path in windows
 #---------------------------------------------------------------------------------
-export PATH		:=	/c/devkitARM_r8/bin:/bin
+#export PATH		:=	/c/devkitARM_r11/bin:/bin
 
 
 #---------------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 Signature=UE Proj: v.1
 [Project Information]
 Filter=*.*
-Project Directory=C:\projects\gba\libgba\
+Project Directory=C:\projects\devkitPro\libgba\
 Use Relative Directory=1
 Relative to Project File=1
 Project Wordfile=C:\Program Files\UltraEdit\gba_wordfile.txt
@@ -16,15 +16,15 @@ Include Sub Directories=0
 [Open Files]
 Open File0=
 Active File Display Mode=-1
-Open File Pos0=0
-Open File Line0=0
-Active File Index=2
-Open File Window Pos0=0,1,-1,-1,-4,-23,22,22,712,340
-Open File1=C:\projects\devkitPro\CVSROOT\config
-Open File Pos1=992
-Open File Line1=0
-Open File Window Pos1=0,1,-1,-1,-4,-23,44,44,738,366
-Open File2=C:\projects\devkitPro\CVSROOT\modules
+Open File Pos0=3173
+Open File Line0=2340
+Active File Index=0
+Open File Window Pos0=2,3,-1,-1,-4,-23,0,0,690,318
+Open File1=
+Open File Pos1=0
+Open File Line1=479
+Open File Window Pos1=2,3,-1,-1,-4,-23,110,110,797,382
+Open File2=
 Open File Pos2=1179
 Open File Line2=0
 Open File Window Pos2=2,3,-1,-1,-4,-23,66,66,760,388
@@ -42,7 +42,7 @@ Open File Line5=0
 Open File Window Pos5=0,1,-1,-1,-4,-23,132,132,826,454
 Open File6=
 [File View]
-Current Select=Project Files
+Current Select=Project Files\makefile
 Scroll Position=0
 [Files - header]
 0=include\erapi.h

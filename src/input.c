@@ -1,5 +1,5 @@
 /*
-	"$Id: input.c,v 1.3 2004-10-09 20:27:36 wntrmute Exp $"
+	"$Id: input.c,v 1.4 2005-03-10 23:37:25 wntrmute Exp $"
 
 	libgba keypad input routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/input.c,v 1.3 2004-10-09 20:27:36 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/input.c,v 1.4 2005-03-10 23:37:25 wntrmute Exp $"
 
 */
 
@@ -105,7 +105,7 @@ u16	KeysDown(void)
 //---------------------------------------------------------------------------------
 {
 	u16 tmp = Keys.Down;
-	Keys.DownRepeat = 0;
+	Keys.Down = 0;
 
 	return tmp;
 }

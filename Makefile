@@ -46,7 +46,12 @@ $(BUILD):
 
 clean:
 	@echo clean ...
-	@rm -fr $(BUILD)
+	@rm -fr $(BUILD) *.tar.bz2
+	
+dist:
+	@tar --exclude=*CVS* -cvjf libgba-src.tar.bz2 *
+	@tar --exclude=*CVS* -cvjf libgba.tar.bz2 include lib license.txt
+
 
 
 #---------------------------------------------------------------------------------

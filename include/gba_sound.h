@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sound.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: gba_sound.h,v 1.3 2005-04-06 16:29:14 wntrmute Exp $"
 
 	Header file for libgba bios sound functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.3 2005-04-06 16:29:14 wntrmute Exp $"
 
 */
 //---------------------------------------------------------------------------------
@@ -89,6 +89,58 @@ void SoundDriverInit(SoundArea *sa);
 void SoundDriverMode(u32 mode);
 
 u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
+
+/*---------------------------------------------------------------------------------
+	Control Registers
+---------------------------------------------------------------------------------*/
+#define		SOUNDCNT_L	(*((u16 volatile *) REG_BASE + 0x080))
+
+#define SND1_R_ENABLE	(1<<8)		// Enable left & right speakers for each sound channel
+#define SND1_L_ENABLE	(1<<12)
+#define SND2_R_ENABLE	(1<<9)
+#define SND2_L_ENABLE	(1<<13)
+#define SND3_R_ENABLE	(1<<10)
+#define SND3_L_ENABLE	(1<<14)
+#define SND4_R_ENABLE	(1<<11)
+#define SND4_L_ENABLE	(1<<15)
+
+
+
+#define	SOUNDCNT_H	(*((u16 volatile *) REG_BASE + 0x082))
+#define	SOUNDCNT_X	(*((u16 volatile *) REG_BASE + 0x084))
+
+
+#define	SOUND1CNT_L	(*((u16 volatile *) REG_BASE + 0x060))
+#define	SOUND1CNT_H	(*((u16 volatile *) REG_BASE + 0x062))
+#define	SOUND1CNT_X	(*((u16 volatile *) REG_BASE + 0x064))
+
+#define	SOUND2CNT_L	(*((u16 volatile *) REG_BASE + 0x068))
+#define	SOUND2CNT_H	(*((u16 volatile *) REG_BASE + 0x06C))
+
+#define	SOUND3CNT_L	(*((u16 volatile *) REG_BASE + 0x070))
+#define	SOUND3CNT_H	(*((u16 volatile *) REG_BASE + 0x072))
+#define	SOUND3CNT_X	(*((u16 volatile *) REG_BASE + 0x074))
+
+#define	WAVE_RAM	((u16 volatile *)	REG_BASE + 0x090)
+
+#define	SOUND3_STEP32		(0<<5)	// Use two banks of 32 steps each
+#define SOUND3_STEP64		(1<<5)	// Use one bank of 64 steps
+#define SOUND3_SETBANK(n)	(n<<6)	// Bank to play 0 or 1 (non set bank is written to)
+#define SOUND3_PLAY			(1<<7)	// Output sound
+#define SOUND3_STOP			(0<<7)	// Stop sound output
+
+
+
+
+#define	SOUND4CNT_L	(*((u16 volatile *) REG_BASE + 0x078))
+#define	SOUND4CNT_H	(*((u16 volatile *) REG_BASE + 0x07C))
+
+
+#define	SOUNDBIAS	(*((u16 volatile *) REG_BASE + 0x088))
+
+
+#define		FIFO_A		(*((u32 volatile *) REG_BASE + 0x0A0))
+#define		FIFO_B		(*((u32 volatile *) REG_BASE + 0x0A4))
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

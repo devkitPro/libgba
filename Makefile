@@ -1,18 +1,19 @@
 .SUFFIXES:
 
-BUILD	:=	build
-SOURCES	:=	src
+BUILD		:=	build
+SOURCES		:=	src src/BoyScout
+INCLUDES	:=	include
 
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-CFLAGS	:=	-g -O3 -Wall -Wno-switch -Wno-multichar -mthumb -mthumb-interwork -I$(INCLUDE)
+CFLAGS	:=	-g -O3 -Wall -Wno-switch -Wno-multichar -mthumb -mthumb-interwork $(INCLUDE)
 ASFLAGS	:=	-g -Wa,--warn -mthumb -mthumb-interwork
 
 #---------------------------------------------------------------------------------
 # path to tools - this can be deleted if you set the path in windows
 #---------------------------------------------------------------------------------
-#export PATH		:=	/c/devkitARM_r11/bin:/bin
+export PATH		:=	/c/devkitARM_r11/bin:/bin
 
 
 #---------------------------------------------------------------------------------
@@ -34,7 +35,7 @@ CFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 SFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 
 export OFILES	:=	$(CFILES:.c=.o) $(SFILES:.s=.o)
-export INCLUDE	:=	$(CURDIR)/include
+export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir))
 
 .PHONY: $(BUILD) clean
 

@@ -7,7 +7,7 @@ SOURCES	:=	src
 # options for code generation
 #---------------------------------------------------------------------------------
 CFLAGS	:=	-g -O3 -Wall -Wno-switch -Wno-multichar -mthumb -mthumb-interwork -I$(INCLUDE)
-AFLAGS	:=	-g -Wa,--warn -mthumb -mthumb-interwork
+ASFLAGS	:=	-g -Wa,--warn -mthumb -mthumb-interwork
 
 #---------------------------------------------------------------------------------
 # path to tools - this can be deleted if you set the path in windows
@@ -71,7 +71,7 @@ $(TARGET): $(OFILES)
 #---------------------------------------------------------------------------------
 %.o: %.s
 	@echo $<
-	@$(CC) -MMD $(AFLAGS) -c $< -o$@
+	@$(CC) -MMD  -x assembler-with-cpp $(ASFLAGS) -c $< -o $@
 
 -include $(DEPENDS)
 

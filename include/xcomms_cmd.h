@@ -1,5 +1,5 @@
 /*
-	"$Id: xcomms_cmd.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: xcomms_cmd.h,v 1.3 2005-03-13 02:02:58 wntrmute Exp $"
 
 	Header file for libgba Xboo Communicator commands
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/xcomms_cmd.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/xcomms_cmd.h,v 1.3 2005-03-13 02:02:58 wntrmute Exp $"
 */
 
 //---------------------------------------------------------------------------------
@@ -46,6 +46,9 @@
 
 #define FGETC_CMD	('FGT'<<8)
 #define FPUTC_CMD	('FPT'<<8)
+
+#define GETCH_CMD	('GTC'<<8)
+#define KBHIT_CMD	('KBH'<<8)
 
 //---------------------------------------------------------------------------------
 #endif //_xcomms_cmd_h_

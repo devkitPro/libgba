@@ -1,5 +1,5 @@
 /*
-	"$Id: xcomms.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: xcomms.h,v 1.3 2005-03-13 02:02:58 wntrmute Exp $"
 
 	Header file for libgba xboo cable functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/xcomms.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/xcomms.h,v 1.3 2005-03-13 02:02:58 wntrmute Exp $"
 
 */
 
@@ -61,6 +61,9 @@ u32		xcomms_ftell	( int handle );
 void	xcomms_send(u32 data);
 void	xcomms_sendblock(const void *block, int len);
 
+int		xcomms_getch	(void);
+int		xcomms_kbhit	(void);
+
 void	xcomms_init();
 
 //---------------------------------------------------------------------------------
@@ -80,6 +83,9 @@ void	xcomms_init();
 #define dfgetc		xcomms_dfgetc
 #define dfputc		xcomms_dfputc
 #define drewind		xcomms_drewind
+
+#define dgetch		xcomms_getch
+#define dkbhit		xcomms_kbhit
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

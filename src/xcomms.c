@@ -1,5 +1,5 @@
 /*
-	"$Id: xcomms.c,v 1.3 2004-10-09 20:26:50 wntrmute Exp $"
+	"$Id: xcomms.c,v 1.4 2005-03-13 02:02:58 wntrmute Exp $"
 
 	libgba Xboo Communicator support routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/xcomms.c,v 1.3 2004-10-09 20:26:50 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/xcomms.c,v 1.4 2005-03-13 02:02:58 wntrmute Exp $"
 
 */
 #include <string.h>
@@ -41,8 +41,6 @@ u32 xcomms_recv(void)
 
 	while (REG_SIOCNT & SIO_START);
 
-//	REG_SIOCNT	|=	SIO_SO_HIGH;
-
 	return REG_SIODATA32;
 
 }
@@ -55,9 +53,8 @@ void xcomms_send(u32 data)
 	REG_SIOCNT	=	SIO_32BIT | SIO_SO_HIGH | SIO_START;
 	while (REG_SIOCNT & SIO_START);
 
-//	REG_SIOCNT	|=	SIO_SO_HIGH;
-
 }
+
 //---------------------------------------------------------------------------------
 void xcomms_init()
 //---------------------------------------------------------------------------------
@@ -74,8 +71,6 @@ u32 xcomms_exchange(u32 data)
 	REG_SIOCNT	=	SIO_32BIT;
 	REG_SIOCNT	=	SIO_32BIT | SIO_SO_HIGH | SIO_START;
 	while (REG_SIOCNT & SIO_START);
-
-//	REG_SIOCNT	|=	SIO_SO_HIGH;
 
 	return REG_SIODATA32;
 
@@ -193,4 +188,19 @@ void xcomms_fwrite( void *buffer, u32 size, u32 count, int handle )
 
 	xcomms_sendblock(buffer, size*count);
 
+}
+
+//---------------------------------------------------------------------------------
+int		xcomms_getch(void)
+//---------------------------------------------------------------------------------
+{
+	xcomms_send(GETCH_CMD);
+	return(xcomms_recv());
+}
+//---------------------------------------------------------------------------------
+int		xcomms_kbhit(void)
+//---------------------------------------------------------------------------------
+{
+	xcomms_send(KBHIT_CMD);
+	return(xcomms_recv());
 }

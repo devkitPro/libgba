@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_input.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: gba_input.h,v 1.3 2004-10-09 20:27:36 wntrmute Exp $"
 
 	Header file for libgba input functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.3 2004-10-09 20:27:36 wntrmute Exp $"
 
 */
 
@@ -50,11 +50,12 @@ extern "C" {
 
 #define DPAD 	(KEY_UP | KEY_DOWN | KEY_LEFT | KEY_RIGHT)
 
-void	ScanKeys();
-u16		KeysDown();
-u16		KeysUp();
-u16		KeysHeld();
-void	SetRepeat( int rpt);
+void	ScanKeys(void);
+u16		KeysDown(void);
+u16		KeysDownRepeat(void);
+u16		KeysUp(void);
+u16		KeysHeld(void);
+void	SetRepeat( int SetDelay, int SetRepeat);
 
 
 #define REG_KEYINPUT	*(vu16*)(REG_BASE + 0x130)  // Key Input

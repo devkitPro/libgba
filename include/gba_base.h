@@ -23,7 +23,7 @@
 #define	SystemCall(Number)	 asm ("SWI	  "#Number"	<< 16\n" :::"r0", "r1", "r2", "r3")
 #endif
 
-#define BIT(number) (1<<number)
+#define BIT(number) (1<<(number))
 
 #define IWRAM_CODE __attribute__((section(".iwram"), long_call))
 #define EWRAM_CODE __attribute__((section(".ewram"), long_call))

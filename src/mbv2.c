@@ -1,5 +1,5 @@
 /*
-	"$Id: mbv2.c,v 1.4 2004-08-14 02:30:50 wntrmute Exp $"
+	"$Id: mbv2.c,v 1.5 2005-03-13 02:01:22 wntrmute Exp $"
 
 	libgba mbv2 support functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/mbv2.c,v 1.4 2004-08-14 02:30:50 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/mbv2.c,v 1.5 2005-03-13 02:01:22 wntrmute Exp $"
 
 */
 
@@ -32,22 +32,7 @@
 #include "gba_sio.h"
 #include "mbv2.h"
 
-#define __DOUTBUFSIZE	256
-#define __FINBUFSIZE	256  //Must be a multiple of 2! (ex: 32,64,128,256,512..)
-#define __KINBUFSIZE	64   //Must be a multiple of 2! (ex: 32,64,128,256,512..)
-#define __ESCCHR		27
 
-#define __ESC_NADA				0
-#define __ESC_ESCCHR			1
-#define __ESC_FOPEN				2
-#define __ESC_FCLOSE			3
-#define __ESC_FGETC				4
-#define __ESC_FPUTC				5
-#define __ESC_REWIND			6
-#define __ESC_FPUTC_PROCESSED	7	// PC side add CR before LF if DOS machine
-#define __ESC_KBDCHR 			8
-
-unsigned char __outstr[__DOUTBUFSIZE];
 unsigned char __finstr[__FINBUFSIZE];
 unsigned char __kinstr[__KINBUFSIZE];
 int finptr	= 0;
@@ -243,46 +228,5 @@ void mbv2_drewind (int fp)
 	__dputchar(__ESCCHR);
 	__dputchar(__ESC_REWIND);
 }
-
-
-//---------------------------------------------------------------------------------
-void mbv2_dprintf(char *str, ...)
-//---------------------------------------------------------------------------------
-{
-	va_list args;
-	int i;
-	char *string = __outstr;
-
-	va_start(args, str);
-	i=vsprintf(__outstr,str,args);
-	va_end(args);
-
-	while (*string)
-		mbv2_dputchar(*string++);
-}
-
-//---------------------------------------------------------------------------------
-void mbv2_dfprintf(int fp, char *str, ...)
-//---------------------------------------------------------------------------------
-{
-	va_list args;
-	int i;
-	char *string = __outstr;
-
-	va_start(args, str);
-	i=vsprintf(__outstr,str,args);
-	va_end(args);
-
-
-	while (*string)
-	{
-		__dputchar(__ESCCHR);
-		__dputchar(__ESC_FPUTC_PROCESSED);
-
-		mbv2_dputchar(*string++);
-	}
-
-}
-
 
 

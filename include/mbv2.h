@@ -1,5 +1,5 @@
 /*
-	"$Id: mbv2.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: mbv2.h,v 1.3 2005-03-13 02:01:21 wntrmute Exp $"
 
 	Header file for libgba mbv2 functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/mbv2.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/mbv2.h,v 1.3 2005-03-13 02:01:21 wntrmute Exp $"
 
 */
 
@@ -66,6 +66,23 @@ void	mbv2_drewind	(int fp);
 #define dfgetc		mbv2_dfgetc
 #define dfputc		mbv2_dfputc
 #define drewind		mbv2_drewind
+
+#define __DOUTBUFSIZE	256
+#define __FINBUFSIZE	256  //Must be a multiple of 2! (ex: 32,64,128,256,512..)
+#define __KINBUFSIZE	64   //Must be a multiple of 2! (ex: 32,64,128,256,512..)
+#define __ESCCHR		27
+
+#define __ESC_NADA				0
+#define __ESC_ESCCHR			1
+#define __ESC_FOPEN				2
+#define __ESC_FCLOSE			3
+#define __ESC_FGETC				4
+#define __ESC_FPUTC				5
+#define __ESC_REWIND			6
+#define __ESC_FPUTC_PROCESSED	7	// PC side add CR before LF if DOS machine
+#define __ESC_KBDCHR 			8
+
+int __dputchar (int c);
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

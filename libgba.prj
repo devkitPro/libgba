@@ -42,7 +42,7 @@ Open File Line5=0
 Open File Window Pos5=0,1,-1,-1,-4,-23,132,132,826,454
 Open File6=
 [File View]
-Current Select=Project Files\makefile
+Current Select=Project Files\source\src\mbv2.c
 Scroll Position=0
 [Files - header]
 0=include\erapi.h
@@ -78,8 +78,8 @@ Scroll Position=0
 7=src\input.c
 8=src\interrupt.c
 9=src\IntrWait.c
-10=src\mbv2.c
-11=src\mbv2.txt
+10=src\mb2print.c
+11=src\mbv2.c
 12=src\MultiBoot.s
 13=src\pcx.c
 14=src\Reset.s

@@ -43,7 +43,7 @@ Open File Line5=0
 Open File Window Pos5=0,1,-1,-1,-4,-23,132,132,826,454
 Open File6=
 [File View]
-Current Select=Project Files\
+Current Select=Project Files
 Scroll Position=0
 [Files - BoyScout]
 0=src\BoyScout\BoyScout.c

@@ -4,6 +4,8 @@ BUILD		:=	build
 SOURCES		:=	src src/BoyScout
 INCLUDES	:=	include
 
+DATESTRING	:=	$(shell date +%Y)$(shell date +%m)$(shell date +%d)
+
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
@@ -50,8 +52,8 @@ clean:
 	@rm -fr $(BUILD) *.tar.bz2
 	
 dist:
-	@tar --exclude=*CVS* -cvjf libgba-src.tar.bz2 *
-	@tar --exclude=*CVS* -cvjf libgba.tar.bz2 include lib license.txt
+	@tar --exclude=*CVS* --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(DATESTRING).tar.bz2 *
+	@tar --exclude=*CVS* -cvjf libgba-$(DATESTRING).tar.bz2 include lib license.txt
 
 
 

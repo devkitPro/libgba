@@ -1,5 +1,5 @@
 /*
-	"$Id: mbv2.c,v 1.3 2004-08-09 17:04:51 wntrmute Exp $"
+	"$Id: mbv2.c,v 1.4 2004-08-14 02:30:50 wntrmute Exp $"
 
 	libgba mbv2 support functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/mbv2.c,v 1.3 2004-08-09 17:04:51 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/mbv2.c,v 1.4 2004-08-14 02:30:50 wntrmute Exp $"
 
 */
 
@@ -32,28 +32,28 @@
 #include "gba_sio.h"
 #include "mbv2.h"
 
-#define __DOUTBUFSIZE 256
-#define __FINBUFSIZE 256  //Must be a multiple of 2! (ex: 32,64,128,256,512..)
-#define __KINBUFSIZE 64   //Must be a multiple of 2! (ex: 32,64,128,256,512..)
-#define __ESCCHR 27
+#define __DOUTBUFSIZE	256
+#define __FINBUFSIZE	256  //Must be a multiple of 2! (ex: 32,64,128,256,512..)
+#define __KINBUFSIZE	64   //Must be a multiple of 2! (ex: 32,64,128,256,512..)
+#define __ESCCHR		27
 
-#define __ESC_NADA   0
-#define __ESC_ESCCHR 1
-#define __ESC_FOPEN  2
-#define __ESC_FCLOSE 3
-#define __ESC_FGETC  4
-#define __ESC_FPUTC  5
-#define __ESC_REWIND 6
-#define __ESC_FPUTC_PROCESSED 7         // PC side add CR before LF if DOS machine
-#define __ESC_KBDCHR 8
+#define __ESC_NADA				0
+#define __ESC_ESCCHR			1
+#define __ESC_FOPEN				2
+#define __ESC_FCLOSE			3
+#define __ESC_FGETC				4
+#define __ESC_FPUTC				5
+#define __ESC_REWIND			6
+#define __ESC_FPUTC_PROCESSED	7	// PC side add CR before LF if DOS machine
+#define __ESC_KBDCHR 			8
 
 unsigned char __outstr[__DOUTBUFSIZE];
 unsigned char __finstr[__FINBUFSIZE];
 unsigned char __kinstr[__KINBUFSIZE];
-int finptr = 0;
-int foutptr = 0;
-int kinptr = 0;
-int koutptr = 0;
+int finptr	= 0;
+int foutptr	= 0;
+int kinptr	= 0;
+int koutptr	= 0;
 
 //---------------------------------------------------------------------------------
 int __dputchar (int c)
@@ -69,10 +69,10 @@ int __dputchar (int c)
 	// Init normal comms, 8 bit transfer, receive clocking
 	//REG_SIOCNT = 0x00;
 	REG_SIODATA8 = c;
-	REG_SIOCNT = 0x80;
+	REG_SIOCNT = SIO_START;
 
 	// Wait until transfer is complete
-	while (REG_SIOCNT & 0x80) {}
+	while (REG_SIOCNT & SIO_START) {}
 	// Wait until SC is low
 	while (REG_RCNT & 1) {}
 
@@ -131,64 +131,65 @@ int __dputchar (int c)
 int mbv2_dputchar (int c)
 //---------------------------------------------------------------------------------
 {
-   (void) __dputchar(c);
-   if (c == __ESCCHR)
-      (void) __dputchar(__ESC_ESCCHR);
-   return (1);
-   }
+	(void) __dputchar(c);
+	if (c == __ESCCHR)
+		(void) __dputchar(__ESC_ESCCHR);
+
+	return (1);
+}
 
 
 //---------------------------------------------------------------------------------
 int mbv2_dgetch (void)
 //---------------------------------------------------------------------------------
-   {
-   int c;
+{
+	int c;
 
-   // If no character is in FIFO then wait for one.
-   while (kinptr == koutptr)
-      {
-      __dputchar(__ESCCHR);
-      __dputchar(__ESC_NADA);
-      }
+	// If no character is in FIFO then wait for one.
+	while (kinptr == koutptr)
+	{
+		__dputchar(__ESCCHR);
+		__dputchar(__ESC_NADA);
+	}
 
-   c = __kinstr[koutptr++];
-   koutptr &= (__KINBUFSIZE-1);
+	c = __kinstr[koutptr++];
+	koutptr &= (__KINBUFSIZE-1);
 
-   return (c);
-   }
+	return (c);
+}
 
 //---------------------------------------------------------------------------------
 int mbv2_dfgetch (void)
 //---------------------------------------------------------------------------------
-   {
-   int c;
+{
+	int c;
 
-   // If no character is in FIFO then wait for one.
-   while (finptr == foutptr)
-      {
-      __dputchar(__ESCCHR);
-      __dputchar(__ESC_NADA);
-      }
+	// If no character is in FIFO then wait for one.
+	while (finptr == foutptr)
+	{
+		__dputchar(__ESCCHR);
+		__dputchar(__ESC_NADA);
+	}
 
-   c = __finstr[foutptr++];
-   foutptr &= (__FINBUFSIZE-1);
+	c = __finstr[foutptr++];
+	foutptr &= (__FINBUFSIZE-1);
 
-   return (c);
-   }
+	return (c);
+}
 
 //---------------------------------------------------------------------------------
 int mbv2_dkbhit (void)
 //---------------------------------------------------------------------------------
-   {
-   return(kinptr != koutptr);
-   }
+{
+	return(kinptr != koutptr);
+}
 
 //---------------------------------------------------------------------------------
 int mbv2_dfopen (const char *file, const char *type)
 //---------------------------------------------------------------------------------
 {
-   __dputchar(__ESCCHR);
-   __dputchar(__ESC_FOPEN);
+	__dputchar(__ESCCHR);
+	__dputchar(__ESC_FOPEN);
 
 	while (*file)
 		mbv2_dputchar(*file++);
@@ -206,42 +207,42 @@ int mbv2_dfopen (const char *file, const char *type)
 //---------------------------------------------------------------------------------
 int mbv2_dfclose (int fp)
 //---------------------------------------------------------------------------------
-   {
-   __dputchar(__ESCCHR);
-   __dputchar(__ESC_FCLOSE);
+{
+	__dputchar(__ESCCHR);
+	__dputchar(__ESC_FCLOSE);
 
-   return(1);
-   }
+	return(1);
+}
 
 //---------------------------------------------------------------------------------
 int mbv2_dfgetc (int fp)
 //---------------------------------------------------------------------------------
-   {
-   __dputchar(__ESCCHR);
-   __dputchar(__ESC_FGETC);
+{
+	__dputchar(__ESCCHR);
+	__dputchar(__ESC_FGETC);
 
-   return(mbv2_dfgetch());
-   }
+	return(mbv2_dfgetch());
+}
 
 //---------------------------------------------------------------------------------
 int mbv2_dfputc (int ch, int fp)
 //---------------------------------------------------------------------------------
-   {
-   __dputchar(__ESCCHR);
-   __dputchar(__ESC_FPUTC);
+{
+	__dputchar(__ESCCHR);
+	__dputchar(__ESC_FPUTC);
 
-   mbv2_dputchar(ch);
+	mbv2_dputchar(ch);
 
-   return(1);
-   }
+	return(1);
+}
 
 //---------------------------------------------------------------------------------
 void mbv2_drewind (int fp)
 //---------------------------------------------------------------------------------
-   {
-   __dputchar(__ESCCHR);
-   __dputchar(__ESC_REWIND);
-   }
+{
+	__dputchar(__ESCCHR);
+	__dputchar(__ESC_REWIND);
+}
 
 
 //---------------------------------------------------------------------------------

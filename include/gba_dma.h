@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_dma.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: gba_dma.h,v 1.3 2004-08-09 22:54:23 wntrmute Exp $"
 
 	Header file for libgba DMA definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_dma.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_dma.h,v 1.3 2004-08-09 22:54:23 wntrmute Exp $"
 
 */
 
@@ -81,24 +81,24 @@ extern "C" {
 #define DMA_ENABLE		(1<<31)
 
 #define	DMA0COPY( source, dest, mode) \
-	REG_DMA0SAD = source;	\
-	REG_DMA0DAD = dest;		\
-	REG_DMA0CNT = mode;
+	REG_DMA0SAD = (u32)(source);	\
+	REG_DMA0DAD = (u32)(dest);		\
+	REG_DMA0CNT = (mode) | DMA_ENABLE;
 
 #define	DMA1COPY( source, dest, mode) \
-	REG_DMA1SAD = (source);	\
-	REG_DMA1DAD = (dest); \
-	REG_DMA1CNT = (mode);
+	REG_DMA1SAD = (u32)((source);	\
+	REG_DMA1DAD = (u32)(dest); \
+	REG_DMA1CNT = (mode) | DMA_ENABLE;
 
 #define	DMA2COPY( source, dest, mode) \
-	REG_DMA2SAD = source;	\
-	REG_DMA2DAD = dest;		\
-	REG_DMA2CNT = mode;
+	REG_DMA2SAD = (u32)(source);	\
+	REG_DMA2DAD = (u32)(dest);		\
+	REG_DMA2CNT = (mode) | DMA_ENABLE;
 
 #define	DMA3COPY( source, dest, mode) \
-	REG_DMA3SAD = source;	\
-	REG_DMA3DAD = dest;		\
-	REG_DMA3CNT = mode;
+	REG_DMA3SAD = (u32)(source);	\
+	REG_DMA3DAD = (u32)(dest);		\
+	REG_DMA3CNT = (mode) | DMA_ENABLE;
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

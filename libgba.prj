@@ -1,0 +1,71 @@
+[Project ID]
+Signature=UE Proj: v.1
+[Project Information]
+Filter=*.*
+Project Directory=C:\projects\gba\libgba\
+Use Relative Directory=1
+Relative to Project File=1
+Project Wordfile=C:\Program Files\UltraEdit\gba_wordfile.txt
+Project Tagfile=
+Create Tagfile=0
+Include Sub Directories=0
+[Group]
+0=header
+1=source
+2=
+[Open Files]
+Open File0=C:\projects\gba\exportlibgba\libgba\Makefile
+Active File Display Mode=3
+Open File Pos0=1365
+Open File Line0=835
+Active File Index=0
+Open File Window Pos0=2,3,-1,-1,-4,-23,0,0,690,318
+Open File1=
+[File View]
+Current Select=Project Files
+Scroll Position=0
+[Files - header]
+0=include\erapi.h
+1=include\fade.h
+2=include\gba_affine.h
+3=include\gba_base.h
+4=include\gba_compression.h
+5=include\gba_dma.h
+6=include\gba_input.h
+7=include\gba_interrupt.h
+8=include\gba_multiboot.h
+9=include\gba_sio.h
+10=include\gba_sound.h
+11=include\gba_sprites.h
+12=include\gba_systemcalls.h
+13=include\gba_timers.h
+14=include\gba_types.h
+15=include\gba_video.h
+16=include\mbv2.h
+17=include\pcx.h
+18=include\xcomms.h
+19=include\xcomms_cmd.h
+[Files]
+0=makefile
+[Files - source]
+0=src\AffineSet.c
+1=src\ArcTan.s
+2=src\Compression.c
+3=src\CpuSet.c
+4=src\Div.s
+5=src\DivArm.s
+6=src\fade.c
+7=src\input.c
+8=src\interrupt.c
+9=src\IntrWait.c
+10=src\IntrWait.s
+11=src\mbv2.c
+12=src\mbv2.txt
+13=src\MultiBoot.s
+14=src\pcx.c
+15=src\Reset.s
+16=src\single_ints.s
+17=src\Sound.s
+18=src\Sqrt.s
+19=src\xcomms.c
+20=src\xcomms_print.c

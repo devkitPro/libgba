@@ -1,0 +1,119 @@
+//
+// v1.40 - Initial release.
+// v1.41 - Put received keyboard & file data in separate buffers
+//         to prevent mixing of data during simultaneous use.
+//         Added dfprintf library function.
+//
+//  MB v1.41 or later pc software is required to use this library
+// software.
+//
+// NOTE: THIS LIBRARY USES GLOBAL INITIALIZED DATA SO YOU MUST USE
+// A CRT0.S AND A LINKER SCRIPT THAT SUPPORTS THIS AS WELL. GET
+// CRTLS V1.1 OR LATER FROM HTTP://www.devrs.com/gba FOR PROPER SUPPORT.
+//
+// The following library functions are supported:
+//
+// Library name   Standard Name      Function
+//   dprintf        printf       Print a string on PC console.
+//   dputchar       putchar      Print a char on PC console.
+//   dgetch         getch        Get a char from PC keyboard.
+//   dkbhit         kbhit        Return 1 if PC keyboard char is ready.
+//
+//   dfopen         fopen        Open PC file.
+//   dfclose        fclose       Close PC file.
+//   dfprintf       fprintf      Print a string to PC file.
+//   dfgetc         fgetc        Get char from PC file.
+//   dfputc         fputc        Write a char to PC file.
+//   drewind        rewind       Set file pointer to start of file.
+//
+// If you wish to use the standard naming conventions
+// rather than the library names then change "__ANSI_NAMES 0"
+// to "__ANSI_NAMES 1" instead.
+//
+// Notes:
+//
+//  Currently only ONE file may be open at a time.
+//
+//  If you are sending raw binary data to a PC file, use
+//  dfputc instead of dfprintf. Dfprintf will insert
+//  carriage return characters before linefeed characters
+//  on the PC side if the PC console software is running on
+//  dos/windows for proper text formatting.
+//
+//  If you are missing some .h files during compile than get
+// 'arminc.zip' from http://www.devrs.com/gba in the
+//  Apps / C Compilers section.
+//
+// Example command line:
+//    mb -s file.mb -c -w 50 -x 255 -m
+//
+//  In this example, after transferring "file.mb" to the GBA,
+// the PC goes into console/file server mode (-c) and also
+// shows all of the file open/file close/fgetc/fputc commands
+// (-m) on screen. The -w value should be a large enough value
+// where the -s is reliable and the -x value should be a large
+// enough value where the -c is reliable with the GBA.
+//
+//      [Sending a file & console mode each have
+//       their own delay settings because they
+//       each use a different method for transferring
+//       data. Each method is about ideal for it's
+//       application.]
+//
+// Example GBA Code:
+//
+//  #include "mbv2lib.c"
+//
+//  int main (void)
+//    {
+//
+//    int i,j,k;
+//    FILE fp;
+//
+//    dprintf ("Hello world!");
+//
+//    // Get character from PC keyboard
+//    i = dgetch ();
+//
+//    // Copy SRAM or Flash backup to PC
+//    fp = dfopen("sram.bin","wb");
+//    for (i = 0; i != 0x8000; i++)
+//       dfputc(*(unsigned char *)(i + 0xE000000), fp);
+//    dfclose(fp);
+//
+//    // Copy PC to SRAM
+//    fp = dfopen("sram.bin","rb");
+//    for (i = 0; i != 0x8000; i++)
+//       *(unsigned char *)(i + 0xE000000) = dfgetc (fp);
+//    dfclose(fp);
+
+//    // Read data from file
+//    fp = dfopen ("foo.bin", "rb");
+//    i = dfgetc (fp);
+//    j = dfgetc (fp);
+//    k = dfgetc (fp);
+//    dfclose (fp);
+//
+//    }
+
+// Data transfer format
+// --------------------
+//
+// PC -> GBA Comms:
+// Raw data is PC File read data.
+// ESCCHR 0x00 = nada (used for input polling)
+// ESCCHR 0x01 = Escape character from PC file read
+// ESCCHR 0x08 0x?? = Keyboard read data
+//
+//
+// GBA -> PC comms
+// Raw data is console print data.
+// ESCCHR = escape sequence
+// ESCCHR 0x00 = nada (used for input polling)
+// ESCCHR 0x01 = Escape character for console print
+// ESCCHR 0x02 = file open (gba -> PC)
+// ESCCHR 0x03 = file close (gba -> PC)
+// ESCCHR 0x04 = fgetc (gba -> PC)
+// ESCCHR 0x05 0x?? = fputc (gba -> PC)
+// ESCCHR 0x06 = rewind (gba -> PC)
+// ESCCHR 0x07 = fputc processed (gba -> pC) (Add CR before LF char if win/DOS machine)

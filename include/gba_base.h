@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_base.h,v 1.3 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: gba_base.h,v 1.4 2004-08-16 19:14:01 wntrmute Exp $"
 
 	Header file for libgba base macros, included by all libgba files
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.3 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.4 2004-08-16 19:14:01 wntrmute Exp $"
 
 */
 
@@ -60,7 +60,7 @@
 #define IWRAM_DATA	__attribute__((section(".iwram")))
 #define EWRAM_DATA	__attribute__((section(".ewram")))
 #define EWRAM_BSS	__attribute__((section(".sbss")))
-
+#define ALIGN(m)	__attribute__((aligned (m)))
 
 //---------------------------------------------------------------------------------
 // modes for DMA and CPU(Fast)Set

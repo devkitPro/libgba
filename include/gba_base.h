@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_base.h,v 1.4 2004-08-16 19:14:01 wntrmute Exp $"
+	"$Id: gba_base.h,v 1.5 2005-05-04 18:31:43 wntrmute Exp $"
 
 	Header file for libgba base macros, included by all libgba files
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.4 2004-08-16 19:14:01 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.5 2005-05-04 18:31:43 wntrmute Exp $"
 
 */
 
@@ -54,8 +54,8 @@
 
 #define BIT(number) (1<<(number))
 
-#define IWRAM_CODE __attribute__((section(".iwram"), long_call))
-#define EWRAM_CODE __attribute__((section(".ewram"), long_call))
+#define IWRAM_CODE	__attribute__((section(".iwram"), long_call))
+#define EWRAM_CODE	__attribute__((section(".ewram"), long_call))
 
 #define IWRAM_DATA	__attribute__((section(".iwram")))
 #define EWRAM_DATA	__attribute__((section(".ewram")))

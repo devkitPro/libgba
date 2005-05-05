@@ -15,7 +15,7 @@ ASFLAGS	:=	-g -Wa,--warn -mthumb -mthumb-interwork
 #---------------------------------------------------------------------------------
 # path to tools - this can be deleted if you set the path in windows
 #---------------------------------------------------------------------------------
-export PATH		:=	/c/devkitARM_r11/bin:/bin
+export PATH		:=	$(DEVKITARM)/bin:$(PATH)
 
 
 #---------------------------------------------------------------------------------
@@ -51,10 +51,13 @@ clean:
 	@echo clean ...
 	@rm -fr $(BUILD) *.tar.bz2
 	
-dist:
+dist: $(BUILD)
 	@tar --exclude=*CVS* --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(DATESTRING).tar.bz2 *
 	@tar --exclude=*CVS* -cvjf libgba-$(DATESTRING).tar.bz2 include lib license.txt
 
+install: dist
+	mkdir -p $(INSTALLDIR)/libgba
+	bzip2 -cd libgba-$(DATESTRING).tar.bz2 | tar -xv -C $(INSTALLDIR)/libgba
 
 
 #---------------------------------------------------------------------------------

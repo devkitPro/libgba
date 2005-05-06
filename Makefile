@@ -1,4 +1,7 @@
+#---------------------------------------------------------------------------------
 .SUFFIXES:
+#---------------------------------------------------------------------------------
+-include $(DEVKITARM)/gba_rules
 
 BUILD		:=	build
 SOURCES		:=	src src/BoyScout
@@ -38,6 +41,7 @@ SFILES	:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 
 export OFILES	:=	$(CFILES:.c=.o) $(SFILES:.s=.o)
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir))
+export DEPSDIR	:=	$(CURDIR)/build
 
 .PHONY: $(BUILD) clean
 
@@ -72,17 +76,6 @@ $(TARGET): $(OFILES)
 %.a: $(OFILES)
 	@echo $@
 	@$(AR) rcs $@ $(OFILES)
-
-
-#---------------------------------------------------------------------------------
-%.o: %.c
-	@echo $<
-	@$(CC) -MMD $(CFLAGS) -c $< -o $@
-
-#---------------------------------------------------------------------------------
-%.o: %.s
-	@echo $<
-	@$(CC) -MMD  -x assembler-with-cpp $(ASFLAGS) -c $< -o $@
 
 -include $(DEPENDS)
 

@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.3 2005-05-10 00:53:21 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.3 2005-05-10 00:53:21 wntrmute Exp $"
 
 */
 
@@ -140,7 +140,6 @@ typedef u16 MODE5_LINE[160];
 
 #define MODE3_FB ((MODE3_LINE *)0x06000000)
 #define MODE5_FB ((MODE5_LINE *)0x06000000)
-#define MODE3_BB ((MODE3_LINE *)0x0600A000)
 #define MODE5_BB ((MODE5_LINE *)0x0600A000)
 
 #define	REG_WIN0H	*(vu16 *)(REG_BASE + 0x40)

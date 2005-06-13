@@ -1,6 +1,12 @@
 #---------------------------------------------------------------------------------
 .SUFFIXES:
 #---------------------------------------------------------------------------------
+ifeq ($(strip $(DEVKITARM)),)
+$(error "Please set DEVKITARM in your environment. export DEVKITARM=<path to>devkitARM)
+endif
+ifeq ($(strip $(DEVKITPRO)),)
+$(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitPro)
+endif
 -include $(DEVKITARM)/gba_rules
 
 BUILD		:=	build
@@ -60,8 +66,8 @@ dist: $(BUILD)
 	@tar --exclude=*CVS* -cvjf libgba-$(DATESTRING).tar.bz2 include lib license.txt
 
 install: dist
-	mkdir -p $(INSTALLDIR)/libgba
-	bzip2 -cd libgba-$(DATESTRING).tar.bz2 | tar -xv -C $(INSTALLDIR)/libgba
+	mkdir -p $(DEVKITPRO)/libgba
+	bzip2 -cd libgba-$(DATESTRING).tar.bz2 | tar -xv -C $(DEVKITPRO)/libgba
 
 
 #---------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_types.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: gba_types.h,v 1.3 2005-06-15 17:03:55 wntrmute Exp $"
 
 	Header file for libgba basic types
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_types.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_types.h,v 1.3 2005-06-15 17:03:55 wntrmute Exp $"
 
 */
 
@@ -35,57 +35,18 @@
 //---------------------------------------------------------------------------------
 // Data	types
 //---------------------------------------------------------------------------------
-/** Unsigned 8 bit value
-
-*/
-typedef	unsigned char			u8;
-/** Unsigned 16 bit value
-
-*/
-typedef	unsigned short int		u16;
-/** Unsigned 32 bit value
-
-*/
-typedef	unsigned int			u32;
-
-/** signed 8 bit value
-
-*/
-typedef	signed char				s8;
-/** Signed 16 bit value
-
-*/
-typedef	signed short int		s16;
-/** Signed 32 bit value
-
-*/
-typedef	signed int				s32;
-
-/** Unsigned volatile 8 bit value
-
-*/
-typedef	volatile u8				vu8;
-/** Unsigned volatile 16 bit value
-
-*/
-typedef	volatile u16			vu16;
-/** Unsigned volatile 32 bit value
-
-*/
-typedef	volatile u32			vu32;
-
-/** Unsigned volatile 8 bit value
-
-*/
-typedef	volatile s8				vs8;
-/** Signed volatile 16 bit value
-
-*/
-typedef	volatile s16			vs16;
-/** Signed volatile 32 bit value
-
-*/
-typedef	volatile s32			vs32;
+typedef	unsigned char			u8;		/**< Unsigned 8 bit value	*/
+typedef	unsigned short int		u16;	/**< Unsigned 16 bit value	*/
+typedef	unsigned int			u32;	/**< Unsigned 32 bit value	*/
+typedef	signed char				s8;		/**< Signed 8 bit value	*/
+typedef	signed short int		s16;	/**< Signed 16 bit value	*/
+typedef	signed int				s32;	/**< Signed 32 bit value	*/
+typedef	volatile u8				vu8;	/**< volatile Unsigned 8 bit value	*/
+typedef	volatile u16			vu16;	/**< volatile Unigned 16 bit value	*/
+typedef	volatile u32			vu32;	/**< volatile Unsigned 32 bit value	*/
+typedef	volatile s8				vs8;	/**< volatile Signed 8 bit value	*/
+typedef	volatile s16			vs16;	/**< volatile Signed 8 bit value	*/
+typedef	volatile s32			vs32;	/**< volatile Signed 8 bit value	*/
 
 #ifndef __cplusplus
 /** C++ compatible bool for C

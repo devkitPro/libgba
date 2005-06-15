@@ -10,7 +10,7 @@ endif
 -include $(DEVKITARM)/gba_rules
 
 BUILD		:=	build
-SOURCES		:=	src src/BoyScout
+SOURCES		:=	src src/BoyScout syscalls
 INCLUDES	:=	include
 
 DATESTRING	:=	$(shell date +%Y)$(shell date +%m)$(shell date +%d)

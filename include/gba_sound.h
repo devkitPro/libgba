@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sound.h,v 1.4 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Id: gba_sound.h,v 1.5 2005-08-23 20:22:34 wntrmute Exp $"
 
 	Header file for libgba bios sound functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.4 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.5 2005-08-23 20:22:34 wntrmute Exp $"
 
 */
 //---------------------------------------------------------------------------------
@@ -106,22 +106,22 @@ u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
 
 
 
-#define	SOUNDCNT_H	(*((u16 volatile *) REG_BASE + 0x082))
-#define	SOUNDCNT_X	(*((u16 volatile *) REG_BASE + 0x084))
+#define	SOUNDCNT_H	(*((u16 volatile *) (REG_BASE + 0x082)))
+#define	SOUNDCNT_X	(*((u16 volatile *) (REG_BASE + 0x084)))
 
 
-#define	SOUND1CNT_L	(*((u16 volatile *) REG_BASE + 0x060))
-#define	SOUND1CNT_H	(*((u16 volatile *) REG_BASE + 0x062))
-#define	SOUND1CNT_X	(*((u16 volatile *) REG_BASE + 0x064))
+#define	SOUND1CNT_L	(*((u16 volatile *) (REG_BASE + 0x060)))
+#define	SOUND1CNT_H	(*((u16 volatile *) (REG_BASE + 0x062)))
+#define	SOUND1CNT_X	(*((u16 volatile *) (REG_BASE + 0x064)))
 
-#define	SOUND2CNT_L	(*((u16 volatile *) REG_BASE + 0x068))
-#define	SOUND2CNT_H	(*((u16 volatile *) REG_BASE + 0x06C))
+#define	SOUND2CNT_L	(*((u16 volatile *) (REG_BASE + 0x068)))
+#define	SOUND2CNT_H	(*((u16 volatile *) (REG_BASE + 0x06C)))
 
-#define	SOUND3CNT_L	(*((u16 volatile *) REG_BASE + 0x070))
-#define	SOUND3CNT_H	(*((u16 volatile *) REG_BASE + 0x072))
-#define	SOUND3CNT_X	(*((u16 volatile *) REG_BASE + 0x074))
+#define	SOUND3CNT_L	(*((u16 volatile *) (REG_BASE + 0x070)))
+#define	SOUND3CNT_H	(*((u16 volatile *) (REG_BASE + 0x072)))
+#define	SOUND3CNT_X	(*((u16 volatile *) (REG_BASE + 0x074)))
 
-#define	WAVE_RAM	((u16 volatile *)	REG_BASE + 0x090)
+#define	WAVE_RAM	((u16 volatile *)	(REG_BASE + 0x090))
 
 #define	SOUND3_STEP32		(0<<5)	// Use two banks of 32 steps each
 #define SOUND3_STEP64		(1<<5)	// Use one bank of 64 steps
@@ -132,15 +132,15 @@ u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
 
 
 
-#define	SOUND4CNT_L	(*((u16 volatile *) REG_BASE + 0x078))
-#define	SOUND4CNT_H	(*((u16 volatile *) REG_BASE + 0x07C))
+#define	SOUND4CNT_L	(*((u16 volatile *) (REG_BASE + 0x078)))
+#define	SOUND4CNT_H	(*((u16 volatile *) (REG_BASE + 0x07C)))
 
 
-#define	SOUNDBIAS	(*((u16 volatile *) REG_BASE + 0x088))
+#define	SOUNDBIAS	(*((u16 volatile *) (REG_BASE + 0x088)))
 
 
-#define		FIFO_A		(*((u32 volatile *) REG_BASE + 0x0A0))
-#define		FIFO_B		(*((u32 volatile *) REG_BASE + 0x0A4))
+#define		FIFO_A		(*((u32 volatile *) (REG_BASE + 0x0A0)))
+#define		FIFO_B		(*((u32 volatile *) (REG_BASE + 0x0A4)))
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

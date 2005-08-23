@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_base.h,v 1.5 2005-05-04 18:31:43 wntrmute Exp $"
+	"$Id: gba_base.h,v 1.6 2005-08-23 17:02:06 wntrmute Exp $"
 
 	Header file for libgba base macros, included by all libgba files
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.5 2005-05-04 18:31:43 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.6 2005-08-23 17:02:06 wntrmute Exp $"
 
 */
 

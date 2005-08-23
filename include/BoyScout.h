@@ -58,7 +58,7 @@ typedef struct
 } SSound1Pattern;
 
 // Sound 2 pattern
-typedef struct 
+typedef struct
 {
 	unsigned short nLength;
 	unsigned char *apParams[SOUND2_PARAMETER_COUNT];

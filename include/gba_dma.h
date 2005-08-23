@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_dma.h,v 1.4 2005-03-10 23:37:25 wntrmute Exp $"
+	"$Id: gba_dma.h,v 1.5 2005-08-23 17:02:06 wntrmute Exp $"
 
 	Header file for libgba DMA definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_dma.h,v 1.4 2005-03-10 23:37:25 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_dma.h,v 1.5 2005-08-23 17:02:06 wntrmute Exp $"
 
 */
 

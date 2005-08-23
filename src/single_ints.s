@@ -1,5 +1,5 @@
 /*
-	"$Id: single_ints.s,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
+	"$Id: single_ints.s,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
 
 	libgba interrupt dispatcher routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/single_ints.s,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/single_ints.s,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
 
 */
 

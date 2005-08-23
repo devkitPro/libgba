@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sound.h,v 1.3 2005-04-06 16:29:14 wntrmute Exp $"
+	"$Id: gba_sound.h,v 1.4 2005-08-23 17:02:06 wntrmute Exp $"
 
 	Header file for libgba bios sound functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.3 2005-04-06 16:29:14 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.4 2005-08-23 17:02:06 wntrmute Exp $"
 
 */
 //---------------------------------------------------------------------------------

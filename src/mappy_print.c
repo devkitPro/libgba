@@ -1,5 +1,5 @@
 /*
-	"$Id: mappy_print.c,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Id: mappy_print.c,v 1.4 2005-08-31 23:01:08 wntrmute Exp $"
 
 	libgba mappy debug print routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/mappy_print.c,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/mappy_print.c,v 1.4 2005-08-31 23:01:08 wntrmute Exp $"
 
 */
 #include <stdarg.h>
@@ -32,7 +32,7 @@
 
 #define __DOUTBUFSIZE 256
 
-unsigned char __outstr[__DOUTBUFSIZE];
+char __outstr[__DOUTBUFSIZE];
 
 //---------------------------------------------------------------------------------
 // VBoy and Mappy debug console output

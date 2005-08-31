@@ -31,7 +31,7 @@
 #include <stdio.h>
 #include "mbv2.h"
 
-unsigned char __outstr[__DOUTBUFSIZE];
+char __outstr[__DOUTBUFSIZE];
 
 //---------------------------------------------------------------------------------
 void mbv2_dprintf(char *str, ...)

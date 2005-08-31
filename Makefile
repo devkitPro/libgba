@@ -10,7 +10,7 @@ endif
 -include $(DEVKITARM)/gba_rules
 
 BUILD		:=	build
-SOURCES		:=	src src/BoyScout syscalls
+SOURCES		:=	src src/BoyScout
 INCLUDES	:=	include
 
 DATESTRING	:=	$(shell date +%Y)$(shell date +%m)$(shell date +%d)
@@ -60,7 +60,7 @@ $(BUILD):
 clean:
 	@echo clean ...
 	@rm -fr $(BUILD) *.tar.bz2
-	
+
 dist: $(BUILD)
 	@tar --exclude=*CVS* --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(DATESTRING).tar.bz2 *
 	@tar --exclude=*CVS* -cvjf libgba-$(DATESTRING).tar.bz2 include lib license.txt
@@ -81,6 +81,7 @@ $(TARGET): $(OFILES)
 #---------------------------------------------------------------------------------
 %.a: $(OFILES)
 	@echo $@
+	@rm -f $@
 	@$(AR) rcs $@ $(OFILES)
 
 -include $(DEPENDS)

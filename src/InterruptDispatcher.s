@@ -1,5 +1,5 @@
 /*
-	"$Id: InterruptDispatcher.s,v 1.1 2005-08-31 23:02:30 wntrmute Exp $"
+	$Id: InterruptDispatcher.s,v 1.2 2005-08-31 23:17:30 wntrmute Exp $
 
 	libgba interrupt dispatcher routines
 
@@ -23,8 +23,9 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.1 2005-08-31 23:02:30 wntrmute Exp $"
+	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.2 2005-08-31 23:17:30 wntrmute Exp $
 
+	$Log: not supported by cvs2svn $
 */
 
 @---------------------------------------------------------------------------------
@@ -40,7 +41,7 @@ IntrMain:
 	mov	r3, #0x4000000			@ REG_BASE
 	ldr	r2, [r3,#0x200]			@ Read	REG_IE
 
-	ldrh	r1, [r2, #0x8]			@ r1 = IME
+	ldrh	r1, [r3, #0x8]			@ r1 = IME
 	mrs	r0, spsr
 	stmfd	sp!, {r0-r1,r3,lr}		@ {spsr, IME, REG_BASE, lr}
 
@@ -59,7 +60,7 @@ findIRQ:
 	ldr	r0, [r2, #4]
 	cmp	r0,#0
 	beq	no_handler
-	ands	r0,	r0,	r1
+	ands	r0, r0, r1
 	bne	jump_intr
 	add	r2, r2, #8
 	b	findIRQ

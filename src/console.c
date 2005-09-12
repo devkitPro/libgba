@@ -1,5 +1,5 @@
 /*
-	$Id: console.c,v 1.1 2005-09-12 04:45:43 wntrmute Exp $
+	$Id: console.c,v 1.2 2005-09-12 06:49:20 wntrmute Exp $
 
 	Copyright 2003-2004 by Dave Murphy.
 
@@ -22,6 +22,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.1  2005/09/12 04:45:43  wntrmute
+	added *printf functionality
+
 
 */
 
@@ -106,7 +109,7 @@ int con_write(struct _reent *r,int fd,const char *ptr,int len) {
 	while(*tmp!='\0' && i<len) {
 
 		chr = *(tmp++);
-		count++;
+		i++; count++;
 
 		if ( chr == 0x1b && *tmp == '[' ) {
 			bool escaping = true;
@@ -173,7 +176,6 @@ int con_write(struct _reent *r,int fd,const char *ptr,int len) {
 		}
 
 		consolePrintChar(chr);
-		i++;
 	}
 
 	return count;

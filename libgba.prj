@@ -63,7 +63,7 @@ Open File Line10=5648
 Open File Window Pos10=2,3,-1,-1,-4,-23,88,88,1032,378
 Open File11=
 [File View]
-Current Select=Project Files\src\console.c
+Current Select=Project Files
 Scroll Position=0
 [Files - BoyScout]
 0=src\BoyScout\BoyScout.c

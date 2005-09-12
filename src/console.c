@@ -1,5 +1,5 @@
 /*
-	$Id: console.c,v 1.2 2005-09-12 06:49:20 wntrmute Exp $
+	$Id: console.c,v 1.3 2005-09-12 07:21:50 wntrmute Exp $
 
 	Copyright 2003-2004 by Dave Murphy.
 
@@ -22,6 +22,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.2  2005/09/12 06:49:20  wntrmute
+	fixed buffer overrun in con_write
+
 	Revision 1.1  2005/09/12 04:45:43  wntrmute
 	added *printf functionality
 
@@ -89,7 +92,7 @@ static const int CONSOLE_HEIGHT=20;
 void consoleCls() {
 //---------------------------------------------------------------------------------
 
-	*((u32 *)MAP_BASE_ADR(consoleMap)) =0;
+	*((u32 *)MAP_BASE_ADR(consoleMap)) = 0x00200020;
 	CpuFastSet( MAP_BASE_ADR(consoleMap), MAP_BASE_ADR(consoleMap), FILL | (0x800/4));
 }
 
@@ -200,15 +203,15 @@ void upcvt_4bit(void *dst, const u8 *src, u32 len) {
 		u32 x;
 
 		for(x = 0; x < 8; x++) {
-			dst_bits |= src_bits & 1;
 			dst_bits <<= 4;
+			dst_bits |= src_bits & 1;
 			src_bits >>= 1;
 		}
 	*out++ = dst_bits;
 	}
 }
 
-#include <font8x8_fnt.h>
+#include <amiga_fnt.h>
 
 //---------------------------------------------------------------------------------
 void consoleInit(	int charBase, int mapBase, int background,
@@ -218,8 +221,8 @@ void consoleInit(	int charBase, int mapBase, int background,
 	BGCTRL[background] = BG_SIZE_0 | CHAR_BASE(charBase) | SCREEN_BASE(mapBase);
 
 	if (font == NULL || fontsize == 0) {
-		font = font8x8_fnt;
-		fontsize = font8x8_fnt_size;
+		font = amiga_fnt;
+		fontsize = amiga_fnt_size;
 	}
 
 	upcvt_4bit(CHAR_BASE_ADR(charBase), font, fontsize);
@@ -231,7 +234,7 @@ void consoleInit(	int charBase, int mapBase, int background,
 	devoptab_list[STD_ERR] = &dotab_stderr;
 	setvbuf(stderr, NULL , _IONBF, 0);
 	setvbuf(stdout, NULL , _IONBF, 0);
-
+	consoleCls();
 	consoleInitialised = true;
 
 }

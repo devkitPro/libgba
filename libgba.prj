@@ -63,7 +63,7 @@ Open File Line10=5648
 Open File Window Pos10=2,3,-1,-1,-4,-23,88,88,1032,378
 Open File11=
 [File View]
-Current Select=Project Files
+Current Select=Project Files\src\console.c
 Scroll Position=0
 [Files - BoyScout]
 0=src\BoyScout\BoyScout.c
@@ -113,6 +113,5 @@ Scroll Position=0
 19=src\xcomms_print.c
 [Files]
 0=include\
-1=makefile
-2=src\
-3=syscalls\
+1=src\
+2=makefile

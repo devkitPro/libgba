@@ -1,5 +1,5 @@
 /*
-	"$Id: fade.c,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
+	"$Id: fade.c,v 1.3 2005-09-20 23:19:05 wntrmute Exp $"
 
 	libgba 256 color fade routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/fade.c,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/fade.c,v 1.3 2005-09-20 23:19:05 wntrmute Exp $"
 
 */
 
@@ -35,7 +35,6 @@
 
 ---------------------------------------------------------------------------------*/
 #include "gba_video.h"
-#include "gba_interrupt.h"
 #include "gba_systemcalls.h"
 
 //---------------------------------------------------------------------------------

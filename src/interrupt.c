@@ -1,5 +1,5 @@
 /*
-	"$Id: interrupt.c,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Id: interrupt.c,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
 
 	libgba interrupt support routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/interrupt.c,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/interrupt.c,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
 
 */
 #include "gba_interrupt.h"
@@ -97,7 +97,7 @@ void EnableInterrupt(eINT interrupt)
 		case Int_DMA2:
 		case Int_DMA3:
 		case Int_KeyPad:
-		case Int_Cart:
+		case Int_GamePak:
 			REG_IE |= BIT(interrupt);
 			break;
 	}
@@ -134,7 +134,7 @@ void DisableInterrupt(eINT interrupt)
 		case Int_DMA2:
 		case Int_DMA3:
 		case Int_KeyPad:
-		case Int_Cart:
+		case Int_GamePak:
 			REG_IE &= ~BIT(interrupt);
 			break;
 		case Ints_All:

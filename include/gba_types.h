@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_types.h,v 1.3 2005-06-15 17:03:55 wntrmute Exp $"
+	"$Id: gba_types.h,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
 
 	Header file for libgba basic types
 
@@ -23,7 +23,12 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_types.h,v 1.3 2005-06-15 17:03:55 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_types.h,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
+
+*/
+
+/*! \file gba_types.h
+    \brief gba type definitions.
 
 */
 
@@ -49,7 +54,7 @@ typedef	volatile s16			vs16;	/**< volatile Signed 8 bit value	*/
 typedef	volatile s32			vs32;	/**< volatile Signed 8 bit value	*/
 
 #ifndef __cplusplus
-/** C++ compatible bool for C
+/*! C++ compatible bool for C
 
 */
 typedef enum { false, true } bool;

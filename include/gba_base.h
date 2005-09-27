@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_base.h,v 1.7 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Id: gba_base.h,v 1.8 2005-09-27 00:37:17 wntrmute Exp $"
 
 	Header file for libgba base macros, included by all libgba files
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.7 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.8 2005-09-27 00:37:17 wntrmute Exp $"
 
 */
 /*! \file gba_base.h
@@ -58,6 +58,11 @@
 */
 #define	EWRAM		0x02000000
 #define	EWRAM_END	0x02040000
+/*! \def SRAM
+
+    \brief Base address of gba cart save ram.
+
+*/
 #define	SRAM		0x0E000000
 /*! \def REG_BASE
 
@@ -71,12 +76,26 @@
 #endif
 
 //---------------------------------------------------------------------------------
+/*! \def SystemCall(Number)
+
+    \brief helper macro to insert a bios call.
+		\param Number swi number to call
+		
+		Inserts a swi of the correct format for arm or thumb code.
+
+*/
 #if	defined	( __thumb__ )
 #define	SystemCall(Number)	 asm ("SWI	  "#Number"\n" :::  "r0", "r1", "r2", "r3")
 #else
 #define	SystemCall(Number)	 asm ("SWI	  "#Number"	<< 16\n" :::"r0", "r1", "r2", "r3")
 #endif
 
+/*! \def BIT(number)
+
+    \brief Macro for bit settings.
+
+	\param number bit number to set
+*/
 #define BIT(number) (1<<(number))
 
 #define IWRAM_CODE	__attribute__((section(".iwram"), long_call))

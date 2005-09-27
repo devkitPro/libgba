@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_interrupt.h,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Id: gba_interrupt.h,v 1.5 2005-09-27 00:37:17 wntrmute Exp $"
 
 	Header file for libgba interrupt handling
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_interrupt.h,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_interrupt.h,v 1.5 2005-09-27 00:37:17 wntrmute Exp $"
 
 */
 
@@ -44,13 +44,10 @@ extern "C" {
 
 /*! \var typedef void ( * IntFn)(void)
     \brief A type definition for an interrupt function pointer
-
-    Details.
 */
 typedef void ( * IntFn)(void);
 
 struct IntTable{IntFn handler; u32 mask;};
-
 
 typedef enum {
 	Int_Vblank, 	/*!< Vblank interrupt index. */

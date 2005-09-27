@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.3 2005-05-10 00:53:21 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.4 2005-09-27 00:37:17 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,12 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.3 2005-05-10 00:53:21 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.4 2005-09-27 00:37:17 wntrmute Exp $"
+
+*/
+
+/*! \file gba_video.h
+    \brief gba video definitions.
 
 */
 
@@ -37,59 +42,112 @@
 #define BG_COLORS		((u16 *)0x05000000)	// Background color table
 #define	OBJ_COLORS		((u16 *)0x05000200)	// Sprite color table
 
-#define	REG_DISPCNT		*(vu16 *)(REG_BASE + 0x00)
+/*! \def REG_DISPCNT
 
-#define	MODE_0	0		// BG Mode 0
-#define	MODE_1	1		// BG Mode 1
-#define	MODE_2	2		// BG Mode 2
-#define	MODE_3	3		// BG Mode 3
-#define	MODE_4	4		// BG Mode 4
-#define	MODE_5	5		// BG Mode 5
+    \brief LCD control register
+
+	This register controls all aspects of the GBA display.
+*/
+#define	REG_DISPCNT		*(vu16 *)(REG_BASE + 0x00)
 
 //---------------------------------------------------------------------------------
 // LCDC control bits
 //---------------------------------------------------------------------------------
-#define BACKBUFFER	(1<<4)	// buffer display select
-#define OBJ_1D_MAP	(1<<6)	// sprite 1 dimensional mapping
-#define	LCDC_OFF	(1<<7)	// LCDC OFF
-#define	BG0_ON		(1<<8)	// enable background 0
-#define	BG1_ON		(1<<9)	// enable background 1
-#define	BG2_ON		(1<<10)	// enable background 2
-#define	BG3_ON		(1<<11)	// enable background 3
-#define	OBJ_ON		(1<<12)	// enable sprites
-#define	WIN0_ON		(1<<13)	// enable window 0
-#define	WIN1_ON		(1<<14)	// enable window 1
-#define	OBJ_WIN_ON	(1<<15)	// enable obj window
+typedef enum LCDC_BITS {
+//---------------------------------------------------------------------------------
+	MODE_0	=	0,	//*< BG Mode 0 */
+	MODE_1	=	1,	//*< BG Mode 1 */
+	MODE_2	=	2,	//*< BG Mode 2 */
+	MODE_3	=	3,	//*< BG Mode 3 */
+	MODE_4	=	4,	//*< BG Mode 4 */
+	MODE_5	=	5,	//*< BG Mode 5 */
 
-#define BG0_ENABLE		BG0_ON
-#define BG1_ENABLE		BG1_ON
-#define BG2_ENABLE		BG2_ON
-#define BG3_ENABLE		BG3_ON
-#define OBJ_ENABLE		OBJ_ON
-#define WIN0_ENABLE		WIN0_ON
-#define WIN1_ENABLE		WIN1_ON
-#define OBJ_WIN_ENABLE	BG0_ON
+	BACKBUFFER	=	(1<<4),		//*< buffer display select			*/
+	OBJ_1D_MAP	=	(1<<6),		//*< sprite 1 dimensional mapping	*/
+	LCDC_OFF	=	(1<<7),		//*< LCDC OFF						*/
+	BG0_ON		=	(1<<8),		//*< enable background 0			*/
+	BG1_ON		=	(1<<9),		//*< enable background 1			*/
+	BG2_ON		=	(1<<10),	//*< enable background 2			*/
+	BG3_ON		=	(1<<11),	//*< enable background 3			*/
+	OBJ_ON		=	(1<<12),	//*< enable sprites					*/
+	WIN0_ON		=	(1<<13),	//*< enable window 0				*/
+	WIN1_ON		=	(1<<14),	//*< enable window 1				*/
+	OBJ_WIN_ON	=	(1<<15),	//*< enable obj window				*/
 
-#define	BG_ALL_ON		BG0_ON | BG1_ON | BG2_ON | BG3_ON 	    // All BG ON
-#define	BG_ALL_ENABLE	BG0_ON | BG1_ON | BG2_ON | BG3_ON 	    // All BG ON
+	BG0_ENABLE		=	BG0_ON,		//*< enable background 0	*/
+	BG1_ENABLE		=	BG1_ON, 	//*< enable background 1	*/
+	BG2_ENABLE		=	BG2_ON, 	//*< enable background 2	*/
+	BG3_ENABLE		=	BG3_ON,		//*< enable background 3	*/
+	OBJ_ENABLE		=	OBJ_ON, 	//*< enable sprites			*/
+	WIN0_ENABLE		=	WIN0_ON,	//*< enable window 0		*/
+	WIN1_ENABLE		=	WIN1_ON,	//*< enable window 1		*/
+	OBJ_WIN_ENABLE	=	BG0_ON, 	//*< enable obj window		*/
 
+	BG_ALL_ON		=	BG0_ON | BG1_ON | BG2_ON | BG3_ON, 	    //<* All Backgrounds on.		*/
+	BG_ALL_ENABLE	=	BG0_ON | BG1_ON | BG2_ON | BG3_ON	    //<* All Backgrounds enabled.	*/
+
+} LCDC_BITS;
+
+/*! \def REG_DISPSTAT
+
+    \brief General LCD Status.
+
+	This register controls the LCD interrupts.
+*/
 #define	REG_DISPSTAT	*(vu16 *)(REG_BASE + 0x04)
 
 //---------------------------------------------------------------------------------
 // LCDC Interrupt bits
 //---------------------------------------------------------------------------------
-#define LCDC_VBL_FLAG	(1<<0)
-#define LCDC_HBL_FLAG	(1<<1)
-#define LCDC_VCNT_FLAG	(1<<2)
-#define LCDC_VBL		(1<<3)
-#define LCDC_HBL		(1<<4)
-#define LCDC_VCNT		(1<<5)
-#define VCOUNT(m)		((m)<<8)
+enum LCDC_IRQ {
+	LCDC_VBL_FLAG	=	(1<<0),
+	LCDC_HBL_FLAG	=	(1<<1),
+	LCDC_VCNT_FLAG	=	(1<<2),
+	LCDC_VBL		=	(1<<3),
+	LCDC_HBL		=	(1<<4),
+	LCDC_VCNT		=	(1<<5)
+};
+
+static inline u32 VCOUNT( int m) { return m<<8; }
 
 
+/*! \def REG_VCOUNT
+
+    \brief
+
+*/
 #define	REG_VCOUNT		*(vu16 *)(REG_BASE + 0x06)
-#define BGCTRL			((vu16 *)(REG_BASE + 0x08))
 
+/*! \def BGCTRL
+
+    \brief
+
+*/
+#define BGCTRL		((vu16 *)(REG_BASE + 0x08))
+/*! \def REG_BG0CNT
+
+	\brief Background 0 control register.
+
+*/
+#define REG_BG0CNT	*((vu16 *)(REG_BASE + 0x08))
+/*! \def REG_BG1CNT
+
+	\brief Background 1 control register.
+
+*/
+#define REG_BG1CNT	*((vu16 *)(REG_BASE + 0x0a))
+/*! \def REG_BG2CNT
+
+	\brief Background 2 control register.
+
+*/
+#define REG_BG2CNT	*((vu16 *)(REG_BASE + 0x0c))
+/*! \def REG_BG3CNT
+
+	\brief Background 3 control register.
+
+*/
+#define REG_BG3CNT	*((vu16 *)(REG_BASE + 0x0e))
 typedef struct
 {
 	vu16 x;
@@ -158,7 +216,7 @@ typedef u16 MODE5_LINE[160];
 //---------------------------------------------------------------------------------
 // Helper macros
 //---------------------------------------------------------------------------------
-#define SetMode(mode)	(REG_DISPCNT = mode)
+static inline void SetMode(LCDC_BITS mode)	{REG_DISPCNT = mode;}
 
 #define RGB5(r,g,b)	((r)|((g)<<5)|((b)<<10))
 #define RGB8(r,g,b)	( (((b)>>3)<<10) | (((g)>>3)<<5) | ((r)>>3) )

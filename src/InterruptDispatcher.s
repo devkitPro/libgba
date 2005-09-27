@@ -1,5 +1,5 @@
 /*
-	$Id: InterruptDispatcher.s,v 1.3 2005-09-07 23:09:56 wntrmute Exp $
+	$Id: InterruptDispatcher.s,v 1.4 2005-09-27 07:58:45 wntrmute Exp $
 
 	libgba interrupt dispatcher routines
 
@@ -23,9 +23,12 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.3 2005-09-07 23:09:56 wntrmute Exp $
+	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.4 2005-09-27 07:58:45 wntrmute Exp $
 
 	$Log: not supported by cvs2svn $
+	Revision 1.3  2005/09/07 23:09:56  wntrmute
+	*** empty log message ***
+	
 	Revision 1.2  2005/08/31 23:17:30  wntrmute
 	corrected load of REG_IME
 
@@ -40,26 +43,27 @@
 @---------------------------------------------------------------------------------
 IntrMain:
 @---------------------------------------------------------------------------------
-	mov	r3, #0x4000000			@ REG_BASE
-	ldr	r2, [r3,#0x200]			@ Read	REG_IE
+	mov	r3, #0x4000000		@ REG_BASE
+	ldr	r2, [r3,#0x200]		@ Read	REG_IE
 
-	ldrh	r1, [r3, #0x8]			@ r1 = IME
+	ldr	r1, [r3, #0x208]	@ r1 = IME
+	str	r3, [r3, #0x208]	@ disable IME
 	mrs	r0, spsr
-	stmfd	sp!, {r0-r1,r3,lr}		@ {spsr, IME, REG_BASE, lr}
+	stmfd	sp!, {r0-r1,r3,lr}	@ {spsr, IME, REG_BASE, lr}
 
-	and	r1, r2,	r2, lsr #16		@ r1 =	IE & IF
+	and	r1, r2,	r2, lsr #16	@ r1 =	IE & IF
 
-	ldrh	r2, [r3, #-8]			@\mix up with BIOS irq flags at 3007FF8h,
-	orr	r2, r2, r1			@ aka mirrored at 3FFFFF8h, this is required
-	strh	r2, [r3, #-8]			@/when using the (VBlank)IntrWait functions
+	ldrh	r2, [r3, #-8]		@\mix up with BIOS irq flags at 3007FF8h,
+	orr	r2, r2, r1		@ aka mirrored at 3FFFFF8h, this is required
+	strh	r2, [r3, #-8]		@/when using the (VBlank)IntrWait functions
 
-	add	r3,r3,#0x200
 	ldr	r2,=IntrTable
+	add	r3,r3,#0x200
 
 @---------------------------------------------------------------------------------
 findIRQ:
 @---------------------------------------------------------------------------------
-	ldr	r0, [r2, #4]
+	ldr	r0, [r2, #4]		@ Interrupt mask
 	cmp	r0,#0
 	beq	no_handler
 	ands	r0, r0, r1
@@ -70,38 +74,49 @@ findIRQ:
 @---------------------------------------------------------------------------------
 no_handler:
 @---------------------------------------------------------------------------------
-	strh	r1, [r3, #2]			@ IF Clear
-        ldmfd   sp!, {r0-r1,r3,lr}		@ {spsr, IME, REG_BASE, lr}
+	strh	r1, [r3, #0x02]		@ IF Clear
+        ldmfd   sp!, {r0-r1,r3,lr}	@ {spsr, IME, REG_BASE, lr}
 	mov	pc,lr
 
 @---------------------------------------------------------------------------------
 jump_intr:
 @---------------------------------------------------------------------------------
-	strh	r0, [r3, #2]			@ IF Clear
-	ldr	r0, [r2]			@ user IRQ handler address
+	ldr	r1, [r2]		@ user IRQ handler address
+	cmp	r1, #0
+	bne	got_handler
+	mov	r1, r0
+	b	no_handler
+@---------------------------------------------------------------------------------
+got_handler:
+@---------------------------------------------------------------------------------
 
 	mrs	r2, cpsr
-	bic	r2, r2, #0xdf			@ \__
-	orr	r2, r2, #0x1f			@ /  --> Enable IRQ & FIQ. Set CPU mode to System.
+	bic	r2, r2, #0xdf		@ \__
+	orr	r2, r2, #0x1f		@ /  --> Enable IRQ & FIQ. Set CPU mode to System.
 	msr	cpsr,r2
+	ldrh	r2, [r3]		@ REG_IE
+	stmfd	sp!, {r0,r2, r3,lr}		
+	bic	r2, r2, r0		@ disable interrupt about to be serviced
+	strh	r2, [r3]
 
-	stmfd	sp!, {lr}
 	adr	lr, IntrRet
-	bx	r0
+	bx	r1
 
 @---------------------------------------------------------------------------------
 IntrRet:
 @---------------------------------------------------------------------------------
-	ldmfd	sp!, {lr}
+	ldmfd	sp!, {r0,r2, r3,lr}
+	strh	r2, [r3]
+	strh	r0, [r3, #0x02]		@ IF Clear
 
 	mrs	r3, cpsr
-	bic	r3, r3, #0xdf			@ \__
-	orr	r3, r3, #0x92			@ /  --> Disable IRQ. Enable FIQ. Set CPU mode to IRQ.
+	bic	r3, r3, #0xdf		@ \__
+	orr	r3, r3, #0x92		@ /  --> Disable IRQ. Enable FIQ. Set CPU mode to IRQ.
 	msr	cpsr, r3
 
-        ldmfd   sp!, {r0-r1,r3,lr}		@ {spsr, IME, REG_BASE, lr}
-	strh	r1, [r3, #0x8]			@ restore REG_IME
-	msr	spsr, r0			@ restore spsr
+        ldmfd   sp!, {r0-r1,r3,lr}	@ {spsr, IME, REG_BASE, lr}
+	str	r1, [r3, #0x208]	@ restore REG_IME
+	msr	spsr, r0		@ restore spsr
 	mov	pc,lr
 
 	.pool

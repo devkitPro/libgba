@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_systemcalls.h,v 1.3 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Id: gba_systemcalls.h,v 1.4 2005-09-27 00:38:11 wntrmute Exp $"
 
 	Header file for libgba bios systemcalls
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.3 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.4 2005-09-27 00:38:11 wntrmute Exp $"
 
 */
 
@@ -43,7 +43,6 @@ extern "C" {
 
 #include "gba_base.h"
 
-#define SWI_BiosChecksum			13
 
 
 //---------------------------------------------------------------------------------
@@ -84,9 +83,23 @@ void RegisterRamReset(RESET_FLAGS ResetFlags);
 // Interrupt functions
 //---------------------------------------------------------------------------------
 
+/*! \def static inline void Halt()
+*/
+
 static inline void Halt()	{ SystemCall(2); }
 static inline void Stop()	{ SystemCall(3); }
 
+//---------------------------------------------------------------------------------
+static inline u32 BiosCheckSum() {
+//---------------------------------------------------------------------------------
+	register u32 result;
+	#if	defined	( __thumb__ )
+		asm ("SWI	0x0d\nmov %0,r0\n" :  "=r"(result) :: "r1", "r2", "r3");
+	#else
+		asm ("SWI	0x0d<<16\nmov %0,r0\n" : "=r"(result) :: "r1", "r2", "r3");
+	#endif
+	return result;
+}
 
 //---------------------------------------------------------------------------------
 // Math functions

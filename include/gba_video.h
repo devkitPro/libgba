@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.4 2005-09-27 00:37:17 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.5 2005-09-27 18:20:12 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.4 2005-09-27 00:37:17 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.5 2005-09-27 18:20:12 wntrmute Exp $"
 
 */
 
@@ -48,7 +48,7 @@
 
 	This register controls all aspects of the GBA display.
 */
-#define	REG_DISPCNT		*(vu16 *)(REG_BASE + 0x00)
+#define	REG_DISPCNT		*((vu16 *)(REG_BASE + 0x00))
 
 //---------------------------------------------------------------------------------
 // LCDC control bits
@@ -62,17 +62,17 @@ typedef enum LCDC_BITS {
 	MODE_4	=	4,	//*< BG Mode 4 */
 	MODE_5	=	5,	//*< BG Mode 5 */
 
-	BACKBUFFER	=	(1<<4),		//*< buffer display select			*/
-	OBJ_1D_MAP	=	(1<<6),		//*< sprite 1 dimensional mapping	*/
-	LCDC_OFF	=	(1<<7),		//*< LCDC OFF						*/
-	BG0_ON		=	(1<<8),		//*< enable background 0			*/
-	BG1_ON		=	(1<<9),		//*< enable background 1			*/
-	BG2_ON		=	(1<<10),	//*< enable background 2			*/
-	BG3_ON		=	(1<<11),	//*< enable background 3			*/
-	OBJ_ON		=	(1<<12),	//*< enable sprites					*/
-	WIN0_ON		=	(1<<13),	//*< enable window 0				*/
-	WIN1_ON		=	(1<<14),	//*< enable window 1				*/
-	OBJ_WIN_ON	=	(1<<15),	//*< enable obj window				*/
+	BACKBUFFER	=	BIT(4),		//*< buffer display select			*/
+	OBJ_1D_MAP	=	BIT(6),		//*< sprite 1 dimensional mapping	*/
+	LCDC_OFF	=	BIT(7),		//*< LCDC OFF						*/
+	BG0_ON		=	BIT(8),		//*< enable background 0			*/
+	BG1_ON		=	BIT(9),		//*< enable background 1			*/
+	BG2_ON		=	BIT(10),	//*< enable background 2			*/
+	BG3_ON		=	BIT(11),	//*< enable background 3			*/
+	OBJ_ON		=	BIT(12),	//*< enable sprites					*/
+	WIN0_ON		=	BIT(13),	//*< enable window 0				*/
+	WIN1_ON		=	BIT(14),	//*< enable window 1				*/
+	OBJ_WIN_ON	=	BIT(15),	//*< enable obj window				*/
 
 	BG0_ENABLE		=	BG0_ON,		//*< enable background 0	*/
 	BG1_ENABLE		=	BG1_ON, 	//*< enable background 1	*/
@@ -94,7 +94,7 @@ typedef enum LCDC_BITS {
 
 	This register controls the LCD interrupts.
 */
-#define	REG_DISPSTAT	*(vu16 *)(REG_BASE + 0x04)
+#define	REG_DISPSTAT	*((vu16 *)(REG_BASE + 0x04))
 
 //---------------------------------------------------------------------------------
 // LCDC Interrupt bits
@@ -116,11 +116,16 @@ static inline u32 VCOUNT( int m) { return m<<8; }
     \brief
 
 */
-#define	REG_VCOUNT		*(vu16 *)(REG_BASE + 0x06)
+#define	REG_VCOUNT		*((vu16 *)(REG_BASE + 0x06))
 
 /*! \def BGCTRL
 
-    \brief
+	\brief Array definition for background control registers.
+    
+	BGCTRL[0] references background 0 control register.<BR>
+	BGCTRL[1] references background 1 control register.<BR>
+	BGCTRL[2] references background 2 control register.<BR>
+	BGCTRL[3] references background 3 control register.<BR>
 
 */
 #define BGCTRL		((vu16 *)(REG_BASE + 0x08))
@@ -156,29 +161,43 @@ typedef struct
 
 #define BG_OFFSET ((bg_scroll *)(REG_BASE + 0x10))
 
-#define	BG0HOFS		*(vu16 *)(REG_BASE + 0x10)	// BG 0 H Offset
-#define	BG0VOFS		*(vu16 *)(REG_BASE + 0x12)	// BG 0 V Offset
-#define	BG1HOFS		*(vu16 *)(REG_BASE + 0x14)	// BG 1 H Offset
-#define	BG1VOFS		*(vu16 *)(REG_BASE + 0x16)	// BG 1 V Offset
-#define	BG2HOFS		*(vu16 *)(REG_BASE + 0x18)	// BG 2 H Offset
-#define	BG2VOFS		*(vu16 *)(REG_BASE + 0x1a)	// BG 2 V Offset
-#define	BG3HOFS		*(vu16 *)(REG_BASE + 0x1c)	// BG 3 H Offset
-#define	BG3VOFS		*(vu16 *)(REG_BASE + 0x1e)	// BG 3 V Offset
+#define	BG0HOFS		*((vu16 *)(REG_BASE + 0x10))	// BG 0 H Offset
+#define	BG0VOFS		*((vu16 *)(REG_BASE + 0x12))	// BG 0 V Offset
+#define	BG1HOFS		*((vu16 *)(REG_BASE + 0x14))	// BG 1 H Offset
+#define	BG1VOFS		*((vu16 *)(REG_BASE + 0x16))	// BG 1 V Offset
+#define	BG2HOFS		*((vu16 *)(REG_BASE + 0x18))	// BG 2 H Offset
+#define	BG2VOFS		*((vu16 *)(REG_BASE + 0x1a))	// BG 2 V Offset
+#define	BG3HOFS		*((vu16 *)(REG_BASE + 0x1c))	// BG 3 H Offset
+#define	BG3VOFS		*((vu16 *)(REG_BASE + 0x1e))	// BG 3 V Offset
 
+#define	REG_BG2PA	*((vu16 *)(REG_BASE + 0x20))
+#define	REG_BG2PB	*((vu16 *)(REG_BASE + 0x22))
+#define	REG_BG2PC	*((vu16 *)(REG_BASE + 0x24))
+#define	REG_BG2PD	*((vu16 *)(REG_BASE + 0x26))
+#define	REG_BG2X	*((vu16 *)(REG_BASE + 0x28))
+#define	REG_BG2Y	*((vu16 *)(REG_BASE + 0x2c))
+#define	REG_BG3PA	*((vu16 *)(REG_BASE + 0x30))
+#define	REG_BG3PB	*((vu16 *)(REG_BASE + 0x32))
+#define	REG_BG3PC	*((vu16 *)(REG_BASE + 0x32))
+#define	REG_BG3PD	*((vu16 *)(REG_BASE + 0x36))
+#define	REG_BG3X	*((vu16 *)(REG_BASE + 0x38))
+#define	REG_BG3Y	*((vu16 *)(REG_BASE + 0x3c))
 
 //---------------------------------------------------------------------------------
 // background control bits
 //---------------------------------------------------------------------------------
-#define BG_MOSAIC		(1<<6)
-#define BG_16_COLOR		(0<<7)
-#define BG_256_COLOR	(1<<7)
-#define	BG_WRAP			(1<<13)	// wrapping on
+enum BG_CTRL_BITS {
+	BG_MOSAIC		=	BIT(6),	//*< enable background mosaic			*/
+	BG_16_COLOR		=	(0<<7),	//*< background uses 16 color tiles		*/
+	BG_256_COLOR	=	BIT(7),	//*< background uses 256 color tiles	*/
 
-#define	BG_SIZE_0	(0<<14)	// Map Size (256x256)
-#define	BG_SIZE_1	(1<<14)	// Map Size (512x256)
-#define	BG_SIZE_2	(2<<14)	// Map Size (256x512)
-#define	BG_SIZE_3	(3<<14)	// Map Size (512x512)
+	BG_WRAP		=	BIT(13),	//*< background wraps when scrolling	*/
 
+	BG_SIZE_0	=	(0<<14),	//*< Map Size 256x256	*/
+	BG_SIZE_1	=	(1<<14),	//*< Map Size 512x256	*/
+	BG_SIZE_2	=	(2<<14),	//*< Map Size 256x512	*/
+	BG_SIZE_3	=	(3<<14),	//*< Map Size 512x512	*/
+};
 
 #define	CHAR_BASE(m)		((m) << 2)
 #define CHAR_BASE_ADR(m)	((void *)(VRAM + ((m) << 14)))
@@ -200,18 +219,18 @@ typedef u16 MODE5_LINE[160];
 #define MODE5_FB ((MODE5_LINE *)0x06000000)
 #define MODE5_BB ((MODE5_LINE *)0x0600A000)
 
-#define	REG_WIN0H	*(vu16 *)(REG_BASE + 0x40)
-#define	REG_WIN1H	*(vu16 *)(REG_BASE + 0x42)
-#define	REG_WIN0V	*(vu16 *)(REG_BASE + 0x44)
-#define	REG_WIN1V	*(vu16 *)(REG_BASE + 0x46)
-#define	REG_WININ	*(vu16 *)(REG_BASE + 0x48)
-#define	REG_WINOUT	*(vu16 *)(REG_BASE + 0x4A)
+#define	REG_WIN0H	*((vu16 *)(REG_BASE + 0x40))
+#define	REG_WIN1H	*((vu16 *)(REG_BASE + 0x42))
+#define	REG_WIN0V	*((vu16 *)(REG_BASE + 0x44))
+#define	REG_WIN1V	*((vu16 *)(REG_BASE + 0x46))
+#define	REG_WININ	*((vu16 *)(REG_BASE + 0x48))
+#define	REG_WINOUT	*((vu16 *)(REG_BASE + 0x4A))
 
 #define	REG_MOSAIC	*(vu16 *)(REG_BASE + 0x4c)
 
-#define	REG_BLDCNT		*(vu16 *)(REG_BASE + 0x50)
-#define	REG_BLDALPHA	*(vu16 *)(REG_BASE + 0x52)
-#define	REG_BLDY		*(vu16 *)(REG_BASE + 0x54)
+#define	REG_BLDCNT		*((vu16 *)(REG_BASE + 0x50))
+#define	REG_BLDALPHA	*((vu16 *)(REG_BASE + 0x52))
+#define	REG_BLDY		*((vu16 *)(REG_BASE + 0x54))
 
 //---------------------------------------------------------------------------------
 // Helper macros

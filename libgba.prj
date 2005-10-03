@@ -17,11 +17,11 @@ Include Sub Directories=0
 [Open Files]
 Open File0=
 Active File Display Mode=-1
-Open File Pos0=1724
-Open File Line0=1525
-Active File Index=3
-Open File Window Pos0=0,1,-1,-1,-4,-23,110,110,1012,513
-Open File1=C:\projects\devkitPro\libgba\src\interrupt.c
+Open File Pos0=1091
+Open File Line0=595
+Active File Index=0
+Open File Window Pos0=2,3,-1,-1,-4,-23,22,22,920,421
+Open File1=
 Open File Pos1=1245
 Open File Line1=588
 Open File Window Pos1=0,1,-1,-1,-4,-23,0,0,902,403

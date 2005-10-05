@@ -1,5 +1,5 @@
 /*
-	"$Id: interrupt.c,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Id: interrupt.c,v 1.5 2005-10-05 12:08:49 wntrmute Exp $"
 
 	libgba interrupt support routines
 
@@ -23,14 +23,14 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/interrupt.c,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/interrupt.c,v 1.5 2005-10-05 12:08:49 wntrmute Exp $"
 
 */
 #include "gba_interrupt.h"
 #include "gba_video.h"
 
 //---------------------------------------------------------------------------------
-struct IntTable IntrTable[Int_Count];
+struct IntTable IntrTable[MAX_INTS];
 void dummy(void) {};
 
 
@@ -41,7 +41,7 @@ void InitInterrupt(void)
 	int i;
 
 	// Set all interrupts to dummy functions.
-	for(i = 0; i < Int_Count; i ++)
+	for(i = 0; i < MAX_INTS; i ++)
 	{
 		IntrTable[i].handler = dummy;
 		IntrTable[i].mask = 0;
@@ -52,94 +52,92 @@ void InitInterrupt(void)
 }
 
 //---------------------------------------------------------------------------------
-void SetInterrupt(eINT interrupt, IntFn function)
+IntFn* SetInterrupt(irqMASK mask, IntFn function)
 //---------------------------------------------------------------------------------
 {
 	int i;
-	u32 mask = BIT(interrupt);
 
-	for	(i=0;;i++)
-	{
+	for	(i=0;;i++) {
 		if	(!IntrTable[i].mask || IntrTable[i].mask == mask) break;
 	}
 
+	if ( i >= MAX_INTS) return NULL;
+
 	IntrTable[i].handler	= function;
 	IntrTable[i].mask		= mask;
+	
+	return &IntrTable[i].handler;
 
 }
 
 //---------------------------------------------------------------------------------
-void EnableInterrupt(eINT interrupt)
+void EnableInterrupt(irqMASK mask)
 //---------------------------------------------------------------------------------
 {
 	REG_IME	= 0;
-	switch(interrupt)
+	switch(mask)
 	{
-		case Int_Vblank:
+		case IE_VBL:
 			REG_DISPSTAT |= LCDC_VBL;
-			REG_IE |= BIT(interrupt);
+			REG_IE |= mask;
 			break;
-		case Int_Hblank:
+		case IE_HBL:
 			REG_DISPSTAT |= LCDC_HBL;
-			REG_IE |= BIT(interrupt);
+			REG_IE |= mask;
 			break;
-		case Int_Vcount:
+		case IE_VCNT:
 			REG_DISPSTAT |= LCDC_VCNT;
-			REG_IE |= BIT(interrupt);
+			REG_IE |= mask;
 			break;
-		case Int_Timer0:
-		case Int_Timer1:
-		case Int_Timer2:
-		case Int_Timer3:
-		case Int_Serial:
-		case Int_DMA0:
-		case Int_DMA1:
-		case Int_DMA2:
-		case Int_DMA3:
-		case Int_KeyPad:
-		case Int_GamePak:
-			REG_IE |= BIT(interrupt);
+		case IE_TIMER0:    
+		case IE_TIMER1:    
+		case IE_TIMER2:
+		case IE_TIMER3:
+		case IE_SERIAL:
+		case IE_DMA0:
+		case IE_DMA1:
+		case IE_DMA2:		
+		case IE_DMA3:		
+		case IE_KEYPAD:	    
+		case IE_GAMEPAK:	    
+			REG_IE |= mask;
 			break;
 	}
 	REG_IME	= 1;
 }
 
 //---------------------------------------------------------------------------------
-void DisableInterrupt(eINT interrupt)
+void DisableInterrupt(irqMASK mask)
 //---------------------------------------------------------------------------------
 {
 	REG_IME	= 0;
 
-	switch(interrupt)
+	switch(mask)
 	{
-		case Int_Vblank:
+		case IE_VBL:
 			REG_DISPSTAT &= ~LCDC_VBL;
-			REG_IE &= BIT(interrupt);
+			REG_IE &= ~mask;
 			break;
-		case Int_Hblank:
+		case IE_HBL:
 			REG_DISPSTAT &= ~LCDC_HBL;
-			REG_IE &= BIT(interrupt);
+			REG_IE &= ~mask;
 			break;
-		case Int_Vcount:
+		case IE_VCNT:
 			REG_DISPSTAT &= ~LCDC_VCNT;
-			REG_IE &= ~BIT(interrupt);
+			REG_IE &= ~mask;
 			break;
-		case Int_Timer0:
-		case Int_Timer1:
-		case Int_Timer2:
-		case Int_Timer3:
-		case Int_Serial:
-		case Int_DMA0:
-		case Int_DMA1:
-		case Int_DMA2:
-		case Int_DMA3:
-		case Int_KeyPad:
-		case Int_GamePak:
-			REG_IE &= ~BIT(interrupt);
-			break;
-		case Ints_All:
-			REG_IE = 0;
-			REG_DISPSTAT &= ~(LCDC_VBL | LCDC_HBL | LCDC_VCNT);
+		case IE_TIMER0:    
+		case IE_TIMER1:    
+		case IE_TIMER2:
+		case IE_TIMER3:
+		case IE_SERIAL:
+		case IE_DMA0:
+		case IE_DMA1:
+		case IE_DMA2:		
+		case IE_DMA3:		
+		case IE_KEYPAD:	    
+		case IE_GAMEPAK:	    
+			REG_IE &= ~mask;
 			break;
 	}
 	REG_IME	= 1;

@@ -63,7 +63,7 @@ Open File Line10=2901
 Open File Window Pos10=2,3,-1,-1,-4,-23,220,220,1012,810
 Open File11=
 [File View]
-Current Select=Project Files
+Current Select=Project Files\include\gba_interrupt.h
 Scroll Position=0
 [Files - BoyScout]
 0=src\BoyScout\BoyScout.c

@@ -1,5 +1,5 @@
 /*
-	"$Id: fade.h,v 1.3 2005-09-07 23:09:44 wntrmute Exp $"
+	"$Id: fade.h,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
 
 	Header file for libgba palette fade routines
 
@@ -23,7 +23,12 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/fade.h,v 1.3 2005-09-07 23:09:44 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/fade.h,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
+
+*/
+
+/*! \file fade.h
+    \brief gba palette fading.
 
 */
 
@@ -37,11 +42,31 @@
 extern "C" {
 #endif
 //---------------------------------------------------------------------------------
+
+/*! \fn void FadeToPalette(const u16 *NewPalette, int FrameCount)
+	\brief fade from the current palette to a preset palette.
+	\param NewPalette
+	\param FrameCount
+    
+*/
 void	FadeToPalette(const u16 *NewPalette, int FrameCount);
+
+/*! \fn void FadeToGrayScale(int gray, int FrameCount)
+	\brief fade from the current palette to a preset palette.
+	\param gray
+	\param FrameCount
+    
+*/
 void	FadeToGrayScale(int gray, int FrameCount);
+/*!	\fn void SetPalette(u16 *Palette)
+	\brief Set the current Palette directly
+	\param Palette
+
+*/
 void	SetPalette(u16 *Palette);
 
-#define FadeToBlack(frames) FadeToGrayScale(0,frames)
+static inline void FadeToBlack(frames) { FadeToGrayScale(0,frames); }
+
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus
 }	   // extern "C"

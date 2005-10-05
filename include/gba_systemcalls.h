@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_systemcalls.h,v 1.4 2005-09-27 00:38:11 wntrmute Exp $"
+	"$Id: gba_systemcalls.h,v 1.5 2005-10-05 12:09:07 wntrmute Exp $"
 
 	Header file for libgba bios systemcalls
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.4 2005-09-27 00:38:11 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.5 2005-10-05 12:09:07 wntrmute Exp $"
 
 */
 
@@ -56,7 +56,7 @@ typedef enum RESTART_FLAG {
 
 /*! \fn void SoftReset(RESTART_FLAG RestartFlag)
     \brief reset the GBA.
-    \param RestartFlag Mask
+    \param RestartFlag flag
 */
 void	SoftReset(RESTART_FLAG RestartFlag);
 
@@ -75,7 +75,7 @@ typedef enum RESET_FLAG RESET_FLAGS;
 
 /*! \fn void RegisterRamReset(RESET_FLAGS ResetFlags)
     \brief reset the GBA registers and RAM.
-    \param ResetFlags Mask
+    \param ResetFlags flags
 */
 void RegisterRamReset(RESET_FLAGS ResetFlags);
 

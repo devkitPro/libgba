@@ -1,5 +1,5 @@
 /*
-	"$Id: fade.c,v 1.3 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Id: fade.c,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
 
 	libgba 256 color fade routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/fade.c,v 1.3 2005-09-20 23:19:05 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/fade.c,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
 
 */
 
@@ -34,8 +34,9 @@
 	FadeToPalette will also perform a cross fade effect
 
 ---------------------------------------------------------------------------------*/
-#include "gba_video.h"
-#include "gba_systemcalls.h"
+#include <gba_video.h>
+#include <gba_systemcalls.h>
+#include <fade.h>
 
 //---------------------------------------------------------------------------------
 // Global variables
@@ -49,47 +50,40 @@ u16 CurrentPalette[512] EWRAM_BSS;
 s16 FadeTable[512*3*2] EWRAM_BSS;
 
 //---------------------------------------------------------------------------------
-void GetCurrentPalette()
+static void GetCurrentPalette() {
 //---------------------------------------------------------------------------------
-{
 	int i;
 	u16 * Src = BG_COLORS;
 	u16 * Dest = (u16 *)CurrentPalette;
-	for (i = 0; i<512; i++)
-	{
+	for (i = 0; i<512; i++) {
 		*(Dest++) = *(Src++);
 	}
 }
 
 //---------------------------------------------------------------------------------
-void SetPalette(u16 *Palette)
+void SetPalette(u16 *Palette) {
 //---------------------------------------------------------------------------------
-{
 	u16 *From, *To;
 	From = (u16 *)Palette;
 	To = (u16 *)BG_COLORS;
 	int i;
 
-	for (i = 0; i<512; i++)
-	{
+	for (i = 0; i<512; i++) {
 		*(To++) = *(From++);
 	}
 }
 
 //---------------------------------------------------------------------------------
-void DoFade(u32 FadeCount)
+static void DoFade(u32 FadeCount) {
 //---------------------------------------------------------------------------------
-{
 	int r,g,b,index,count,color;
 
 
-	for (count=0; count<FadeCount;count++)
-	{
+	for (count=0; count<FadeCount;count++) {
 		s16 *Src = FadeTable;
 		u16 *Dest = CurrentPalette;
 
-		for (index=0; index<512;index++)
-		{
+		for (index=0; index<512;index++) {
 			r = *(Src++);
 			r += *(Src);
 			*(Src++)=r;
@@ -109,9 +103,8 @@ void DoFade(u32 FadeCount)
 		VBlankIntrWait();
 		SetPalette(CurrentPalette);
 	}
-
-
 }
+
 //---------------------------------------------------------------------------------
 /// Fade to a shade of grey
 //---------------------------------------------------------------------------------
@@ -119,9 +112,8 @@ void DoFade(u32 FadeCount)
 	gray = 0 - 31 - final value of all components
 */
 //---------------------------------------------------------------------------------
-void FadeToGrayScale(int gray, int FrameCount)
+void FadeToGrayScale(int gray, int FrameCount) {
 //---------------------------------------------------------------------------------
-{
 	int index,r,g,b,color;
 	u16 *Src;
 	s16 *Table;
@@ -130,8 +122,8 @@ void FadeToGrayScale(int gray, int FrameCount)
 	Src = CurrentPalette;
 	Table = FadeTable;
 
-	for (index=0;index<512; index++)
-	{
+	for (index=0;index<512; index++) {
+
 		color = *(Src++);
 		r = (color & 0x1f) << 8;
 		g = (color>>5 & 0x1f) << 8;
@@ -153,13 +145,8 @@ void FadeToGrayScale(int gray, int FrameCount)
 //---------------------------------------------------------------------------------
 /// Fade to a specific palette
 //---------------------------------------------------------------------------------
-/**	New Palette is a pointer to an array of 512 colors
-	The Sprite palette is included
-*/
+void FadeToPalette(const u16 *NewPalette, int FrameCount) {
 //---------------------------------------------------------------------------------
-void FadeToPalette(const u16 *NewPalette, int FrameCount)
-//---------------------------------------------------------------------------------
-{
 	int index;
 	GetCurrentPalette();
 
@@ -174,8 +161,7 @@ void FadeToPalette(const u16 *NewPalette, int FrameCount)
 	Dest = (u16 *)NewPalette;
 	Table = FadeTable;
 
-	for (index=0;index<512; index++)
-	{
+	for (index=0;index<512; index++) {
 
 		color = *(Src++);
 		r1 = (color & 0x1f) << 8;				// get component & convert to 8:8

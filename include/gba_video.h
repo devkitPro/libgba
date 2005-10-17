@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.6 2005-10-05 12:09:07 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.7 2005-10-17 15:33:33 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.6 2005-10-05 12:09:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.7 2005-10-17 15:33:33 wntrmute Exp $"
 
 */
 
@@ -159,8 +159,8 @@ static inline u32 VCOUNT( int m) { return m<<8; }
 
 */
 #define REG_BG3CNT	*((vu16 *)(REG_BASE + 0x0e))
-typedef struct
-{
+
+typedef struct {
 	vu16 x;
 	vu16 y;
 } bg_scroll;
@@ -180,14 +180,14 @@ typedef struct
 #define	REG_BG2PB	*((vu16 *)(REG_BASE + 0x22))
 #define	REG_BG2PC	*((vu16 *)(REG_BASE + 0x24))
 #define	REG_BG2PD	*((vu16 *)(REG_BASE + 0x26))
-#define	REG_BG2X	*((vu16 *)(REG_BASE + 0x28))
-#define	REG_BG2Y	*((vu16 *)(REG_BASE + 0x2c))
+#define	REG_BG2X	*((vu32 *)(REG_BASE + 0x28))
+#define	REG_BG2Y	*((vu32 *)(REG_BASE + 0x2c))
 #define	REG_BG3PA	*((vu16 *)(REG_BASE + 0x30))
 #define	REG_BG3PB	*((vu16 *)(REG_BASE + 0x32))
 #define	REG_BG3PC	*((vu16 *)(REG_BASE + 0x32))
 #define	REG_BG3PD	*((vu16 *)(REG_BASE + 0x36))
-#define	REG_BG3X	*((vu16 *)(REG_BASE + 0x38))
-#define	REG_BG3Y	*((vu16 *)(REG_BASE + 0x3c))
+#define	REG_BG3X	*((vu32 *)(REG_BASE + 0x38))
+#define	REG_BG3Y	*((vu32 *)(REG_BASE + 0x3c))
 
 #define BG_SIZE(m)		((m<<14))
 //---------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sound.h,v 1.5 2005-08-23 20:22:34 wntrmute Exp $"
+	"$Id: gba_sound.h,v 1.6 2005-10-17 15:34:48 wntrmute Exp $"
 
 	Header file for libgba bios sound functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.5 2005-08-23 20:22:34 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.6 2005-10-17 15:34:48 wntrmute Exp $"
 
 */
 //---------------------------------------------------------------------------------
@@ -78,18 +78,6 @@ typedef struct {
 	s8 pcmbuf[PCM_DMA_BUF*2];
 } SoundArea;
 
-
-#define SoundDriverMain()		SystemCall(28)
-#define SoundDriverVsync()		SystemCall(29)
-#define SoundChannelClear()		SystemCall(30)
-#define SoundDriverVsyncOff()	SystemCall(40)
-#define SoundDriverVsyncOn()	SystemCall(41)
-
-void SoundDriverInit(SoundArea *sa);
-void SoundDriverMode(u32 mode);
-
-u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
-
 /*---------------------------------------------------------------------------------
 	Control Registers
 ---------------------------------------------------------------------------------*/
@@ -121,6 +109,14 @@ u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
 #define	SOUND3CNT_H	(*((u16 volatile *) (REG_BASE + 0x072)))
 #define	SOUND3CNT_X	(*((u16 volatile *) (REG_BASE + 0x074)))
 
+#define	SOUND4CNT_L	(*((u16 volatile *) (REG_BASE + 0x078)))
+#define	SOUND4CNT_H	(*((u16 volatile *) (REG_BASE + 0x07C)))
+
+#define	SOUNDBIAS	(*((u16 volatile *) (REG_BASE + 0x088)))
+
+#define	FIFO_A		(*((u32 volatile *) (REG_BASE + 0x0A0)))
+#define	FIFO_B		(*((u32 volatile *) (REG_BASE + 0x0A4)))
+
 #define	WAVE_RAM	((u16 volatile *)	(REG_BASE + 0x090))
 
 #define	SOUND3_STEP32		(0<<5)	// Use two banks of 32 steps each
@@ -130,17 +126,17 @@ u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
 #define SOUND3_STOP			(0<<7)	// Stop sound output
 
 
+static inline SoundDriverMain()		{ SystemCall(28); }
+static inline SoundDriverVsync()	{ SystemCall(29); }
+static inline SoundChannelClear()	{ SystemCall(30); }
+static inline SoundDriverVsyncOff()	{ SystemCall(40); }
+static inline SoundDriverVsyncOn()	{ SystemCall(41); }
 
+void SoundDriverInit(SoundArea *sa);
+void SoundDriverMode(u32 mode);
 
-#define	SOUND4CNT_L	(*((u16 volatile *) (REG_BASE + 0x078)))
-#define	SOUND4CNT_H	(*((u16 volatile *) (REG_BASE + 0x07C)))
+u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
 
-
-#define	SOUNDBIAS	(*((u16 volatile *) (REG_BASE + 0x088)))
-
-
-#define		FIFO_A		(*((u32 volatile *) (REG_BASE + 0x0A0)))
-#define		FIFO_B		(*((u32 volatile *) (REG_BASE + 0x0A4)))
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

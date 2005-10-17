@@ -15,12 +15,12 @@ Include Sub Directories=0
 2=source
 3=
 [Open Files]
-Open File0=
-Active File Display Mode=-1
-Open File Pos0=1091
-Open File Line0=595
+Open File0=C:\projects\devkitPro\libgba\include\gba_video.h
+Active File Display Mode=3
+Open File Pos0=8364
+Open File Line0=2035
 Active File Index=0
-Open File Window Pos0=2,3,-1,-1,-4,-23,22,22,920,421
+Open File Window Pos0=2,3,-1,-1,-4,-23,44,44,942,443
 Open File1=
 Open File Pos1=1245
 Open File Line1=588
@@ -63,7 +63,7 @@ Open File Line10=2901
 Open File Window Pos10=2,3,-1,-1,-4,-23,220,220,1012,810
 Open File11=
 [File View]
-Current Select=Project Files\include\gba_interrupt.h
+Current Select=Project Files
 Scroll Position=0
 [Files - BoyScout]
 0=src\BoyScout\BoyScout.c

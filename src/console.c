@@ -1,5 +1,5 @@
 /*
-	$Id: console.c,v 1.3 2005-09-12 07:21:50 wntrmute Exp $
+	$Id: console.c,v 1.4 2005-10-20 20:54:14 wntrmute Exp $
 
 	Copyright 2003-2004 by Dave Murphy.
 
@@ -22,6 +22,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.3  2005/09/12 07:21:50  wntrmute
+	use Amiga font as default font
+	
 	Revision 1.2  2005/09/12 06:49:20  wntrmute
 	fixed buffer overrun in con_write
 
@@ -125,30 +128,30 @@ int con_write(struct _reent *r,int fd,const char *ptr,int len) {
 				int parameter;
 				switch (chr) {
 					case 'H':
-						sscanf(escapeseq,"[%d;%dH", &consoleY, &consoleX);
+						siscanf(escapeseq,"[%d;%dH", &consoleY, &consoleX);
 						escaping = false;
 						break;
 					case 'f':
-						sscanf(escapeseq,"[%d;%df", &consoleY, &consoleX);
+						siscanf(escapeseq,"[%d;%df", &consoleY, &consoleX);
 						escaping = false;
 						break;
 					case 'A':
-						sscanf(escapeseq,"[%dA", &parameter);
+						siscanf(escapeseq,"[%dA", &parameter);
 						consoleY =  (consoleY - parameter) < 0 ? 0 : consoleY - parameter;
 						escaping = false;
 						break;
 					case 'B':
-						sscanf(escapeseq,"[%dB", &parameter);
+						siscanf(escapeseq,"[%dB", &parameter);
 						consoleY =  (consoleY + parameter) > CONSOLE_HEIGHT - 1 ? CONSOLE_HEIGHT - 1 : consoleY + parameter;
 						escaping = false;
 						break;
 					case 'C':
-						sscanf(escapeseq,"[%dC", &parameter);
+						siscanf(escapeseq,"[%dC", &parameter);
 						consoleX =  (consoleX + parameter) > CONSOLE_WIDTH - 1 ? CONSOLE_WIDTH - 1 : consoleX + parameter;
 						escaping = false;
 						break;
 					case 'D':
-						sscanf(escapeseq,"[%dC", &parameter);
+						siscanf(escapeseq,"[%dC", &parameter);
 						consoleX =  (consoleX - parameter) < 0 ? 0 : consoleX - parameter;
 						escaping = false;
 						break;

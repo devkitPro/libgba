@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_input.h,v 1.5 2005-10-17 15:32:03 wntrmute Exp $"
+	"$Id: gba_input.h,v 1.6 2005-10-20 20:53:41 wntrmute Exp $"
 
 	Header file for libgba input functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.5 2005-10-17 15:32:03 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.6 2005-10-20 20:53:41 wntrmute Exp $"
 
 */
 
@@ -56,7 +56,7 @@ extern "C" {
 #define REG_KEYCNT		*(vu16*)(REG_BASE + 0x132)  // Key Control
 
 typedef enum KEYPAD_BITS {
-	KEY_A		=	(1<<0), /*!< keypad A button */
+	KEY_A		=	(1<<0),	/*!< keypad A button */
 	KEY_B		=	(1<<1),	/*!< keypad B button */
 	KEY_SELECT	=	(1<<2),	/*!< keypad SELECT button */
 	KEY_START	=	(1<<3),	/*!< keypad START button */
@@ -113,16 +113,13 @@ KEYPAD_BITS KeysHeld();
 	\param SetDelay The count before the key starts to repeat
 	\param SetRepeat The count at which the key will repeat
 	
-	The counts are updated on each call to ScanKeys() so the rates are dependent on how often that function is called.
+	The counts are updated on each call to ScanKeys(), the rates are dependent on how often that function is called.
 */
 void SetRepeat( int SetDelay, int SetRepeat);
 
-
-
-
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus
-}	   // extern "C"
+	}	   // extern "C"
 #endif
 //---------------------------------------------------------------------------------
 #endif // _gba_input_h_

@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sound.h,v 1.6 2005-10-17 15:34:48 wntrmute Exp $"
+	"$Id: gba_sound.h,v 1.7 2005-10-21 13:13:09 wntrmute Exp $"
 
 	Header file for libgba bios sound functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.6 2005-10-17 15:34:48 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.7 2005-10-21 13:13:09 wntrmute Exp $"
 
 */
 //---------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ typedef struct {
 /*---------------------------------------------------------------------------------
 	Control Registers
 ---------------------------------------------------------------------------------*/
-#define		SOUNDCNT_L	(*((u16 volatile *) REG_BASE + 0x080))
+#define	REG_SOUNDCNT_L	(*((u16 volatile *) REG_BASE + 0x080))
 
 #define SND1_R_ENABLE	(1<<8)		// Enable left & right speakers for each sound channel
 #define SND1_L_ENABLE	(1<<12)
@@ -94,28 +94,28 @@ typedef struct {
 
 
 
-#define	SOUNDCNT_H	(*((u16 volatile *) (REG_BASE + 0x082)))
-#define	SOUNDCNT_X	(*((u16 volatile *) (REG_BASE + 0x084)))
+#define	REG_SOUNDCNT_H	(*((u16 volatile *) (REG_BASE + 0x082)))
+#define	REG_SOUNDCNT_X	(*((u16 volatile *) (REG_BASE + 0x084)))
 
 
-#define	SOUND1CNT_L	(*((u16 volatile *) (REG_BASE + 0x060)))
-#define	SOUND1CNT_H	(*((u16 volatile *) (REG_BASE + 0x062)))
-#define	SOUND1CNT_X	(*((u16 volatile *) (REG_BASE + 0x064)))
+#define	REG_SOUND1CNT_L	(*((u16 volatile *) (REG_BASE + 0x060)))
+#define	REG_SOUND1CNT_H	(*((u16 volatile *) (REG_BASE + 0x062)))
+#define	REG_SOUND1CNT_X	(*((u16 volatile *) (REG_BASE + 0x064)))
 
-#define	SOUND2CNT_L	(*((u16 volatile *) (REG_BASE + 0x068)))
-#define	SOUND2CNT_H	(*((u16 volatile *) (REG_BASE + 0x06C)))
+#define	REG_SOUND2CNT_L	(*((u16 volatile *) (REG_BASE + 0x068)))
+#define	REG_SOUND2CNT_H	(*((u16 volatile *) (REG_BASE + 0x06C)))
 
-#define	SOUND3CNT_L	(*((u16 volatile *) (REG_BASE + 0x070)))
-#define	SOUND3CNT_H	(*((u16 volatile *) (REG_BASE + 0x072)))
-#define	SOUND3CNT_X	(*((u16 volatile *) (REG_BASE + 0x074)))
+#define	REG_SOUND3CNT_L	(*((u16 volatile *) (REG_BASE + 0x070)))
+#define	REG_SOUND3CNT_H	(*((u16 volatile *) (REG_BASE + 0x072)))
+#define	REG_SOUND3CNT_X	(*((u16 volatile *) (REG_BASE + 0x074)))
 
-#define	SOUND4CNT_L	(*((u16 volatile *) (REG_BASE + 0x078)))
-#define	SOUND4CNT_H	(*((u16 volatile *) (REG_BASE + 0x07C)))
+#define	REG_SOUND4CNT_L	(*((u16 volatile *) (REG_BASE + 0x078)))
+#define	REG_SOUND4CNT_H	(*((u16 volatile *) (REG_BASE + 0x07C)))
 
-#define	SOUNDBIAS	(*((u16 volatile *) (REG_BASE + 0x088)))
+#define	REG_SOUNDBIAS	(*((u16 volatile *) (REG_BASE + 0x088)))
 
-#define	FIFO_A		(*((u32 volatile *) (REG_BASE + 0x0A0)))
-#define	FIFO_B		(*((u32 volatile *) (REG_BASE + 0x0A4)))
+#define	REG_FIFO_A		(*((u32 volatile *) (REG_BASE + 0x0A0)))
+#define	REG_FIFO_B		(*((u32 volatile *) (REG_BASE + 0x0A4)))
 
 #define	WAVE_RAM	((u16 volatile *)	(REG_BASE + 0x090))
 

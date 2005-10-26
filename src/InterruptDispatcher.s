@@ -1,5 +1,5 @@
 /*
-	$Id: InterruptDispatcher.s,v 1.4 2005-09-27 07:58:45 wntrmute Exp $
+	$Id: InterruptDispatcher.s,v 1.5 2005-10-26 09:19:16 wntrmute Exp $
 
 	libgba interrupt dispatcher routines
 
@@ -23,9 +23,12 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.4 2005-09-27 07:58:45 wntrmute Exp $
+	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.5 2005-10-26 09:19:16 wntrmute Exp $
 
 	$Log: not supported by cvs2svn $
+	Revision 1.4  2005/09/27 07:58:45  wntrmute
+	safer interrupt nesting
+	
 	Revision 1.3  2005/09/07 23:09:56  wntrmute
 	*** empty log message ***
 	
@@ -76,6 +79,7 @@ no_handler:
 @---------------------------------------------------------------------------------
 	strh	r1, [r3, #0x02]		@ IF Clear
         ldmfd   sp!, {r0-r1,r3,lr}	@ {spsr, IME, REG_BASE, lr}
+	str	r1, [r3, #0x208]	@ restore REG_IME
 	mov	pc,lr
 
 @---------------------------------------------------------------------------------

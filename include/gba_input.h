@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_input.h,v 1.6 2005-10-20 20:53:41 wntrmute Exp $"
+	"$Id: gba_input.h,v 1.7 2005-11-20 22:32:04 wntrmute Exp $"
 
 	Header file for libgba input functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.6 2005-10-20 20:53:41 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.7 2005-11-20 22:32:04 wntrmute Exp $"
 
 */
 
@@ -54,7 +54,10 @@ extern "C" {
 
 */
 #define REG_KEYCNT		*(vu16*)(REG_BASE + 0x132)  // Key Control
+/*! \enum KEYPAD_BITS
 
+	\brief bit values for keypad buttons
+*/
 typedef enum KEYPAD_BITS {
 	KEY_A		=	(1<<0),	/*!< keypad A button */
 	KEY_B		=	(1<<1),	/*!< keypad B button */

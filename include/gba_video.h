@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.7 2005-10-17 15:33:33 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.8 2005-11-20 22:32:04 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.7 2005-10-17 15:33:33 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.8 2005-11-20 22:32:04 wntrmute Exp $"
 
 */
 
@@ -190,9 +190,10 @@ typedef struct {
 #define	REG_BG3Y	*((vu32 *)(REG_BASE + 0x3c))
 
 #define BG_SIZE(m)		((m<<14))
-//---------------------------------------------------------------------------------
-// background control bits
-//---------------------------------------------------------------------------------
+/*! \enum BG_CTRL_BITS
+
+	\brief bit values for background control
+*/
 enum BG_CTRL_BITS {
 	BG_MOSAIC		=	BIT(6),		/*!< enable background mosaic			*/
 	BG_16_COLOR		=	(0<<7),		/*!< background uses 16 color tiles		*/

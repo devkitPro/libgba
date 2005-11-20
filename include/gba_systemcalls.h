@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_systemcalls.h,v 1.5 2005-10-05 12:09:07 wntrmute Exp $"
+	"$Id: gba_systemcalls.h,v 1.6 2005-11-20 22:32:04 wntrmute Exp $"
 
 	Header file for libgba bios systemcalls
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.5 2005-10-05 12:09:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.6 2005-11-20 22:32:04 wntrmute Exp $"
 
 */
 
@@ -48,9 +48,13 @@ extern "C" {
 //---------------------------------------------------------------------------------
 // Reset Functions
 //---------------------------------------------------------------------------------
+/*! \enum RESTART_FLAG
+
+	\brief flags for the SoftReset function
+*/
 typedef enum RESTART_FLAG {
-	ROM_RESTART,	/**< Restart from RAM entry point. */
-	RAM_RESTART		/**< restart from ROM entry point */
+	ROM_RESTART,	/*!< Restart from RAM entry point. */
+	RAM_RESTART		/*!< restart from ROM entry point */
 } RESTART_FLAG;
 
 
@@ -60,15 +64,19 @@ typedef enum RESTART_FLAG {
 */
 void	SoftReset(RESTART_FLAG RestartFlag);
 
+/*! \enum RESET_FLAG
+
+	\brief flags controlling which parts of the system get reset
+*/
 enum RESET_FLAG {
-	RESET_EWRAM		=	(1<<0),	/**< Clear 256K on-board WRAM			*/
-	RESET_IWRAM		=	(1<<1),	/**< Clear 32K in-chip WRAM				*/
-	RESET_PALETTE	=	(1<<2),	/**< Clear Palette						*/
-	RESET_VRAM		=	(1<<3),	/**< Clear VRAM							*/
-	RESET_OAM		=	(1<<4),	/**< Clear OAM							*/
-	RESET_SIO		=	(1<<5),	/**< Switches to general purpose mode	*/
-	RESET_SOUND		=	(1<<6),	/**< Reset Sound registers				*/
-	RESET_OTHER		=	(1<<7)	/**< all other registers				*/
+	RESET_EWRAM		=	(1<<0),	/*!< Clear 256K on-board WRAM					*/
+	RESET_IWRAM		=	(1<<1),	/*!< Clear 32K in-chip WRAM						*/
+	RESET_PALETTE	=	(1<<2),	/*!< Clear Palette										*/
+	RESET_VRAM		=	(1<<3),	/*!< Clear VRAM												*/
+	RESET_OAM			=	(1<<4),	/*!< Clear OAM												*/
+	RESET_SIO			=	(1<<5),	/*!< Switches to general purpose mode	*/
+	RESET_SOUND		=	(1<<6),	/*!< Reset Sound registers						*/
+	RESET_OTHER		=	(1<<7)	/*!< all other registers							*/
 };
 
 typedef enum RESET_FLAG RESET_FLAGS;

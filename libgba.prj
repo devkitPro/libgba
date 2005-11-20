@@ -17,10 +17,10 @@ Include Sub Directories=0
 [Open Files]
 Open File0=
 Active File Display Mode=-1
-Open File Pos0=3889
-Open File Line0=3337
+Open File Pos0=0
+Open File Line0=0
 Active File Index=0
-Open File Window Pos0=2,3,-1,-1,-4,-23,0,0,898,399
+Open File Window Pos0=2,3,-1,-1,-4,-23,132,132,924,586
 Open File1=
 Open File Pos1=1245
 Open File Line1=588
@@ -63,7 +63,7 @@ Open File Line10=2901
 Open File Window Pos10=2,3,-1,-1,-4,-23,220,220,1012,810
 Open File11=
 [File View]
-Current Select=Project Files\include\gba_sound.h
+Current Select=Project Files\include\gba_affine.h
 Scroll Position=0
 [Files - BoyScout]
 0=src\BoyScout\BoyScout.c

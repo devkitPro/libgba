@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_affine.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: gba_affine.h,v 1.3 2005-11-20 22:32:04 wntrmute Exp $"
 
 	Header file for libgba bios affine functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_affine.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_affine.h,v 1.3 2005-11-20 22:32:04 wntrmute Exp $"
 
 */
 
@@ -38,38 +38,38 @@ extern "C" {
 #include "gba_base.h"
 
 //---------------------------------------------------------------------------------
-typedef struct {
-     s32 x;			//Original data's center X coordinate (8bit fractional portion)
-     s32 y;			//Original data's center Y coordinate (8bit fractional portion)
-     s16 tX;		//Display's center X coordinate
-     s16 tY;		//Display's center Y coordinate
-     s16 sX;		//Scaling ratio in X direction (8bit fractional portion)
-     s16 sY;		//Scaling ratio in Y direction (8bit fractional portion)
-     u16 theta;		//Angle of rotation (8bit fractional portion) Effective Range 0-FFFF
+typedef struct t_BGAffineSource {
+     s32 x;				/*!< Original data's center X coordinate (8bit fractional portion)			*/
+     s32 y;				/*!< Original data's center Y coordinate (8bit fractional portion)			*/
+     s16 tX;			/*!< Display's center X coordinate																			*/
+     s16 tY;			/*!< Display's center Y coordinate																			*/
+     s16 sX;			/*!< Scaling ratio in X direction (8bit fractional portion)							*/
+     s16 sY;			/*!< Scaling ratio in Y direction (8bit fractional portion)							*/
+     u16 theta;		/*!< Angle of rotation (8bit fractional portion) Effective Range 0-FFFF	*/
 } BGAffineSource;
 
-typedef struct {
-     s16 pa;		//Difference in X coordinate along same line
-     s16 pb;		//Difference in X coordinate along next line
-     s16 pc;		//Difference in Y coordinate along same line
-     s16 pd;		//Difference in Y coordinate along next line
-     s32 x;			//Start X coordinate
-     s32 y;			//Start Y coordinate
+typedef struct t_BGAffineDest {
+     s16 pa;		/*!< Difference in X coordinate along same line	*/
+     s16 pb;		/*!< Difference in X coordinate along next line	*/
+     s16 pc;		/*!< Difference in Y coordinate along same line	*/
+     s16 pd;		/*!< Difference in Y coordinate along next line	*/
+     s32 x;			/*!< Start X coordinate													*/
+     s32 y;			/*!< Start Y coordinate													*/
 } BGAffineDest;
 
 
-typedef struct {
-     s16 sX;		//Scaling ratio in X direction (8bit fractional portion)
-     s16 sY;		//Scaling ratio in Y direction (8bit fractional portion)
-     u16 theta;		//Angle of rotation (8bit fractional portion) Effective Range 0-FFFF
+typedef struct t_ObjAffineSource {
+     s16 sX;			/*!< Scaling ratio in X direction (8bit fractional portion)							*/
+     s16 sY;			/*!< Scaling ratio in Y direction (8bit fractional portion)							*/
+     u16 theta;		/*!< Angle of rotation (8bit fractional portion) Effective Range 0-FFFF	*/
 } ObjAffineSource;
 
 
-typedef struct {
-     s16 pa;		//Difference in X coordinate along same line
-     s16 pb;		//Difference in X coordinate along next line
-     s16 pc;		//Difference in Y coordinate along same line
-     s16 pd;		//Difference in Y coordinate along next line
+typedef struct t_ObjAffineDest {
+     s16 pa;		/*!< Difference in X coordinate along same line */
+     s16 pb;		/*!< Difference in X coordinate along next line */
+     s16 pc;		/*!< Difference in Y coordinate along same line */
+     s16 pd;		/*!< Difference in Y coordinate along next line */
 } ObjAffineDest;
 
 

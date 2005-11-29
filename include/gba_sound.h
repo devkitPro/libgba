@@ -1,9 +1,9 @@
 /*
-	"$Id: gba_sound.h,v 1.7 2005-10-21 13:13:09 wntrmute Exp $"
+	$Id: gba_sound.h,v 1.8 2005-11-29 17:02:38 wntrmute Exp $
 
 	Header file for libgba bios sound functions
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright (C) 2003-2005 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sound.h,v 1.7 2005-10-21 13:13:09 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
 */
 //---------------------------------------------------------------------------------
@@ -92,6 +92,16 @@ typedef struct {
 #define SND4_R_ENABLE	(1<<11)
 #define SND4_L_ENABLE	(1<<15)
 
+#define SNDA_VOL_50     (0<<2)
+#define SNDA_VOL_100    (1<<2)
+#define SNDB_VOL_50     (0<<3)
+#define SNDB_VOL_100    (1<<3)
+#define SNDA_R_ENABLE   (1<<8)
+#define SNDA_L_ENABLE   (1<<9)
+#define SNDA_RESET_FIFO (1<<11)
+#define SNDB_R_ENABLE   (1<<12)
+#define SNDB_L_ENABLE   (1<<13)
+#define SNDB_RESET_FIFO (1<<15)
 
 
 #define	REG_SOUNDCNT_H	(*((u16 volatile *) (REG_BASE + 0x082)))
@@ -126,11 +136,11 @@ typedef struct {
 #define SOUND3_STOP			(0<<7)	// Stop sound output
 
 
-static inline SoundDriverMain()		{ SystemCall(28); }
-static inline SoundDriverVsync()	{ SystemCall(29); }
-static inline SoundChannelClear()	{ SystemCall(30); }
-static inline SoundDriverVsyncOff()	{ SystemCall(40); }
-static inline SoundDriverVsyncOn()	{ SystemCall(41); }
+static inline void SoundDriverMain()		{ SystemCall(28); }
+static inline void SoundDriverVsync()	{ SystemCall(29); }
+static inline void SoundChannelClear()	{ SystemCall(30); }
+static inline void SoundDriverVsyncOff()	{ SystemCall(40); }
+static inline void SoundDriverVsyncOn()	{ SystemCall(41); }
 
 void SoundDriverInit(SoundArea *sa);
 void SoundDriverMode(u32 mode);

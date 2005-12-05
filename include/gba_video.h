@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.8 2005-11-20 22:32:04 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.9 2005-12-05 22:05:20 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.8 2005-11-20 22:32:04 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.9 2005-12-05 22:05:20 wntrmute Exp $"
 
 */
 
@@ -241,7 +241,7 @@ typedef u16 MODE5_LINE[160];
 //---------------------------------------------------------------------------------
 // Helper macros
 //---------------------------------------------------------------------------------
-static inline void SetMode(LCDC_BITS mode)	{REG_DISPCNT = mode;}
+static inline void SetMode(int mode)	{REG_DISPCNT = mode;}
 
 #define RGB5(r,g,b)	((r)|((g)<<5)|((b)<<10))
 #define RGB8(r,g,b)	( (((b)>>3)<<10) | (((g)>>3)<<5) | ((r)>>3) )

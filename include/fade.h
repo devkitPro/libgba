@@ -1,5 +1,5 @@
 /*
-	"$Id: fade.h,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
+	"$Id: fade.h,v 1.5 2005-12-05 22:04:41 wntrmute Exp $"
 
 	Header file for libgba palette fade routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/fade.h,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
 */
 
@@ -65,7 +65,7 @@ void	FadeToGrayScale(int gray, int FrameCount);
 */
 void	SetPalette(u16 *Palette);
 
-static inline void FadeToBlack(frames) { FadeToGrayScale(0,frames); }
+static inline void FadeToBlack(int frames) { FadeToGrayScale(0,frames); }
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

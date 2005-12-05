@@ -1,5 +1,5 @@
 /*
-	$Id: gba_sound.h,v 1.8 2005-11-29 17:02:38 wntrmute Exp $
+	$Id: gba_sound.h,v 1.9 2005-12-05 22:03:07 wntrmute Exp $
 
 	Header file for libgba bios sound functions
 
@@ -24,6 +24,10 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.8  2005/11/29 17:02:38  wntrmute
+	add void type to inline functions
+	added direct sound defines
+	
 
 */
 //---------------------------------------------------------------------------------
@@ -81,7 +85,6 @@ typedef struct {
 /*---------------------------------------------------------------------------------
 	Control Registers
 ---------------------------------------------------------------------------------*/
-#define	REG_SOUNDCNT_L	(*((u16 volatile *) REG_BASE + 0x080))
 
 #define SND1_R_ENABLE	(1<<8)		// Enable left & right speakers for each sound channel
 #define SND1_L_ENABLE	(1<<12)
@@ -104,6 +107,7 @@ typedef struct {
 #define SNDB_RESET_FIFO (1<<15)
 
 
+#define	REG_SOUNDCNT_L	(*((u16 volatile *) (REG_BASE + 0x080)))
 #define	REG_SOUNDCNT_H	(*((u16 volatile *) (REG_BASE + 0x082)))
 #define	REG_SOUNDCNT_X	(*((u16 volatile *) (REG_BASE + 0x084)))
 
@@ -136,11 +140,11 @@ typedef struct {
 #define SOUND3_STOP			(0<<7)	// Stop sound output
 
 
-static inline void SoundDriverMain()		{ SystemCall(28); }
-static inline void SoundDriverVsync()	{ SystemCall(29); }
-static inline void SoundChannelClear()	{ SystemCall(30); }
+static inline void SoundDriverMain()			{ SystemCall(28); }
+static inline void SoundDriverVsync()			{ SystemCall(29); }
+static inline void SoundChannelClear()		{ SystemCall(30); }
 static inline void SoundDriverVsyncOff()	{ SystemCall(40); }
-static inline void SoundDriverVsyncOn()	{ SystemCall(41); }
+static inline void SoundDriverVsyncOn()		{ SystemCall(41); }
 
 void SoundDriverInit(SoundArea *sa);
 void SoundDriverMode(u32 mode);

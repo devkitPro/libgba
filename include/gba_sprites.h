@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sprites.h,v 1.4 2005-12-14 14:13:12 wntrmute Exp $"
+	"$Id: gba_sprites.h,v 1.5 2005-12-14 14:22:55 wntrmute Exp $"
 
 	Header file for libgba sprite definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sprites.h,v 1.4 2005-12-14 14:13:12 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sprites.h,v 1.5 2005-12-14 14:22:55 wntrmute Exp $"
 
 */
 
@@ -92,7 +92,7 @@ enum SPRITE_SHAPES {
 #define OBJ_PALETTE(m)		((m)<<12)
 
 //---------------------------------------------------------------------------------
-enum {
+enum SPRITE_SIZECODE {
 		Sprite_8x8,
 		Sprite_16x16,
 		Sprite_32x32,
@@ -105,7 +105,7 @@ enum {
 		Sprite_8x32,
 		Sprite_16x32,
 		Sprite_32x64
-} SPRITE_SIZECODE;
+};
 
 
 

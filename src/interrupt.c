@@ -1,5 +1,5 @@
 /*
-	"$Id: interrupt.c,v 1.5 2005-10-05 12:08:49 wntrmute Exp $"
+	"$Id: interrupt.c,v 1.6 2005-12-14 14:13:12 wntrmute Exp $"
 
 	libgba interrupt support routines
 
@@ -23,9 +23,10 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/interrupt.c,v 1.5 2005-10-05 12:08:49 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
 */
+
 #include "gba_interrupt.h"
 #include "gba_video.h"
 
@@ -75,34 +76,11 @@ void EnableInterrupt(irqMASK mask)
 //---------------------------------------------------------------------------------
 {
 	REG_IME	= 0;
-	switch(mask)
-	{
-		case IE_VBL:
-			REG_DISPSTAT |= LCDC_VBL;
-			REG_IE |= mask;
-			break;
-		case IE_HBL:
-			REG_DISPSTAT |= LCDC_HBL;
-			REG_IE |= mask;
-			break;
-		case IE_VCNT:
-			REG_DISPSTAT |= LCDC_VCNT;
-			REG_IE |= mask;
-			break;
-		case IE_TIMER0:    
-		case IE_TIMER1:    
-		case IE_TIMER2:
-		case IE_TIMER3:
-		case IE_SERIAL:
-		case IE_DMA0:
-		case IE_DMA1:
-		case IE_DMA2:		
-		case IE_DMA3:		
-		case IE_KEYPAD:	    
-		case IE_GAMEPAK:	    
-			REG_IE |= mask;
-			break;
-	}
+
+	if (mask & IE_VBL) REG_DISPSTAT |= LCDC_VBL;
+	if (mask & IE_HBL) REG_DISPSTAT |= LCDC_HBL;
+	if (mask & IE_VCNT) REG_DISPSTAT |= LCDC_VCNT;
+	REG_IE |= mask;
 	REG_IME	= 1;
 }
 
@@ -112,34 +90,11 @@ void DisableInterrupt(irqMASK mask)
 {
 	REG_IME	= 0;
 
-	switch(mask)
-	{
-		case IE_VBL:
-			REG_DISPSTAT &= ~LCDC_VBL;
-			REG_IE &= ~mask;
-			break;
-		case IE_HBL:
-			REG_DISPSTAT &= ~LCDC_HBL;
-			REG_IE &= ~mask;
-			break;
-		case IE_VCNT:
-			REG_DISPSTAT &= ~LCDC_VCNT;
-			REG_IE &= ~mask;
-			break;
-		case IE_TIMER0:    
-		case IE_TIMER1:    
-		case IE_TIMER2:
-		case IE_TIMER3:
-		case IE_SERIAL:
-		case IE_DMA0:
-		case IE_DMA1:
-		case IE_DMA2:		
-		case IE_DMA3:		
-		case IE_KEYPAD:	    
-		case IE_GAMEPAK:	    
-			REG_IE &= ~mask;
-			break;
-	}
+	if (mask & IE_VBL) REG_DISPSTAT &= ~LCDC_VBL;
+	if (mask & IE_HBL) REG_DISPSTAT &= ~LCDC_HBL;
+	if (mask & IE_VCNT) REG_DISPSTAT &= ~LCDC_VCNT;
+	REG_IE &= ~mask;
+
 	REG_IME	= 1;
 
 }

@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sprites.h,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Id: gba_sprites.h,v 1.4 2005-12-14 14:13:12 wntrmute Exp $"
 
 	Header file for libgba sprite definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sprites.h,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sprites.h,v 1.4 2005-12-14 14:13:12 wntrmute Exp $"
 
 */
 
@@ -34,16 +34,14 @@
 
 #include "gba_base.h"
 
-typedef struct
-{
+typedef struct {
 	u16 attr0;
 	u16 attr1;
 	u16 attr2;
 	u16 dummy;
 } OBJATTR;
 
-typedef struct
-{
+typedef struct {
 	u16 dummy0[3];
 	s16 pa;
 	u16 dummy1[3];
@@ -55,32 +53,61 @@ typedef struct
 } OBJAFFINE;
 
 
-#define	OAM					((OBJATTR *)0x07000000)
-#define OBJ_BASE_ADR		((void *)(VRAM + 0x10000))
+#define	OAM									((OBJATTR *)0x07000000)
+#define OBJ_BASE_ADR				((void *)(VRAM + 0x10000))
 #define BITMAP_OBJ_BASE_ADR	((void *)(VRAM + 0x14000))
 
 // Sprite Attribute 0
-#define OBJ_Y(m)			((m)&0x00ff)
+#define OBJ_Y(m)					((m)&0x00ff)
 #define OBJ_ROT_SCALE_ON	(1<<8)
-#define OBJ_DISABLE			(1<<9)
-#define OBJ_DOUBLE			(1<<9)
-#define OBJ_MODE(m)			((m)<<10)
-#define OBJ_MOSAIC			(1<<12)
-#define	OBJ_256_COLOR		(1<<13)
-#define	OBJ_16_COLOR		(0<<13)
-#define OBJ_SHAPE(m)		((m)<<14)
+#define OBJ_DISABLE				(1<<9)
+#define OBJ_DOUBLE				(1<<9)
+#define OBJ_MODE(m)				((m)<<10)
+#define OBJ_MOSAIC				(1<<12)
+#define	OBJ_256_COLOR			(1<<13)
+#define	OBJ_16_COLOR			(0<<13)
+
+enum SPRITE_SHAPES {
+	SQUARE,
+	WIDE,
+	TALL
+};
+
+
+#define OBJ_SHAPE(m)			((m)<<14)
 
 // Sprite Attribute 1
-#define OBJ_X(m)			((m)&0x01ff)
+#define OBJ_X(m)					((m)&0x01ff)
 #define OBJ_ROT_SCALE(m)	((m)<<9)
-#define OBJ_HFLIP			(1<<12)
-#define OBJ_VFLIP			(1<<13)
-#define OBJ_SIZE(m)			((m)<<14)
+#define OBJ_HFLIP					(1<<12)
+#define OBJ_VFLIP					(1<<13)
+
+
+
+#define OBJ_SIZE(m)				((m)<<14)
 
 // Sprite Attribute 2
-#define OBJ_CHAR(m)			((m)&0x03ff)
+#define OBJ_CHAR(m)				((m)&0x03ff)
 #define OBJ_PRIORITY(m)		((m)<<10)
 #define OBJ_PALETTE(m)		((m)<<12)
+
+//---------------------------------------------------------------------------------
+enum {
+		Sprite_8x8,
+		Sprite_16x16,
+		Sprite_32x32,
+		Sprite_64x64,
+		Sprite_16x8,
+		Sprite_32x8,
+		Sprite_32x16,
+		Sprite_64x32,
+		Sprite_8x16,
+		Sprite_8x32,
+		Sprite_16x32,
+		Sprite_32x64
+} SPRITE_SIZECODE;
+
+
 
 //---------------------------------------------------------------------------------
 #endif // _gba_sprites_h_

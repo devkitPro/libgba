@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.9 2005-12-05 22:05:20 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.10 2006-01-29 20:11:02 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.9 2005-12-05 22:05:20 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.10 2006-01-29 20:11:02 wntrmute Exp $"
 
 */
 
@@ -184,7 +184,7 @@ typedef struct {
 #define	REG_BG2Y	*((vu32 *)(REG_BASE + 0x2c))
 #define	REG_BG3PA	*((vu16 *)(REG_BASE + 0x30))
 #define	REG_BG3PB	*((vu16 *)(REG_BASE + 0x32))
-#define	REG_BG3PC	*((vu16 *)(REG_BASE + 0x32))
+#define	REG_BG3PC	*((vu16 *)(REG_BASE + 0x34))
 #define	REG_BG3PD	*((vu16 *)(REG_BASE + 0x36))
 #define	REG_BG3X	*((vu32 *)(REG_BASE + 0x38))
 #define	REG_BG3Y	*((vu32 *)(REG_BASE + 0x3c))

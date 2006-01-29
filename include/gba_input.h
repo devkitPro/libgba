@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_input.h,v 1.7 2005-11-20 22:32:04 wntrmute Exp $"
+	"$Id: gba_input.h,v 1.8 2006-01-29 20:10:01 wntrmute Exp $"
 
 	Header file for libgba input functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.7 2005-11-20 22:32:04 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.8 2006-01-29 20:10:01 wntrmute Exp $"
 
 */
 
@@ -83,32 +83,32 @@ typedef enum KEYPAD_BITS {
 	Call this function once per main loop in order to use the keypad functions.
 */
 void ScanKeys(void);
-/*! \fn KEYPAD_BITS KeysDown()
+/*! \fn u16 KeysDown()
 	\brief obtain the current keypad pressed state.
 	
 	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
 	Keys which are pressed will not be reported again until they are released. 
 */
-KEYPAD_BITS	KeysDown();
-/*! \fn KEYPAD_BITS KeysDownRepeat()
+u16	KeysDown();
+/*! \fn u16 KeysDownRepeat()
 	\brief obtain the current keypad pressed state with repeat.
 
 */
-KEYPAD_BITS	KeysDownRepeat();
-/*! \fn KEYPAD_BITS KeysUp()
+u16	KeysDownRepeat();
+/*! \fn u16 KeysUp()
 	\brief obtain the current keypad released.
 
 	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
 	Keys which are pressed will not be reported again until they have been held for the times specified using SetRepeat(). 
 */
-KEYPAD_BITS KeysUp();
-/*! \fn KEYPAD_BITS KeysHeld()
+u16 KeysUp();
+/*! \fn u16 KeysHeld()
 	\brief obtain the current keypad held state.
 
 	Returns the keys which have been pressed since the last call to KeysUp(), the keys are reset on this call.
 	Keys which are released will not be reported again until they are pressed. 
 */
-KEYPAD_BITS KeysHeld();
+u16 KeysHeld();
 
 
 /*! \fn SetRepeat(int SetDelay, int SetRepeat)

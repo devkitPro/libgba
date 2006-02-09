@@ -7,7 +7,7 @@ endif
 ifeq ($(strip $(DEVKITPRO)),)
 $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitPro)
 endif
--include $(DEVKITARM)/gba_rules
+include $(DEVKITARM)/gba_rules
 
 BUILD		:=	build
 SOURCES		:=	src src/BoyScout

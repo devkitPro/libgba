@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_systemcalls.h,v 1.7 2006-02-09 12:41:52 wntrmute Exp $"
+	"$Id: gba_systemcalls.h,v 1.8 2006-03-10 19:18:34 darkfader Exp $"
 
 	Header file for libgba bios systemcalls
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.7 2006-02-09 12:41:52 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.8 2006-03-10 19:18:34 darkfader Exp $"
 
 */
 
@@ -102,9 +102,9 @@ static inline u32 BiosCheckSum() {
 //---------------------------------------------------------------------------------
 	register u32 result;
 	#if	defined	( __thumb__ )
-		asm ("SWI	0x0d\nmov %0,r0\n" :  "=r"(result) :: "r1", "r2", "r3");
+		__asm ("SWI	0x0d\nmov %0,r0\n" :  "=r"(result) :: "r1", "r2", "r3");
 	#else
-		asm ("SWI	0x0d<<16\nmov %0,r0\n" : "=r"(result) :: "r1", "r2", "r3");
+		__asm ("SWI	0x0d<<16\nmov %0,r0\n" : "=r"(result) :: "r1", "r2", "r3");
 	#endif
 	return result;
 }

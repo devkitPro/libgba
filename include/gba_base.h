@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_base.h,v 1.8 2005-09-27 00:37:17 wntrmute Exp $"
+	"$Id: gba_base.h,v 1.9 2006-03-10 19:21:46 darkfader Exp $"
 
 	Header file for libgba base macros, included by all libgba files
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.8 2005-09-27 00:37:17 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.9 2006-03-10 19:21:46 darkfader Exp $"
 
 */
 /*! \file gba_base.h
@@ -85,9 +85,9 @@
 
 */
 #if	defined	( __thumb__ )
-#define	SystemCall(Number)	 asm ("SWI	  "#Number"\n" :::  "r0", "r1", "r2", "r3")
+#define	SystemCall(Number)	 __asm ("SWI	  "#Number"\n" :::  "r0", "r1", "r2", "r3")
 #else
-#define	SystemCall(Number)	 asm ("SWI	  "#Number"	<< 16\n" :::"r0", "r1", "r2", "r3")
+#define	SystemCall(Number)	 __asm ("SWI	  "#Number"	<< 16\n" :::"r0", "r1", "r2", "r3")
 #endif
 
 /*! \def BIT(number)

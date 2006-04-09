@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_sprites.h,v 1.5 2005-12-14 14:22:55 wntrmute Exp $"
+	"$Id: gba_sprites.h,v 1.6 2006-04-09 22:41:35 wntrmute Exp $"
 
 	Header file for libgba sprite definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sprites.h,v 1.5 2005-12-14 14:22:55 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_sprites.h,v 1.6 2006-04-09 22:41:35 wntrmute Exp $"
 
 */
 
@@ -52,20 +52,19 @@ typedef struct {
 	s16 pd;
 } OBJAFFINE;
 
-
-#define	OAM									((OBJATTR *)0x07000000)
-#define OBJ_BASE_ADR				((void *)(VRAM + 0x10000))
+#define	OAM					((OBJATTR *)0x07000000)
+#define OBJ_BASE_ADR		((void *)(VRAM + 0x10000))
 #define BITMAP_OBJ_BASE_ADR	((void *)(VRAM + 0x14000))
 
 // Sprite Attribute 0
-#define OBJ_Y(m)					((m)&0x00ff)
+#define OBJ_Y(m)			((m)&0x00ff)
 #define OBJ_ROT_SCALE_ON	(1<<8)
-#define OBJ_DISABLE				(1<<9)
-#define OBJ_DOUBLE				(1<<9)
-#define OBJ_MODE(m)				((m)<<10)
-#define OBJ_MOSAIC				(1<<12)
-#define	OBJ_256_COLOR			(1<<13)
-#define	OBJ_16_COLOR			(0<<13)
+#define OBJ_DISABLE			(1<<9)
+#define OBJ_DOUBLE			(1<<9)
+#define OBJ_MODE(m)			((m)<<10)
+#define OBJ_MOSAIC			(1<<12)
+#define	OBJ_256_COLOR		(1<<13)
+#define	OBJ_16_COLOR		(0<<13)
 
 enum SPRITE_SHAPES {
 	SQUARE,
@@ -74,22 +73,28 @@ enum SPRITE_SHAPES {
 };
 
 
-#define OBJ_SHAPE(m)			((m)<<14)
+#define OBJ_SHAPE(m)		((m)<<14)
 
 // Sprite Attribute 1
-#define OBJ_X(m)					((m)&0x01ff)
+#define OBJ_X(m)			((m)&0x01ff)
 #define OBJ_ROT_SCALE(m)	((m)<<9)
-#define OBJ_HFLIP					(1<<12)
-#define OBJ_VFLIP					(1<<13)
+#define OBJ_HFLIP			(1<<12)
+#define OBJ_VFLIP			(1<<13)
 
 
 
-#define OBJ_SIZE(m)				((m)<<14)
+#define OBJ_SIZE(m)		((m)<<14)
 
 // Sprite Attribute 2
-#define OBJ_CHAR(m)				((m)&0x03ff)
-#define OBJ_PRIORITY(m)		((m)<<10)
-#define OBJ_PALETTE(m)		((m)<<12)
+#define OBJ_CHAR(m)		((m)&0x03ff)
+#define OBJ_PRIORITY(m)	((m)<<10)
+#define OBJ_PALETTE(m)	((m)<<12)
+
+#define OBJ_TRANSLUCENT	OBJ_MODE(1)
+#define OBJ_OBJWINDOW	OBJ_MODE(2)
+#define OBJ_SQUARE		OBJ_SHAPE(0)
+#define OBJ_WIDE		OBJ_SHAPE(1)
+#define OBJ_TALL		OBJ_SHAPE(2)
 
 //---------------------------------------------------------------------------------
 enum SPRITE_SIZECODE {

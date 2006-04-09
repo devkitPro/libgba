@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_video.h,v 1.10 2006-01-29 20:11:02 wntrmute Exp $"
+	"$Id: gba_video.h,v 1.11 2006-04-09 22:41:35 wntrmute Exp $"
 
 	Header file for libgba video definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.10 2006-01-29 20:11:02 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.11 2006-04-09 22:41:35 wntrmute Exp $"
 
 */
 
@@ -210,10 +210,49 @@ enum BG_CTRL_BITS {
 #define MAP_BASE_ADR(m)		((void *)(VRAM + ((m) << 11)))
 #define SCREEN_BASE(m)		((m) << 8)
 
+//alternate names for char and screen base
+#define	TILE_BASE(m)		((m) << 2)
+#define TILE_BASE_ADR(m)	((void *)(VRAM + ((m) << 14)))
+ 
+#define MAP_BASE_ADR(m)		((void *)(VRAM + ((m) << 11)))
+#define MAP_BASE(m)			((m) << 8)
 
 #define BG_PRIORITY(m)		((m))
 #define BG_PALETTE(m)		((m)<<12)
 
+/*---------------------------------------------------------------------------------
+	CHAR_BASE_ADR() is the direct equivalent to old PATRAM(),
+	giving the base address of a chr bank.
+	These macros pinpoint the base address of a single tile.
+---------------------------------------------------------------------------------*/
+#define PATRAM4(x, tn) ((u32 *)(VRAM | (((x) << 14) + ((tn) << 5)) ))
+#define PATRAM8(x, tn) ((u32 *)(VRAM | (((x) << 14) + ((tn) << 6)) ))
+#define SPR_VRAM(tn) ((u32 *)(VRAM | 0x10000 | ((tn) << 5)))
+
+/*---------------------------------------------------------------------------------
+	MAP_BASE_ADR() only gives the beginning of a map.
+	Each cell of a text map can be accessed using 3D array notation:
+
+	MAP[page][y][x]
+---------------------------------------------------------------------------------*/
+typedef u16 NAMETABLE[32][32];
+#define MAP ((NAMETABLE *)0x06000000)
+
+/*---------------------------------------------------------------------------------
+	width and height of a GBA text map can (and probably should)
+	be controlled separately.
+---------------------------------------------------------------------------------*/
+#define BG_WID_32 BG_SIZE_0
+#define BG_WID_64 BG_SIZE_1
+#define BG_HT_32  BG_SIZE_0
+#define BG_HT_64  BG_SIZE_2
+//---------------------------------------------------------------------------------
+// Symbolic names for the rot/scale map sizes
+//---------------------------------------------------------------------------------
+#define ROTBG_SIZE_16  BG_SIZE_0
+#define ROTBG_SIZE_32  BG_SIZE_1
+#define ROTBG_SIZE_64  BG_SIZE_2
+#define ROTBG_SIZE_128 BG_SIZE_3 
 
 //---------------------------------------------------------------------------------
 // Framebuffers for mode 3 and 5

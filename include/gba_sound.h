@@ -1,5 +1,5 @@
 /*
-	$Id: gba_sound.h,v 1.9 2005-12-05 22:03:07 wntrmute Exp $
+	$Id: gba_sound.h,v 1.10 2006-04-09 22:41:35 wntrmute Exp $
 
 	Header file for libgba bios sound functions
 
@@ -24,12 +24,15 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.9  2005/12/05 22:03:07  wntrmute
+	corrected REG_SOUNDCNT_L
+	
 	Revision 1.8  2005/11/29 17:02:38  wntrmute
 	add void type to inline functions
 	added direct sound defines
-	
 
 */
+
 //---------------------------------------------------------------------------------
 #ifndef	_gba_sound_h_
 #define	_gba_sound_h_
@@ -139,18 +142,220 @@ typedef struct {
 #define SOUND3_PLAY			(1<<7)	// Output sound
 #define SOUND3_STOP			(0<<7)	// Stop sound output
 
+//---------------------------------------------------------------------------------
+// pin8 compatible sound macros 
+//---------------------------------------------------------------------------------
 
-static inline void SoundDriverMain()			{ SystemCall(28); }
-static inline void SoundDriverVsync()			{ SystemCall(29); }
-static inline void SoundChannelClear()		{ SystemCall(30); }
-static inline void SoundDriverVsyncOff()	{ SystemCall(40); }
-static inline void SoundDriverVsyncOn()		{ SystemCall(41); }
+/*---------------------------------------------------------------------------------
+	DMG Sound Control (0x04000080)
+fedcba9876543210
+|||||||| ||| |||
+|||||||| ||| +++- DMG left volume
+|||||||| +++----- DMG right volume
+|||||||+--------- Enable sqr1 on left
+||||||+---------- Enable sqr2 on left
+|||||+----------- Enable triangle on left
+||||+------------ Enable noise on left
+|||+------------- Enable sqr1 on right
+||+-------------- Enable sqr2 on right
+|+--------------- Enable triangle on right
++---------------- 
+---------------------------------------------------------------------------------*/
+#define DMGSNDCTRL         (*(volatile u16 *)0x04000080)
+#define DMGSNDCTRL_LVOL(x) (x)
+#define DMGSNDCTRL_RVOL(x) ((x) << 4)
+#define DMGSNDCTRL_LSQR1   0x0100
+#define DMGSNDCTRL_LSQR2   0x0200
+#define DMGSNDCTRL_LTRI    0x0400
+#define DMGSNTCTRL_LNOISE  0x0800
+#define DMGSNDCTRL_RSQR1   0x1000
+#define DMGSNDCTRL_RSQR2   0x2000
+#define DMGSNDCTRL_RTRI    0x4000
+#define DMGSNDCTRL_RNOISE  0x8000
+
+/*---------------------------------------------------------------------------------
+	Direct Sound Control (0x04000082)
+-----------------------------------------------------------------------------------
+fedcba9876543210
+||||||||    ||||
+||||||||    ||++- DMG sound output volume
+||||||||    ||    (00: 25%; 01: 50%; 10: 100%)
+||||||||    |+--- DSound A output volume (0: 50%; 1: 100%)
+||||||||    +---- DSound B output volume (0: 50%; 1: 100%)
+|||||||+--------- Enable DSound A on right
+||||||+---------- Enable DSound A on left
+|||||+----------- DSound A sample timer (0 or 1)
+||||+------------ DSound A FIFO reset
+|||+------------- Enable DSound B on right
+||+-------------- Enable DSound B on left
+|+--------------- DSound B sample timer (0 or 1)
++---------------- DSound B FIFO reset
+---------------------------------------------------------------------------------*/
+#define DSOUNDCTRL           (*(volatile u16 *)0x04000082)
+#define DSOUNDCTRL_DMG25     0x0000
+#define DSOUNDCTRL_DMG50     0x0001
+#define DSOUNDCTRL_DMG100    0x0002
+#define DSOUNDCTRL_A50       0x0000
+#define DSOUNDCTRL_A100      0x0004
+#define DSOUNDCTRL_B50       0x0000
+#define DSOUNDCTRL_B100      0x0008
+#define DSOUNDCTRL_AR        0x0100
+#define DSOUNDCTRL_AL        0x0200
+#define DSOUNDCTRL_ATIMER(x) ((x) << 10)
+#define DSOUNDCTRL_ARESET    0x0400
+#define DSOUNDCTRL_BR        0x1000
+#define DSOUNDCTRL_BL        0x2000
+#define DSOUNDCTRL_BTIMER(x) ((x) << 14)
+#define DSOUNDCTRL_BRESET    0x8000
+
+/*---------------------------------------------------------------------------------
+ Sound Status (0x04000084)
+-----------------------------------------------------------------------------------
+Note that unlike NES's $4014, bits 0 to 3 of this register are
+read-only.  They do not enable sound.
+
+fedcba9876543210
+        |   ||||
+        |   |||+- Square 1 playing
+        |   ||+-- Square 2 playing
+        |   |+--- Triangle playing
+        |   +---- Noise playing
+        +-------- 0: save 10% battery power by turning off ALL sound;
+                  1: play sound
+---------------------------------------------------------------------------------*/
+#define SNDSTAT        (*(volatile u16*)0x04000084)
+#define SNDSTAT_SQR1   0x0001
+#define SNDSTAT_SQR2   0x0002
+#define SNDSTAT_TRI    0x0004
+#define SNDSTAT_NOISE  0x0008
+#define SNDSTAT_ENABLE 0x0080
+
+/*---------------------------------------------------------------------------------
+	Sound Bias: will not be documented.
+-----------------------------------------------------------------------------------
+fedcba9876543210
+||    ||||||||||
+||    ++++++++++- PWM bias
+++--------------- Amplitude resolution
+                  00: 9-bit at 32768 Hz
+                  01: 8-bit at 65536 Hz (most common)
+                  10: 7-bit at 131072 Hz
+                  11: 6-bit at 262144 Hz
+
+Do NOT use SNDBIAS directly.  To set the resolution, use
+  SETSNDRES(1);
+---------------------------------------------------------------------------------*/
+#define SNDBIAS      (*(volatile u16 *)0x04000088)
+#define SETSNDRES(x) SNDBIAS = (SNDBIAS & 0x3fff) | (x << 14)
+
+#define DSOUND_FIFOA (*(volatile u32 *)0x040000a0)
+#define DSOUND_FIFOB (*(volatile u32 *)0x040000a4)
+
+
+/*---------------------------------------------------------------------------------
+ Square 1 Sweep Register
+---------------------------------------------------------------------------------
+
+fedcba9876543210
+         |||||||
+         ||||+++- Sweep shifts (1 fastest; 7 slowest)
+         |||+---- 0: Sweep up; 1: Sweep down
+
+Write 0x0040 into this register to disable sweep.
+---------------------------------------------------------------------------------*/
+#define SQR1SWEEP   (*(volatile u16 *)0x04000060)
+#define SQR1SWEEP_OFF 0x0008
+
+
+/*---------------------------------------------------------------------------------
+   Square 1 Control Register
+   Square 2 Control Register
+-----------------------------------------------------------------------------------
+fedcba9876543210
+||||||||||||||||
+||||||||||++++++- Sound length (1 longest; 63: shortest)
+||||||||++------- Duty cycle (00: 1/8; 01: 1/4; 10: 1/2; 11: 3/4)
+|||||+++--------- Envelope step time (0: off; 1 fastest; 7 slowest)
+||||+------------ Envelope direction (0: decrease; 1: increase)
+++++------------- Volume
+---------------------------------------------------------------------------------*/
+#define SQR1CTRL    (*(volatile u16 *)0x04000062)
+#define SQR2CTRL    (*(volatile u16 *)0x04000068)
+#define SQR_DUTY(n) ((n) << 6)
+#define SQR_VOL(n)  ((n) << 12)
+
+/*---------------------------------------------------------------------------------
+   Square 1 Frequency
+   Square 2 Frequency
+   Triangle Channel Frequency (0x04000074)
+-----------------------------------------------------------------------------------
+fedcba9876543210
+||   |||||||||||
+||   +++++++++++- frequency (131072 Hz/(2048-x)) (halved for tri channel)
+|+--------------- 0: hold note; 1: use length
++---------------- 1: Reset channel
+---------------------------------------------------------------------------------*/
+#define SQR1FREQ      (*(volatile u16 *)0x04000064)
+#define SQR2FREQ      (*(volatile u16 *)0x0400006c)
+#define TRIFREQ       (*(volatile u16 *)0x04000074)
+#define TRIFREQ_HOLD  0x0000
+#define TRIFREQ_TIMED 0x4000
+#define TRIFREQ_RESET 0x8000
+
+
+/*---------------------------------------------------------------------------------
+	Triangle Channel Control Register
+-----------------------------------------------------------------------------------
+fedcba9876543210
+        |||
+        ||+------ Bank mode (0: 2 banks of 32; 1: 1 bank of 64)
+        |+------- Play this bank (and write other bank)
+        +-------- Enable triangle channel
+---------------------------------------------------------------------------------*/
+#define TRICTRL         (*(volatile u16 *)0x04000070)
+#define TRICTRL_2X32    0x0000
+#define TRICTRL_1X64    0x0020
+#define TRICTRL_BANK(x) ((x) << 6)
+#define TRICTRL_ENABLE  0x0080
+
+/*---------------------------------------------------------------------------------
+	Triangle Channel Length/Volume (0x04000072)
+-----------------------------------------------------------------------------------
+
+fedcba9876543210
+|||     ||||||||
+|||     ++++++++- Length ((256-x)/256 seconds)
++++-------------- Volume (000: mute; 001: 100%; 010: 50%;
+                          011: 25%; 100: 75%)
+---------------------------------------------------------------------------------*/
+#define TRILENVOL        (*(volatile u16 *)0x04000072)
+#define TRILENVOL_LEN(x) (256 - (x))
+#define TRILENVOL_MUTE   0x0000
+#define TRILENVOL_25     0x6000
+#define TRILENVOL_50     0x4000
+#define TRILENVOL_75     0x8000
+#define TRILENVOL_100    0x2000
+
+#define TRIWAVERAM ((volatile u32 *)0x04000090)
+
+//---------------------------------------------------------------------------------
+//	Bios sound functions
+//---------------------------------------------------------------------------------
+static inline
+void SoundDriverMain()		{ SystemCall(28); }
+static inline
+void SoundDriverVsync()		{ SystemCall(29); }
+static inline
+void SoundChannelClear()	{ SystemCall(30); }
+static inline
+void SoundDriverVsyncOff()	{ SystemCall(40); }
+static inline
+void SoundDriverVsyncOn()	{ SystemCall(41); }
 
 void SoundDriverInit(SoundArea *sa);
 void SoundDriverMode(u32 mode);
 
 u32  MidiKey2Freq(WaveData *wa, u8 mk, u8 fp);
-
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

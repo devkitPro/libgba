@@ -1,9 +1,9 @@
-/*
-	"$Id: gba_types.h,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
+/*---------------------------------------------------------------------------------
+	$Id: gba_types.h,v 1.5 2006-05-05 05:43:18 wntrmute Exp $
 
-	Header file for libgba basic types
+	Header file for libgba type definitions
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2005 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -23,9 +23,9 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_types.h,v 1.4 2005-09-20 23:19:05 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
-*/
+---------------------------------------------------------------------------------*/
 
 /*! \file gba_types.h
     \brief gba type definitions.

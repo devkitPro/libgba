@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_dma.h,v 1.5 2005-08-23 17:02:06 wntrmute Exp $"
+	"$Id: gba_dma.h,v 1.6 2006-05-05 05:43:18 wntrmute Exp $"
 
 	Header file for libgba DMA definitions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_dma.h,v 1.5 2005-08-23 17:02:06 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
 */
 

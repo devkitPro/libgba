@@ -1,9 +1,9 @@
-/*
-	"$Id: gba_video.h,v 1.11 2006-04-09 22:41:35 wntrmute Exp $"
+/*---------------------------------------------------------------------------------
+	$Id: gba_video.h,v 1.12 2006-05-05 05:43:18 wntrmute Exp $
 
 	Header file for libgba video definitions
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2005 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -23,9 +23,9 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_video.h,v 1.11 2006-04-09 22:41:35 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
-*/
+---------------------------------------------------------------------------------*/
 
 /*! \file gba_video.h
     \brief gba video definitions.

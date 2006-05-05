@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_interrupt.h,v 1.6 2005-10-05 12:08:49 wntrmute Exp $"
+	"$Id: gba_interrupt.h,v 1.7 2006-05-05 05:43:18 wntrmute Exp $"
 
 	Header file for libgba interrupt handling
 
@@ -23,8 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_interrupt.h,v 1.6 2005-10-05 12:08:49 wntrmute Exp $"
-
+	$Log: not supported by cvs2svn $
 */
 
 /*! \file gba_interrupt.h

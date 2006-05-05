@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_input.h,v 1.8 2006-01-29 20:10:01 wntrmute Exp $"
+	$Id: gba_input.h,v 1.9 2006-05-05 05:43:18 wntrmute Exp $
 
 	Header file for libgba input functions
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_input.h,v 1.8 2006-01-29 20:10:01 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
 */
 

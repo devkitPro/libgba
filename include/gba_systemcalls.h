@@ -1,9 +1,9 @@
-/*
-	"$Id: gba_systemcalls.h,v 1.8 2006-03-10 19:18:34 darkfader Exp $"
+/*---------------------------------------------------------------------------------
+	$Id: gba_systemcalls.h,v 1.9 2006-05-05 05:43:18 wntrmute Exp $
 
-	Header file for libgba bios systemcalls
+	Header file for libgba bios calls
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2005 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -23,9 +23,9 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_systemcalls.h,v 1.8 2006-03-10 19:18:34 darkfader Exp $"
+	$Log: not supported by cvs2svn $
 
-*/
+---------------------------------------------------------------------------------*/
 
 /*! \file gba_systemcalls.h
     \brief gba bios support.
@@ -69,14 +69,14 @@ void	SoftReset(RESTART_FLAG RestartFlag);
 	\brief flags controlling which parts of the system get reset
 */
 enum RESET_FLAG {
-	RESET_EWRAM		=	(1<<0),	/*!< Clear 256K on-board WRAM					*/
-	RESET_IWRAM		=	(1<<1),	/*!< Clear 32K in-chip WRAM						*/
-	RESET_PALETTE	=	(1<<2),	/*!< Clear Palette										*/
-	RESET_VRAM		=	(1<<3),	/*!< Clear VRAM												*/
-	RESET_OAM			=	(1<<4),	/*!< Clear OAM												*/
-	RESET_SIO			=	(1<<5),	/*!< Switches to general purpose mode	*/
-	RESET_SOUND		=	(1<<6),	/*!< Reset Sound registers						*/
-	RESET_OTHER		=	(1<<7)	/*!< all other registers							*/
+	RESET_EWRAM		=	(1<<0),	/*!< Clear 256K on-board WRAM			*/
+	RESET_IWRAM		=	(1<<1),	/*!< Clear 32K in-chip WRAM				*/
+	RESET_PALETTE	=	(1<<2),	/*!< Clear Palette						*/
+	RESET_VRAM		=	(1<<3),	/*!< Clear VRAM							*/
+	RESET_OAM		=	(1<<4),	/*!< Clear OAM							*/
+	RESET_SIO		=	(1<<5),	/*!< Switches to general purpose mode	*/
+	RESET_SOUND		=	(1<<6),	/*!< Reset Sound registers				*/
+	RESET_OTHER		=	(1<<7)	/*!< all other registers				*/
 };
 
 typedef enum RESET_FLAG RESET_FLAGS;

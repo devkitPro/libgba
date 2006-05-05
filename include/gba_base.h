@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_base.h,v 1.9 2006-03-10 19:21:46 darkfader Exp $"
+	"$Id: gba_base.h,v 1.10 2006-05-05 05:43:18 wntrmute Exp $"
 
 	Header file for libgba base macros, included by all libgba files
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_base.h,v 1.9 2006-03-10 19:21:46 darkfader Exp $"
+	$Log: not supported by cvs2svn $
 
 */
 /*! \file gba_base.h

@@ -1,9 +1,9 @@
-/*
-	"$Id: gba_timers.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+/*---------------------------------------------------------------------------------
+	$Id: gba_timers.h,v 1.3 2006-05-05 05:42:50 wntrmute Exp $
 
 	Header file for libgba timer definitions
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2005 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -23,9 +23,9 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/gba_timers.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	$Log: not supported by cvs2svn $
 
-*/
+---------------------------------------------------------------------------------*/
 
 #ifndef _gba_timers_h_
 #define _gba_timers_h_
@@ -37,12 +37,19 @@ extern "C" {
 
 #include "gba_base.h"
 
+#define REG_TM0CNT		*(vu32*)(REG_BASE + 0x100)
 #define REG_TM0CNT_L	*(vu16*)(REG_BASE + 0x100)
 #define REG_TM0CNT_H	*(vu16*)(REG_BASE + 0x102)
+
+#define REG_TM1CNT		*(vu32*)(REG_BASE + 0x104)
 #define REG_TM1CNT_L	*(vu16*)(REG_BASE + 0x104)
 #define REG_TM1CNT_H	*(vu16*)(REG_BASE + 0x106)
+
+#define REG_TM2CNT		*(vu32*)(REG_BASE + 0x108)
 #define REG_TM2CNT_L	*(vu16*)(REG_BASE + 0x108)
 #define REG_TM2CNT_H	*(vu16*)(REG_BASE + 0x10a)
+
+#define REG_TM3CNT		*(vu32*)(REG_BASE + 0x10c)
 #define REG_TM3CNT_L	*(vu16*)(REG_BASE + 0x10c)
 #define REG_TM3CNT_H	*(vu16*)(REG_BASE + 0x10e)
 

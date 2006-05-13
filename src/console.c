@@ -1,5 +1,5 @@
 /*
-	$Id: console.c,v 1.4 2005-10-20 20:54:14 wntrmute Exp $
+	$Id: console.c,v 1.5 2006-05-13 13:35:43 wntrmute Exp $
 
 	Copyright 2003-2004 by Dave Murphy.
 
@@ -22,6 +22,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.4  2005/10/20 20:54:14  wntrmute
+	use siscanf
+	
 	Revision 1.3  2005/09/12 07:21:50  wntrmute
 	use Amiga font as default font
 	
@@ -188,8 +191,27 @@ int con_write(struct _reent *r,int fd,const char *ptr,int len) {
 }
 
 
-const devoptab_t dotab_stdout = {"con",con_open,con_close,con_write,con_read,NULL,NULL};
-const devoptab_t dotab_stderr = {"con",con_open,con_close,con_write,con_read,NULL,NULL};
+const devoptab_t dotab_stdout = {
+	"con",
+	0,
+	con_open,
+	con_close,
+	con_write,
+	con_read,
+	NULL,
+	NULL
+};
+
+const devoptab_t dotab_stderr = {
+	"con",
+	0,
+	con_open,
+	con_close,
+	con_write,
+	con_read,
+	NULL,
+	NULL
+};
 
 
 //---------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 /*
-	$Id: console.c,v 1.5 2006-05-13 13:35:43 wntrmute Exp $
+	$Id: console.c,v 1.6 2006-05-30 23:13:03 wntrmute Exp $
 
 	Copyright 2003-2004 by Dave Murphy.
 
@@ -22,6 +22,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.5  2006/05/13 13:35:43  wntrmute
+	updated for newlib driver API changes
+	
 	Revision 1.4  2005/10/20 20:54:14  wntrmute
 	use siscanf
 	
@@ -61,7 +64,7 @@ int con_close(struct _reent *r,int fd) {
 static bool consoleInitialised = false;
 
 //---------------------------------------------------------------------------------
-int con_open(struct _reent *r,const char *path,int flags,int mode) {
+int con_open(struct _reent *r, void *fileStruct, const char *path, int flags, int mode) {
 //---------------------------------------------------------------------------------
 	if (consoleInitialised) return 0;
 	return -1;

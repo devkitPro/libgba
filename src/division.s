@@ -1,5 +1,5 @@
 /*
-	"$Id: division.s,v 1.3 2006-01-16 23:50:30 crossraleigh Exp $"
+	"$Id: division.s,v 1.4 2006-05-30 23:12:43 wntrmute Exp $"
 
 	libgba overrides for libc division routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/division.s,v 1.3 2006-01-16 23:50:30 crossraleigh Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/division.s,v 1.4 2006-05-30 23:12:43 wntrmute Exp $"
 
 */
 
@@ -35,6 +35,11 @@
 @---------------------------------------------------------------------------------
 __divsi3:
 @---------------------------------------------------------------------------------
+	.thumb_func
+	.global __aeabi_idiv
+@---------------------------------------------------------------------------------
+__aeabi_idiv:
+@---------------------------------------------------------------------------------
 	swi 6
 	bx lr
 
@@ -45,6 +50,11 @@ __divsi3:
 	.global	   __udivsi3	       /* Unsigned integer division. */
 @---------------------------------------------------------------------------------
 __udivsi3:
+@---------------------------------------------------------------------------------
+	.thumb_func
+	.global __aeabi_uidiv
+@---------------------------------------------------------------------------------
+__aeabi_uidiv:
 @---------------------------------------------------------------------------------
 	swi 6
         mov r0, r3

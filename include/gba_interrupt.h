@@ -1,9 +1,9 @@
 /*
-	"$Id: gba_interrupt.h,v 1.7 2006-05-05 05:43:18 wntrmute Exp $"
+	"$Id: gba_interrupt.h,v 1.8 2006-07-18 10:38:33 wntrmute Exp $"
 
 	Header file for libgba interrupt handling
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2006 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.7  2006/05/05 05:43:18  wntrmute
+	add log tag
+
 */
 
 /*! \file gba_interrupt.h
@@ -86,20 +89,20 @@ struct IntTable{IntFn handler; u32 mask;};
   and with REG_IF to acknowledge interrupts have been serviced.
 */
 typedef enum irqMASKS {
-	IE_VBL		=	(1<<0),		/*!< vertical blank interrupt mask */
-	IE_HBL		=	(1<<1),		/*!< horizontal blank interrupt mask */
-	IE_VCNT		=	(1<<2),		/*!< vcount match interrupt mask */
-	IE_TIMER0	=	(1<<3),		/*!< timer 0 interrupt mask */
-	IE_TIMER1	=	(1<<4),		/*!< timer 1 interrupt mask */
-	IE_TIMER2	=	(1<<5),		/*!< timer 2 interrupt mask */
-	IE_TIMER3	=	(1<<6),		/*!< timer 3 interrupt mask */
-	IE_SERIAL	=	(1<<7),		/*!< serial interrupt mask */
-	IE_DMA0		=	(1<<8),		/*!< DMA 0 interrupt mask */
-	IE_DMA1		=	(1<<9),		/*!< DMA 1 interrupt mask */
-	IE_DMA2		=	(1<<10),	/*!< DMA 2 interrupt mask */
-	IE_DMA3		=	(1<<11),	/*!< DMA 3 interrupt mask */
-	IE_KEYPAD	=	(1<<12),	/*!< Keypad interrupt mask */
-	IE_GAMEPAK	=	(1<<13)		/*!< horizontal blank interrupt mask */
+	IRQ_VBLANK	=	(1<<0),		/*!< vertical blank interrupt mask */
+	IRQ_HBLANK	=	(1<<1),		/*!< horizontal blank interrupt mask */
+	IRQ_VCOUNT	=	(1<<2),		/*!< vcount match interrupt mask */
+	IRQ_TIMER0	=	(1<<3),		/*!< timer 0 interrupt mask */
+	IRQ_TIMER1	=	(1<<4),		/*!< timer 1 interrupt mask */
+	IRQ_TIMER2	=	(1<<5),		/*!< timer 2 interrupt mask */
+	IRQ_TIMER3	=	(1<<6),		/*!< timer 3 interrupt mask */
+	IRQ_SERIAL	=	(1<<7),		/*!< serial interrupt mask */
+	IRQ_DMA0	=	(1<<8),		/*!< DMA 0 interrupt mask */
+	IRQ_DMA1	=	(1<<9),		/*!< DMA 1 interrupt mask */
+	IRQ_DMA2	=	(1<<10),	/*!< DMA 2 interrupt mask */
+	IRQ_DMA3	=	(1<<11),	/*!< DMA 3 interrupt mask */
+	IRQ_KEYPAD	=	(1<<12),	/*!< Keypad interrupt mask */
+	IRQ_GAMEPAK	=	(1<<13)		/*!< horizontal blank interrupt mask */
 } irqMASK;
 
 extern struct IntTable IntrTable[];
@@ -108,7 +111,8 @@ extern struct IntTable IntrTable[];
     \brief initialises the gba interrupt code.
 
 */
-void InitInterrupt(void);
+void InitInterrupt(void) __attribute__ ((deprecated));
+void irqInit();
 
 /*! \fn IntFn *SetInterrupt(irqMASK mask, IntFn function)
     \brief sets the interrupt handler for a particular interrupt.
@@ -116,21 +120,23 @@ void InitInterrupt(void);
 	\param mask
 	\param function
 */
-IntFn *SetInterrupt(irqMASK mask, IntFn function);
-
-/*! \fn void EnableInterrupt(irqMASK mask)
+IntFn *SetInterrupt(irqMASK mask, IntFn function) __attribute__ ((deprecated));
+IntFn *irqSet(irqMASK mask, IntFn function);
+/*! \fn void irqEnable(int mask)
     \brief allows an interrupt to occur.
 
 	\param mask
 */
-void EnableInterrupt(irqMASK mask);
+void EnableInterrupt(irqMASK mask) __attribute__ ((deprecated));
+void irqEnable(int mask);
 
-/*! \fn void DisableInterrupt(irqMASK mask)
+/*! \fn void irqDisable(int mask)
     \brief prevents an interrupt occuring.
 
 	\param mask
 */
-void DisableInterrupt(irqMASK mask);
+void DisableInterrupt(irqMASK mask) __attribute__ ((deprecated));
+void irqDisable(int mask);
 
 void IntrMain();
 

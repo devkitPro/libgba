@@ -1,5 +1,5 @@
 /*
-	$Id: gba_input.h,v 1.9 2006-05-05 05:43:18 wntrmute Exp $
+	$Id: gba_input.h,v 1.10 2006-07-18 10:38:33 wntrmute Exp $
 
 	Header file for libgba input functions
 
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.9  2006/05/05 05:43:18  wntrmute
+	add log tag
+
 
 */
 
@@ -77,48 +80,48 @@ typedef enum KEYPAD_BITS {
 } KEYPAD_BITS;
 
 
-/*! \fn ScanKeys()
+/*! \fn scanKeys()
 	\brief obtain the current keypad states.
 
 	Call this function once per main loop in order to use the keypad functions.
 */
-void ScanKeys(void);
-/*! \fn u16 KeysDown()
+void scanKeys(void);
+/*! \fn u16 keysDown()
 	\brief obtain the current keypad pressed state.
-	
+
 	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
-	Keys which are pressed will not be reported again until they are released. 
+	Keys which are pressed will not be reported again until they are released.
 */
-u16	KeysDown();
-/*! \fn u16 KeysDownRepeat()
+u16	keysDown();
+/*! \fn u16 keysDownRepeat()
 	\brief obtain the current keypad pressed state with repeat.
 
 */
-u16	KeysDownRepeat();
-/*! \fn u16 KeysUp()
+u16	keysDownRepeat();
+/*! \fn u16 keysUp()
 	\brief obtain the current keypad released.
 
 	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
-	Keys which are pressed will not be reported again until they have been held for the times specified using SetRepeat(). 
+	Keys which are pressed will not be reported again until they have been held for the times specified using SetRepeat().
 */
-u16 KeysUp();
-/*! \fn u16 KeysHeld()
+u16 keysUp();
+/*! \fn u16 keysHeld()
 	\brief obtain the current keypad held state.
 
 	Returns the keys which have been pressed since the last call to KeysUp(), the keys are reset on this call.
-	Keys which are released will not be reported again until they are pressed. 
+	Keys which are released will not be reported again until they are pressed.
 */
-u16 KeysHeld();
+u16 keysHeld();
 
 
-/*! \fn SetRepeat(int SetDelay, int SetRepeat)
+/*! \fn setRepeat(int SetDelay, int SetRepeat)
 	\brief Set the repeat parameters for KeyDownRepeat.
 	\param SetDelay The count before the key starts to repeat
 	\param SetRepeat The count at which the key will repeat
-	
+
 	The counts are updated on each call to ScanKeys(), the rates are dependent on how often that function is called.
 */
-void SetRepeat( int SetDelay, int SetRepeat);
+void setRepeat( int SetDelay, int SetRepeat);
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

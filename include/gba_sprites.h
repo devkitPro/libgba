@@ -3,7 +3,7 @@
 
 	Header file for libgba sprite definitions
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2006 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.7  2006/05/05 05:43:18  wntrmute
+	add log tag
+
 
 */
 
@@ -42,6 +45,11 @@ typedef struct {
 } OBJATTR;
 
 typedef struct {
+	u16 attribute[3];
+	u16 dummy;
+} SpriteEntry;
+
+typedef struct {
 	u16 dummy0[3];
 	s16 pa;
 	u16 dummy1[3];
@@ -54,7 +62,16 @@ typedef struct {
 
 #define	OAM					((OBJATTR *)0x07000000)
 #define OBJ_BASE_ADR		((void *)(VRAM + 0x10000))
+#define SPRITE_GFX			((u16 *)(VRAM + 0x10000))
 #define BITMAP_OBJ_BASE_ADR	((void *)(VRAM + 0x14000))
+
+enum SPRITE_SHAPES {
+	SQUARE,
+	WIDE,
+	TALL
+};
+#define OBJ_SHAPE(m)		((m)<<14)
+
 
 // Sprite Attribute 0
 #define OBJ_Y(m)			((m)&0x00ff)
@@ -66,20 +83,34 @@ typedef struct {
 #define	OBJ_256_COLOR		(1<<13)
 #define	OBJ_16_COLOR		(0<<13)
 
-enum SPRITE_SHAPES {
-	SQUARE,
-	WIDE,
-	TALL
-};
+#define ATTR0_MOSAIC			(1<<12)
+#define ATTR0_COLOR_256			(1<<13)
+#define ATTR0_COLOR_16			(0<<13)
+#define ATTR0_NORMAL			(0<<8)
+#define ATTR0_ROTSCALE			(1<<8)
+#define ATTR0_DISABLED			(2<<8)
+#define ATTR0_ROTSCALE_DOUBLE	(3<<8)
+
+#define ATTR0_SQUARE	OBJ_SHAPE(SQUARE)
+#define ATTR0_WIDE		OBJ_SHAPE(WIDE)
+#define ATTR0_TALL		OBJ_SHAPE(TALL)
 
 
-#define OBJ_SHAPE(m)		((m)<<14)
 
 // Sprite Attribute 1
 #define OBJ_X(m)			((m)&0x01ff)
 #define OBJ_ROT_SCALE(m)	((m)<<9)
 #define OBJ_HFLIP			(1<<12)
 #define OBJ_VFLIP			(1<<13)
+
+
+#define ATTR1_ROTDATA(n)      ((n)<<9)  // note: overlaps with flip flags
+#define ATTR1_FLIP_X          (1<<12)
+#define ATTR1_FLIP_Y          (1<<13)
+#define ATTR1_SIZE_8          (0<<14)
+#define ATTR1_SIZE_16         (1<<14)
+#define ATTR1_SIZE_32         (2<<14)
+#define ATTR1_SIZE_64         (3<<14)
 
 
 
@@ -89,6 +120,9 @@ enum SPRITE_SHAPES {
 #define OBJ_CHAR(m)		((m)&0x03ff)
 #define OBJ_PRIORITY(m)	((m)<<10)
 #define OBJ_PALETTE(m)	((m)<<12)
+
+#define ATTR2_PRIORITY(n)     ((n)<<10)
+#define ATTR2_PALETTE(n)      ((n)<<12)
 
 #define OBJ_TRANSLUCENT	OBJ_MODE(1)
 #define OBJ_OBJWINDOW	OBJ_MODE(2)

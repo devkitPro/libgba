@@ -1,5 +1,5 @@
 /*
-	"$Id: input.c,v 1.7 2006-01-29 20:10:01 wntrmute Exp $"
+	"$Id: input.c,v 1.8 2006-07-18 10:38:33 wntrmute Exp $"
 
 	libgba keypad input routines
 
@@ -23,7 +23,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/input.c,v 1.7 2006-01-29 20:10:01 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/input.c,v 1.8 2006-07-18 10:38:33 wntrmute Exp $"
 
 */
 
@@ -54,7 +54,7 @@ void SetRepeat( int SetDelay, int SetRepeat)
 }
 
 //---------------------------------------------------------------------------------
-void ScanKeys(void)
+void scanKeys(void)
 //---------------------------------------------------------------------------------
 {
 	Keys.Last = Keys.Held;
@@ -91,7 +91,7 @@ void ScanKeys(void)
 }
 
 //---------------------------------------------------------------------------------
-u16 KeysDownRepeat(void)
+u16 keysDownRepeat(void)
 //---------------------------------------------------------------------------------
 {
 	u16 tmp = Keys.DownRepeat;
@@ -101,7 +101,7 @@ u16 KeysDownRepeat(void)
 }
 
 //---------------------------------------------------------------------------------
-u16 KeysDown(void)
+u16 keysDown(void)
 //---------------------------------------------------------------------------------
 {
 	u16 tmp = Keys.Down;
@@ -111,7 +111,7 @@ u16 KeysDown(void)
 }
 
 //---------------------------------------------------------------------------------
-u16 KeysUp(void)
+u16 keysUp(void)
 //---------------------------------------------------------------------------------
 {
 	u16 tmp = Keys.Up;
@@ -121,7 +121,7 @@ u16 KeysUp(void)
 }
 
 //---------------------------------------------------------------------------------
-u16 KeysHeld(void)
+u16 keysHeld(void)
 //---------------------------------------------------------------------------------
 {
 	return Keys.Held;

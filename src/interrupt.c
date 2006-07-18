@@ -1,5 +1,5 @@
 /*
-	"$Id: interrupt.c,v 1.6 2005-12-14 14:13:12 wntrmute Exp $"
+	"$Id: interrupt.c,v 1.7 2006-07-18 10:38:33 wntrmute Exp $"
 
 	libgba interrupt support routines
 
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.6  2005/12/14 14:13:12  wntrmute
+	allow multiple interrupts to be enabled and disabled simultaneously
+
 
 */
 
@@ -36,9 +39,14 @@ void dummy(void) {};
 
 
 //---------------------------------------------------------------------------------
-void InitInterrupt(void)
+void InitInterrupt(void) {
 //---------------------------------------------------------------------------------
-{
+	irqInit();
+}
+
+//---------------------------------------------------------------------------------
+void irqInit() {
+//---------------------------------------------------------------------------------
 	int i;
 
 	// Set all interrupts to dummy functions.
@@ -49,13 +57,17 @@ void InitInterrupt(void)
 	}
 
 	INT_VECTOR = IntrMain;
-
 }
 
 //---------------------------------------------------------------------------------
-IntFn* SetInterrupt(irqMASK mask, IntFn function)
+IntFn* SetInterrupt(irqMASK mask, IntFn function) {
 //---------------------------------------------------------------------------------
-{
+	return irqSet(mask,function);
+}
+
+//---------------------------------------------------------------------------------
+IntFn* irqSet(irqMASK mask, IntFn function) {
+//---------------------------------------------------------------------------------
 	int i;
 
 	for	(i=0;;i++) {
@@ -66,33 +78,43 @@ IntFn* SetInterrupt(irqMASK mask, IntFn function)
 
 	IntrTable[i].handler	= function;
 	IntrTable[i].mask		= mask;
-	
+
 	return &IntrTable[i].handler;
 
 }
 
 //---------------------------------------------------------------------------------
-void EnableInterrupt(irqMASK mask)
+void EnableInterrupt(irqMASK mask) {
 //---------------------------------------------------------------------------------
-{
+	irqEnable(mask);
+}
+
+//---------------------------------------------------------------------------------
+void irqEnable ( int mask ) {
+//---------------------------------------------------------------------------------
 	REG_IME	= 0;
 
-	if (mask & IE_VBL) REG_DISPSTAT |= LCDC_VBL;
-	if (mask & IE_HBL) REG_DISPSTAT |= LCDC_HBL;
-	if (mask & IE_VCNT) REG_DISPSTAT |= LCDC_VCNT;
+	if (mask & IRQ_VBLANK) REG_DISPSTAT |= LCDC_VBL;
+	if (mask & IRQ_HBLANK) REG_DISPSTAT |= LCDC_HBL;
+	if (mask & IRQ_VCOUNT) REG_DISPSTAT |= LCDC_VCNT;
 	REG_IE |= mask;
 	REG_IME	= 1;
 }
 
 //---------------------------------------------------------------------------------
-void DisableInterrupt(irqMASK mask)
+void DisableInterrupt(irqMASK mask) {
 //---------------------------------------------------------------------------------
-{
+	irqDisable(mask);
+}
+
+//---------------------------------------------------------------------------------
+void irqDisable(int mask) {
+//---------------------------------------------------------------------------------
 	REG_IME	= 0;
 
-	if (mask & IE_VBL) REG_DISPSTAT &= ~LCDC_VBL;
-	if (mask & IE_HBL) REG_DISPSTAT &= ~LCDC_HBL;
-	if (mask & IE_VCNT) REG_DISPSTAT &= ~LCDC_VCNT;
+	if (mask & IRQ_VBLANK) REG_DISPSTAT &= ~LCDC_VBL;
+	if (mask & IRQ_HBLANK) REG_DISPSTAT &= ~LCDC_HBL;
+	if (mask & IRQ_VCOUNT) REG_DISPSTAT &= ~LCDC_VCNT;
 	REG_IE &= ~mask;
 
 	REG_IME	= 1;

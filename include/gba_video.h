@@ -1,9 +1,9 @@
 /*---------------------------------------------------------------------------------
-	$Id: gba_video.h,v 1.12 2006-05-05 05:43:18 wntrmute Exp $
+	$Id: gba_video.h,v 1.13 2006-07-18 10:38:33 wntrmute Exp $
 
 	Header file for libgba video definitions
 
-	Copyright 2003-2005 by Dave Murphy.
+	Copyright 2003-2006 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.12  2006/05/05 05:43:18  wntrmute
+	add log tag
+
 
 ---------------------------------------------------------------------------------*/
 
@@ -45,6 +48,7 @@
 /*! \def OBJ_COLORS
 */
 #define	OBJ_COLORS		((u16 *)0x05000200)	// Sprite color table
+#define	SPRITE_PALETTE	((u16 *)0x05000200)	// Sprite color table
 
 /*! \def REG_DISPCNT
 
@@ -127,7 +131,7 @@ static inline u32 VCOUNT( int m) { return m<<8; }
 /*! \def BGCTRL
 
 	\brief Array definition for background control registers.
-    
+
 	BGCTRL[0] references background 0 control register.<BR>
 	BGCTRL[1] references background 1 control register.<BR>
 	BGCTRL[2] references background 2 control register.<BR>
@@ -167,14 +171,14 @@ typedef struct {
 
 #define BG_OFFSET ((bg_scroll *)(REG_BASE + 0x10))
 
-#define	BG0HOFS		*((vu16 *)(REG_BASE + 0x10))	// BG 0 H Offset
-#define	BG0VOFS		*((vu16 *)(REG_BASE + 0x12))	// BG 0 V Offset
-#define	BG1HOFS		*((vu16 *)(REG_BASE + 0x14))	// BG 1 H Offset
-#define	BG1VOFS		*((vu16 *)(REG_BASE + 0x16))	// BG 1 V Offset
-#define	BG2HOFS		*((vu16 *)(REG_BASE + 0x18))	// BG 2 H Offset
-#define	BG2VOFS		*((vu16 *)(REG_BASE + 0x1a))	// BG 2 V Offset
-#define	BG3HOFS		*((vu16 *)(REG_BASE + 0x1c))	// BG 3 H Offset
-#define	BG3VOFS		*((vu16 *)(REG_BASE + 0x1e))	// BG 3 V Offset
+#define	REG_BG0HOFS		*((vu16 *)(REG_BASE + 0x10))	// BG 0 H Offset
+#define	REG_BG0VOFS		*((vu16 *)(REG_BASE + 0x12))	// BG 0 V Offset
+#define	REG_BG1HOFS		*((vu16 *)(REG_BASE + 0x14))	// BG 1 H Offset
+#define	REG_BG1VOFS		*((vu16 *)(REG_BASE + 0x16))	// BG 1 V Offset
+#define	REG_BG2HOFS		*((vu16 *)(REG_BASE + 0x18))	// BG 2 H Offset
+#define	REG_BG2VOFS		*((vu16 *)(REG_BASE + 0x1a))	// BG 2 V Offset
+#define	REG_BG3HOFS		*((vu16 *)(REG_BASE + 0x1c))	// BG 3 H Offset
+#define	REG_BG3VOFS		*((vu16 *)(REG_BASE + 0x1e))	// BG 3 V Offset
 
 #define	REG_BG2PA	*((vu16 *)(REG_BASE + 0x20))
 #define	REG_BG2PB	*((vu16 *)(REG_BASE + 0x22))
@@ -206,14 +210,18 @@ enum BG_CTRL_BITS {
 };
 
 #define	CHAR_BASE(m)		((m) << 2)
+#define BG_TILE_BASE(m)		((m) << 2)
 #define CHAR_BASE_ADR(m)	((void *)(VRAM + ((m) << 14)))
+#define CHAR_BASE_BLOCK(m)	((void *)(VRAM + ((m) << 14)))
 #define MAP_BASE_ADR(m)		((void *)(VRAM + ((m) << 11)))
+#define SCREEN_BASE_BLOCK(m)((void *)(VRAM + ((m) << 11)))
 #define SCREEN_BASE(m)		((m) << 8)
+#define BG_MAP_BASE(m)		((m) << 8)
 
 //alternate names for char and screen base
 #define	TILE_BASE(m)		((m) << 2)
 #define TILE_BASE_ADR(m)	((void *)(VRAM + ((m) << 14)))
- 
+
 #define MAP_BASE_ADR(m)		((void *)(VRAM + ((m) << 11)))
 #define MAP_BASE(m)			((m) << 8)
 
@@ -252,7 +260,17 @@ typedef u16 NAMETABLE[32][32];
 #define ROTBG_SIZE_16  BG_SIZE_0
 #define ROTBG_SIZE_32  BG_SIZE_1
 #define ROTBG_SIZE_64  BG_SIZE_2
-#define ROTBG_SIZE_128 BG_SIZE_3 
+#define ROTBG_SIZE_128 BG_SIZE_3
+
+#define TEXTBG_SIZE_256x256    BG_SIZE_0
+#define TEXTBG_SIZE_512x256    BG_SIZE_1
+#define TEXTBG_SIZE_256x512    BG_SIZE_2
+#define TEXTBG_SIZE_512x512    BG_SIZE_3
+
+#define ROTBG_SIZE_128x128    BG_SIZE_0
+#define ROTBG_SIZE_256x256    BG_SIZE_1
+#define ROTBG_SIZE_512x512    BG_SIZE_2
+#define ROTBG_SIZE_1024x1024  BG_SIZE_3
 
 //---------------------------------------------------------------------------------
 // Framebuffers for mode 3 and 5

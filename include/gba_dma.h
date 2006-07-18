@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_dma.h,v 1.6 2006-05-05 05:43:18 wntrmute Exp $"
+	"$Id: gba_dma.h,v 1.7 2006-07-18 10:38:33 wntrmute Exp $"
 
 	Header file for libgba DMA definitions
 
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.6  2006/05/05 05:43:18  wntrmute
+	add log tag
+
 
 */
 
@@ -84,6 +87,10 @@ extern "C" {
 	REG_DMA##channel##SAD = (u32)(source);\
 	REG_DMA##channel##DAD = (u32)(dest);\
 	REG_DMA##channel##CNT = DMA_ENABLE | (mode); \
+}
+
+static inline void dmaCopy(const void * source, void * dest, u32 size) {
+	DMA_Copy(3, source, dest, DMA16 | size>>1);
 }
 
 #define	DMA0COPY( source, dest, mode) DMA_Copy(0,(source),(dest),(mode))

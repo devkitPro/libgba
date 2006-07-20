@@ -1,5 +1,5 @@
 /*
-	"$Id: gba_interrupt.h,v 1.8 2006-07-18 10:38:33 wntrmute Exp $"
+	"$Id: gba_interrupt.h,v 1.9 2006-07-20 00:44:50 wntrmute Exp $"
 
 	Header file for libgba interrupt handling
 
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.8  2006/07/18 10:38:33  wntrmute
+	adjustments to match libnds better
+
 	Revision 1.7  2006/05/05 05:43:18  wntrmute
 	add log tag
 
@@ -107,14 +110,14 @@ typedef enum irqMASKS {
 
 extern struct IntTable IntrTable[];
 
-/*! \fn void InitInterrupt(void)
+/*! \fn void irqInit(void)
     \brief initialises the gba interrupt code.
 
 */
 void InitInterrupt(void) __attribute__ ((deprecated));
 void irqInit();
 
-/*! \fn IntFn *SetInterrupt(irqMASK mask, IntFn function)
+/*! \fn IntFn *irqSet(irqMASK mask, IntFn function)
     \brief sets the interrupt handler for a particular interrupt.
 
 	\param mask

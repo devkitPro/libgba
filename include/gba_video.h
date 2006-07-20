@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------------
-	$Id: gba_video.h,v 1.13 2006-07-18 10:38:33 wntrmute Exp $
+	$Id: gba_video.h,v 1.14 2006-07-20 00:44:09 wntrmute Exp $
 
 	Header file for libgba video definitions
 
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.13  2006/07/18 10:38:33  wntrmute
+	adjustments to match libnds better
+
 	Revision 1.12  2006/05/05 05:43:18  wntrmute
 	add log tag
 
@@ -45,6 +48,7 @@
 /*! \def BG_COLORS
 */
 #define BG_COLORS		((u16 *)0x05000000)	// Background color table
+#define BG_PALETTE		((u16 *)0x05000000)	// Background color table
 /*! \def OBJ_COLORS
 */
 #define	OBJ_COLORS		((u16 *)0x05000200)	// Sprite color table
@@ -226,7 +230,7 @@ enum BG_CTRL_BITS {
 #define MAP_BASE(m)			((m) << 8)
 
 #define BG_PRIORITY(m)		((m))
-#define BG_PALETTE(m)		((m)<<12)
+#define CHAR_PALETTE(m)		((m)<<12)
 
 /*---------------------------------------------------------------------------------
 	CHAR_BASE_ADR() is the direct equivalent to old PATRAM(),
@@ -302,6 +306,10 @@ static inline void SetMode(int mode)	{REG_DISPCNT = mode;}
 
 #define RGB5(r,g,b)	((r)|((g)<<5)|((b)<<10))
 #define RGB8(r,g,b)	( (((b)>>3)<<10) | (((g)>>3)<<5) | ((r)>>3) )
+
+
+#define SCREEN_WIDTH 240
+#define SCREEN_HEIGHT 160
 
 //---------------------------------------------------------------------------------
 #endif // _gba_video_h_

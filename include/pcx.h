@@ -1,5 +1,5 @@
 /*
-	"$Id: pcx.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Id: pcx.h,v 1.3 2007-01-04 13:21:06 wntrmute Exp $"
 
 	Header file for libgba PCX decoder
 
@@ -23,13 +23,19 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/pcx.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
+	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/pcx.h,v 1.3 2007-01-04 13:21:06 wntrmute Exp $"
 
 */
 
 //---------------------------------------------------------------------------------
 #ifndef _pcx_h_
 #define _pcx_h_
+//---------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------
+#ifdef __cplusplus
+extern "C" {
+#endif
 //---------------------------------------------------------------------------------
 
 typedef struct{
@@ -50,6 +56,12 @@ char		dummy[58];
 }__attribute__ ((packed)) pcx_header;
 
 void DecodePCX(const u8 *PCXBuffer, u16 *ScreenAddr, u16 *Palette);
+
+//---------------------------------------------------------------------------------
+#ifdef __cplusplus
+}	   // extern "C"
+#endif
+//---------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------
 #endif // _pcx_h_

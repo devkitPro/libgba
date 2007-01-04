@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.8  2006/07/18 10:38:33  wntrmute
+	adjustments to match libnds better
+	
 	Revision 1.7  2006/05/05 05:43:18  wntrmute
 	add log tag
 
@@ -42,12 +45,12 @@ typedef struct {
 	u16 attr1;
 	u16 attr2;
 	u16 dummy;
-} OBJATTR;
+} ALIGN(4) OBJATTR;
 
 typedef struct {
 	u16 attribute[3];
 	u16 dummy;
-} SpriteEntry;
+} ALIGN(4) SpriteEntry;
 
 typedef struct {
 	u16 dummy0[3];
@@ -58,7 +61,7 @@ typedef struct {
 	s16 pc;
 	u16 dummy3[3];
 	s16 pd;
-} OBJAFFINE;
+} ALIGN(4) OBJAFFINE;
 
 #define	OAM					((OBJATTR *)0x07000000)
 #define OBJ_BASE_ADR		((void *)(VRAM + 0x10000))
@@ -132,18 +135,18 @@ enum SPRITE_SHAPES {
 
 //---------------------------------------------------------------------------------
 enum SPRITE_SIZECODE {
-		Sprite_8x8,
-		Sprite_16x16,
-		Sprite_32x32,
-		Sprite_64x64,
-		Sprite_16x8,
-		Sprite_32x8,
-		Sprite_32x16,
-		Sprite_64x32,
-		Sprite_8x16,
-		Sprite_8x32,
-		Sprite_16x32,
-		Sprite_32x64
+		Sprite_8x8,		// OBJ_SHAPE(0) OBJ_SIZE(0)
+		Sprite_16x16,	// OBJ_SHAPE(0) OBJ_SIZE(1)
+		Sprite_32x32,	// OBJ_SHAPE(0) OBJ_SIZE(2)
+		Sprite_64x64,	// OBJ_SHAPE(0) OBJ_SIZE(3)
+		Sprite_16x8,	// OBJ_SHAPE(1) OBJ_SIZE(0)
+		Sprite_32x8,	// OBJ_SHAPE(1) OBJ_SIZE(1)
+		Sprite_32x16,	// OBJ_SHAPE(1) OBJ_SIZE(2)
+		Sprite_64x32,	// OBJ_SHAPE(1) OBJ_SIZE(3)
+		Sprite_8x16,	// OBJ_SHAPE(2) OBJ_SIZE(0)
+		Sprite_8x32,	// OBJ_SHAPE(2) OBJ_SIZE(1)
+		Sprite_16x32,	// OBJ_SHAPE(2) OBJ_SIZE(2)
+		Sprite_32x64	// OBJ_SHAPE(2) OBJ_SIZE(3)
 };
 
 

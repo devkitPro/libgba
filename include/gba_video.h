@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------------
-	$Id: gba_video.h,v 1.14 2006-07-20 00:44:09 wntrmute Exp $
+	$Id: gba_video.h,v 1.15 2007-01-04 13:21:41 wntrmute Exp $
 
 	Header file for libgba video definitions
 
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.14  2006/07/20 00:44:09  wntrmute
+	add screen width and height macros
+	
 	Revision 1.13  2006/07/18 10:38:33  wntrmute
 	adjustments to match libnds better
 
@@ -175,27 +178,27 @@ typedef struct {
 
 #define BG_OFFSET ((bg_scroll *)(REG_BASE + 0x10))
 
-#define	REG_BG0HOFS		*((vu16 *)(REG_BASE + 0x10))	// BG 0 H Offset
-#define	REG_BG0VOFS		*((vu16 *)(REG_BASE + 0x12))	// BG 0 V Offset
-#define	REG_BG1HOFS		*((vu16 *)(REG_BASE + 0x14))	// BG 1 H Offset
-#define	REG_BG1VOFS		*((vu16 *)(REG_BASE + 0x16))	// BG 1 V Offset
-#define	REG_BG2HOFS		*((vu16 *)(REG_BASE + 0x18))	// BG 2 H Offset
-#define	REG_BG2VOFS		*((vu16 *)(REG_BASE + 0x1a))	// BG 2 V Offset
-#define	REG_BG3HOFS		*((vu16 *)(REG_BASE + 0x1c))	// BG 3 H Offset
-#define	REG_BG3VOFS		*((vu16 *)(REG_BASE + 0x1e))	// BG 3 V Offset
+#define	REG_BG0HOFS		*((u16 *)(REG_BASE + 0x10))	// BG 0 H Offset
+#define	REG_BG0VOFS		*((u16 *)(REG_BASE + 0x12))	// BG 0 V Offset
+#define	REG_BG1HOFS		*((u16 *)(REG_BASE + 0x14))	// BG 1 H Offset
+#define	REG_BG1VOFS		*((u16 *)(REG_BASE + 0x16))	// BG 1 V Offset
+#define	REG_BG2HOFS		*((u16 *)(REG_BASE + 0x18))	// BG 2 H Offset
+#define	REG_BG2VOFS		*((u16 *)(REG_BASE + 0x1a))	// BG 2 V Offset
+#define	REG_BG3HOFS		*((u16 *)(REG_BASE + 0x1c))	// BG 3 H Offset
+#define	REG_BG3VOFS		*((u16 *)(REG_BASE + 0x1e))	// BG 3 V Offset
 
-#define	REG_BG2PA	*((vu16 *)(REG_BASE + 0x20))
-#define	REG_BG2PB	*((vu16 *)(REG_BASE + 0x22))
-#define	REG_BG2PC	*((vu16 *)(REG_BASE + 0x24))
-#define	REG_BG2PD	*((vu16 *)(REG_BASE + 0x26))
-#define	REG_BG2X	*((vu32 *)(REG_BASE + 0x28))
-#define	REG_BG2Y	*((vu32 *)(REG_BASE + 0x2c))
-#define	REG_BG3PA	*((vu16 *)(REG_BASE + 0x30))
-#define	REG_BG3PB	*((vu16 *)(REG_BASE + 0x32))
-#define	REG_BG3PC	*((vu16 *)(REG_BASE + 0x34))
-#define	REG_BG3PD	*((vu16 *)(REG_BASE + 0x36))
-#define	REG_BG3X	*((vu32 *)(REG_BASE + 0x38))
-#define	REG_BG3Y	*((vu32 *)(REG_BASE + 0x3c))
+#define	REG_BG2PA	*((s16 *)(REG_BASE + 0x20))
+#define	REG_BG2PB	*((s16 *)(REG_BASE + 0x22))
+#define	REG_BG2PC	*((s16 *)(REG_BASE + 0x24))
+#define	REG_BG2PD	*((s16 *)(REG_BASE + 0x26))
+#define	REG_BG2X	*((s32 *)(REG_BASE + 0x28))
+#define	REG_BG2Y	*((s32 *)(REG_BASE + 0x2c))
+#define	REG_BG3PA	*((s16 *)(REG_BASE + 0x30))
+#define	REG_BG3PB	*((s16 *)(REG_BASE + 0x32))
+#define	REG_BG3PC	*((s16 *)(REG_BASE + 0x34))
+#define	REG_BG3PD	*((s16 *)(REG_BASE + 0x36))
+#define	REG_BG3X	*((s32 *)(REG_BASE + 0x38))
+#define	REG_BG3Y	*((s32 *)(REG_BASE + 0x3c))
 
 #define BG_SIZE(m)		((m<<14))
 /*! \enum BG_CTRL_BITS

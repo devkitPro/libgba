@@ -1,5 +1,5 @@
 /*
-	$Id: gba_console.h,v 1.1 2005-09-12 04:45:43 wntrmute Exp $
+	$Id: gba_console.h,v 1.2 2007-01-04 13:14:38 wntrmute Exp $
 
 	Copyright 2003-2004 by Dave Murphy.
 
@@ -22,6 +22,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.1  2005/09/12 04:45:43  wntrmute
+	added *printf functionality
+	
 
 */
 
@@ -34,6 +37,16 @@ extern "C" {
 #endif
 //---------------------------------------------------------------------------------
 #include "gba_base.h"
+
+// Make console interaction a little less eye-crossing
+#define CON_CLS()		"\033[2J"
+#define CON_POS(_x, _y) "\033[" #_y ";" #_x "H"
+#define CON_UP(_dy)		"\033[" #_dy "A"
+#define CON_DOWN(_dy)	"\033[" #_dy "B"
+#define CON_RIGHT(_dx)	"\033[" #_dx "C"
+#define CON_LEFT(_dx)	"\033[" #_dx "D"
+#define CON_ERASE()		"\033[K"			
+#define CON_CLL(_y)		CON_POS(1,_y) CON_ERASE()
 
 void consoleInit(	int charBase, int mapBase, int background,
 					const u8* font, int fontsize, int palette);

@@ -1,5 +1,5 @@
 /*
-	$Id: gba_sound.h,v 1.10 2006-04-09 22:41:35 wntrmute Exp $
+	$Id: gba_sound.h,v 1.11 2007-01-04 13:15:30 wntrmute Exp $
 
 	Header file for libgba bios sound functions
 
@@ -24,6 +24,9 @@
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
 	$Log: not supported by cvs2svn $
+	Revision 1.10  2006/04/09 22:41:35  wntrmute
+	added pn8 compatible macros
+	
 	Revision 1.9  2005/12/05 22:03:07  wntrmute
 	corrected REG_SOUNDCNT_L
 	
@@ -51,7 +54,7 @@ typedef struct {
 	u32 loop;
 	u32 size;
 	s8 data[1];
-} WaveData;
+} ALIGN(4) WaveData;
 
 typedef struct {
 	u8 Status;
@@ -66,7 +69,7 @@ typedef struct {
 	u32 fr;
 	WaveData *wp;
 	u32 reserved3[6];
-} SoundChannel;
+} ALIGN(4) SoundChannel;
 
 #define PCM_DMA_BUF 1584
 #define MAX_DIRECTSOUND_CHANNELS 12
@@ -83,7 +86,7 @@ typedef struct {
 	u32 r3[16];
 	SoundChannel vchn[MAX_DIRECTSOUND_CHANNELS];
 	s8 pcmbuf[PCM_DMA_BUF*2];
-} SoundArea;
+} ALIGN(4) SoundArea;
 
 /*---------------------------------------------------------------------------------
 	Control Registers

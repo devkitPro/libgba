@@ -1,5 +1,5 @@
 /*
-	$Id: InterruptDispatcher.s,v 1.7 2005-12-14 14:12:17 wntrmute Exp $
+	$Id: InterruptDispatcher.s,v 1.8 2007-02-07 17:08:44 wntrmute Exp $
 
 	libgba interrupt dispatcher routines
 
@@ -23,9 +23,12 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.7 2005-12-14 14:12:17 wntrmute Exp $
+	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.8 2007-02-07 17:08:44 wntrmute Exp $
 
 	$Log: not supported by cvs2svn $
+	Revision 1.7  2005/12/14 14:12:17  wntrmute
+	only save lr when handler executed
+	
 	Revision 1.6  2005/11/29 17:00:06  wntrmute
 	disable interrupts on return from handler
 	
@@ -105,30 +108,26 @@ got_handler:
 	bic	r2, r2, #0xdf		@ \__
 	orr	r2, r2, #0x1f		@ /  --> Enable IRQ & FIQ. Set CPU mode to System.
 	msr	cpsr,r2
-	ldrh	r2, [r3]		@ REG_IE
-	stmfd	sp!, {r0,r2, r3,lr}	@ irq mask, IE, REG_IE, lr	
-	bic	r2, r2, r0		@ disable interrupt about to be serviced
-	strh	r2, [r3]
 
+	str	r0, [r3, #0x0214]	@ IF Clear
+	
+	push	{lr}
 	adr	lr, IntrRet
 	bx	r1
 
 @---------------------------------------------------------------------------------
 IntrRet:
 @---------------------------------------------------------------------------------
+	pop	{lr}
 	mov	r3, #0x4000000		@ REG_BASE
 	str	r3, [r3, #0x208]	@ disable IME
-
-	ldmfd	sp!, {r0,r2, r3,lr}	@ irq mask, IE, REG_IE, lr
-	strh	r0, [r3, #0x02]		@ REG_IF Clear
-	strh	r2, [r3]		@ restore REG_IE
 
 	mrs	r3, cpsr
 	bic	r3, r3, #0xdf		@ \__
 	orr	r3, r3, #0x92		@ /  --> Disable IRQ. Enable FIQ. Set CPU mode to IRQ.
 	msr	cpsr, r3
 
-	ldmfd	sp!, {r0-r1,r3}		@ {spsr, IME, REG_BASE}
+	ldmfd   sp!, {r0-r1,r3}		@ {spsr, IME, REG_BASE}
 	str	r1, [r3, #0x208]	@ restore REG_IME
 	msr	spsr, r0		@ restore spsr
 	mov	pc,lr

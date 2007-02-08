@@ -1,5 +1,5 @@
 /*
-	$Id: InterruptDispatcher.s,v 1.8 2007-02-07 17:08:44 wntrmute Exp $
+	$Id: InterruptDispatcher.s,v 1.9 2007-02-08 03:14:25 wntrmute Exp $
 
 	libgba interrupt dispatcher routines
 
@@ -23,9 +23,12 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.8 2007-02-07 17:08:44 wntrmute Exp $
+	$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/InterruptDispatcher.s,v 1.9 2007-02-08 03:14:25 wntrmute Exp $
 
 	$Log: not supported by cvs2svn $
+	Revision 1.8  2007/02/07 17:08:44  wntrmute
+	acknowlege irq before handler
+	
 	Revision 1.7  2005/12/14 14:12:17  wntrmute
 	only save lr when handler executed
 	
@@ -94,26 +97,24 @@ no_handler:
 @---------------------------------------------------------------------------------
 jump_intr:
 @---------------------------------------------------------------------------------
-	ldr	r1, [r2]		@ user IRQ handler address
-	cmp	r1, #0
-	bne	got_handler
-	mov	r1, r0
-	b	no_handler
+	ldr	r2, [r2]		@ user IRQ handler address
+	cmp	r2, #0
+	beq	no_handler
 
 @---------------------------------------------------------------------------------
 got_handler:
 @---------------------------------------------------------------------------------
 
-	mrs	r2, cpsr
-	bic	r2, r2, #0xdf		@ \__
-	orr	r2, r2, #0x1f		@ /  --> Enable IRQ & FIQ. Set CPU mode to System.
-	msr	cpsr,r2
+	mrs	r1, cpsr
+	bic	r1, r1, #0xdf		@ \__
+	orr	r1, r1, #0x1f		@ /  --> Enable IRQ & FIQ. Set CPU mode to System.
+	msr	cpsr,r1
 
-	str	r0, [r3, #0x0214]	@ IF Clear
+	strh	r0, [r3, #0x02]		@ IF Clear
 	
 	push	{lr}
 	adr	lr, IntrRet
-	bx	r1
+	bx	r2
 
 @---------------------------------------------------------------------------------
 IntrRet:

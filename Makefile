@@ -73,7 +73,7 @@ dist: $(BUILD)
 
 install: dist
 	mkdir -p $(DEVKITPRO)/libgba
-	bzip2 -cd libgba-$(DATESTRING).tar.bz2 | tar -xv -C $(DEVKITPRO)/libgba
+	bzip2 -cd libgba-$(DATESTRING).tar.bz2 | tar -xvf - -C $(DEVKITPRO)/libgba
 
 
 #---------------------------------------------------------------------------------

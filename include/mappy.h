@@ -1,5 +1,4 @@
 /*
-	"$Id: mappy.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
 
 	Header file for libgba mappy debug functions
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/mappy.h,v 1.2 2004-08-08 19:28:07 wntrmute Exp $"
 
 */
 

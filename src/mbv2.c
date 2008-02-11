@@ -1,5 +1,4 @@
 /*
-	"$Id: mbv2.c,v 1.5 2005-03-13 02:01:22 wntrmute Exp $"
 
 	libgba mbv2 support functions
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/mbv2.c,v 1.5 2005-03-13 02:01:22 wntrmute Exp $"
 
 */
 

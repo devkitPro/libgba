@@ -1,9 +1,8 @@
 /*
-	"$Id: gba_dma.h,v 1.7 2006-07-18 10:38:33 wntrmute Exp $"
 
 	Header file for libgba DMA definitions
 
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2007 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -22,11 +21,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
-	Revision 1.6  2006/05/05 05:43:18  wntrmute
-	add log tag
-
 
 */
 

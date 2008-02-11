@@ -1,5 +1,4 @@
 /*
-	$Id: gba.h,v 1.1 2005-12-14 14:22:18 wntrmute Exp $
 
 	Header file for libgba bios affine functions
 
@@ -22,8 +21,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
 
 */
 //---------------------------------------------------------------------------------

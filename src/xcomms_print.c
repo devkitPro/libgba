@@ -1,5 +1,4 @@
 /*
-	"$Id: xcomms_print.c,v 1.3 2005-08-31 23:01:08 wntrmute Exp $"
 
 	libgba Xboo Communicator debug print routines
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/xcomms_print.c,v 1.3 2005-08-31 23:01:08 wntrmute Exp $"
 
 */
 #include <stdarg.h>

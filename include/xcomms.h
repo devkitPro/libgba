@@ -1,5 +1,4 @@
 /*
-	"$Id: xcomms.h,v 1.3 2005-03-13 02:02:58 wntrmute Exp $"
 
 	Header file for libgba xboo cable functions
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/xcomms.h,v 1.3 2005-03-13 02:02:58 wntrmute Exp $"
 
 */
 

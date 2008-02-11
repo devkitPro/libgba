@@ -1,5 +1,4 @@
 /*
-	"$Id: fade.c,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
 
 	libgba 256 color fade routines
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/fade.c,v 1.4 2005-10-05 12:09:07 wntrmute Exp $"
 
 */
 

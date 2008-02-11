@@ -1,5 +1,4 @@
 /*
-	"$Id: pcx.h,v 1.3 2007-01-04 13:21:06 wntrmute Exp $"
 
 	Header file for libgba PCX decoder
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/include/pcx.h,v 1.3 2007-01-04 13:21:06 wntrmute Exp $"
 
 */
 

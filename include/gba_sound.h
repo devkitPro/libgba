@@ -1,5 +1,4 @@
 /*
-	$Id: gba_sound.h,v 1.11 2007-01-04 13:15:30 wntrmute Exp $
 
 	Header file for libgba bios sound functions
 
@@ -22,17 +21,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
-	Revision 1.10  2006/04/09 22:41:35  wntrmute
-	added pn8 compatible macros
-	
-	Revision 1.9  2005/12/05 22:03:07  wntrmute
-	corrected REG_SOUNDCNT_L
-	
-	Revision 1.8  2005/11/29 17:02:38  wntrmute
-	add void type to inline functions
-	added direct sound defines
 
 */
 

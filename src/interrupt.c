@@ -1,5 +1,4 @@
 /*
-	"$Id: interrupt.c,v 1.7 2006-07-18 10:38:33 wntrmute Exp $"
 
 	libgba interrupt support routines
 
@@ -22,11 +21,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
-	Revision 1.6  2005/12/14 14:13:12  wntrmute
-	allow multiple interrupts to be enabled and disabled simultaneously
-
 
 */
 

@@ -1,5 +1,4 @@
 /*
-	"$Id"
 
 	libgba mbv2 support routines
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header"
 
 */
 

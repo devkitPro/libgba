@@ -1,6 +1,4 @@
 /*
-	$Id: gba_console.h,v 1.2 2007-01-04 13:14:38 wntrmute Exp $
-
 	Copyright 2003-2004 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
@@ -20,11 +18,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
-	Revision 1.1  2005/09/12 04:45:43  wntrmute
-	added *printf functionality
-	
 
 */
 

@@ -1,5 +1,4 @@
 /*
-	"$Id: Compression.c,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
 
 	libgba bios decompression functions
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/Compression.c,v 1.3 2005-08-23 17:02:06 wntrmute Exp $"
 
 */
 

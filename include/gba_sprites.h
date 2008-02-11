@@ -1,5 +1,4 @@
 /*
-	$Id: gba_sprites.h,v 1.6 2006/04/09 22:41:35 wntrmute Exp
 
 	Header file for libgba sprite definitions
 
@@ -22,14 +21,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
-	Revision 1.8  2006/07/18 10:38:33  wntrmute
-	adjustments to match libnds better
-	
-	Revision 1.7  2006/05/05 05:43:18  wntrmute
-	add log tag
-
 
 */
 

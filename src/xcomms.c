@@ -1,5 +1,4 @@
 /*
-	"$Id: xcomms.c,v 1.5 2005-09-27 07:56:53 wntrmute Exp $"
 
 	libgba Xboo Communicator support routines
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/xcomms.c,v 1.5 2005-09-27 07:56:53 wntrmute Exp $"
 
 */
 #include <string.h>

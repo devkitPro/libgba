@@ -1,7 +1,5 @@
 /*
-	$Id: console.c,v 1.7 2006-07-20 00:45:25 wntrmute Exp $
-
-	Copyright 2003-2004 by Dave Murphy.
+	Copyright 2003-2007 by Dave Murphy.
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Library General Public
@@ -20,26 +18,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
-	Revision 1.6  2006/05/30 23:13:03  wntrmute
-	*** empty log message ***
-
-	Revision 1.5  2006/05/13 13:35:43  wntrmute
-	updated for newlib driver API changes
-
-	Revision 1.4  2005/10/20 20:54:14  wntrmute
-	use siscanf
-
-	Revision 1.3  2005/09/12 07:21:50  wntrmute
-	use Amiga font as default font
-
-	Revision 1.2  2005/09/12 06:49:20  wntrmute
-	fixed buffer overrun in con_write
-
-	Revision 1.1  2005/09/12 04:45:43  wntrmute
-	added *printf functionality
-
 
 */
 

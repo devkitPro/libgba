@@ -1,5 +1,4 @@
 /*
-	"$Id: erapi.h,v 1.3 2006-05-05 05:43:18 wntrmute Exp $"
 
 	Header file for libgba Ereader API definitions
 
@@ -23,7 +22,7 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	$Log: not supported by cvs2svn $
+
 
 */
 

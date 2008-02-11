@@ -1,5 +1,4 @@
 /*
-	"$Id: Sound.s,v 1.3 2007-01-04 13:17:45 wntrmute Exp $"
 
 	libgba bios sound routines
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/Sound.s,v 1.3 2007-01-04 13:17:45 wntrmute Exp $"
 
 */
 	.text

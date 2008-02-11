@@ -1,5 +1,4 @@
 /*
-	"$Id: MultiBoot.s,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
 
 	libgba bios multiboot routines
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/MultiBoot.s,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
 
 */		.text
 		.code 16

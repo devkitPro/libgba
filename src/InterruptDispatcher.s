@@ -1,5 +1,4 @@
 /*
-	$Id: InterruptDispatcher.s,v 1.10 2007-08-11 06:03:07 wntrmute Exp $
 
 	libgba interrupt dispatcher routines
 

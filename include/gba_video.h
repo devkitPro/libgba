@@ -1,5 +1,4 @@
 /*---------------------------------------------------------------------------------
-	$Id: gba_video.h,v 1.15 2007-01-04 13:21:41 wntrmute Exp $
 
 	Header file for libgba video definitions
 
@@ -22,17 +21,6 @@
 
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
-
-	$Log: not supported by cvs2svn $
-	Revision 1.14  2006/07/20 00:44:09  wntrmute
-	add screen width and height macros
-	
-	Revision 1.13  2006/07/18 10:38:33  wntrmute
-	adjustments to match libnds better
-
-	Revision 1.12  2006/05/05 05:43:18  wntrmute
-	add log tag
-
 
 ---------------------------------------------------------------------------------*/
 

@@ -1,5 +1,4 @@
 /*
-	"$Id: AffineSet.c,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
 
 	libgba bios affine functions
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/AffineSet.c,v 1.2 2004-08-09 17:04:51 wntrmute Exp $"
 
 */
 //---------------------------------------------------------------------------------

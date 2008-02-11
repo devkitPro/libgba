@@ -1,5 +1,4 @@
 /*
-	"$Id: input.c,v 1.8 2006-07-18 10:38:33 wntrmute Exp $"
 
 	libgba keypad input routines
 
@@ -23,7 +22,6 @@
 	Please report all bugs and problems through the bug tracker at
 	"http://sourceforge.net/tracker/?group_id=114505&atid=668551".
 
-	"$Header: /lvm/shared/ds/ds/cvs/devkitpro-cvsbackup/libgba/src/input.c,v 1.8 2006-07-18 10:38:33 wntrmute Exp $"
 
 */
 
@@ -46,7 +44,7 @@ static KeyInput Keys = { 0,0,0,0,0 };
 static u8 delay = 60, repeat = 30, count = 60;
 
 //---------------------------------------------------------------------------------
-void SetRepeat( int SetDelay, int SetRepeat)
+void setRepeat( int SetDelay, int SetRepeat)
 //---------------------------------------------------------------------------------
 {
 	delay = SetDelay;

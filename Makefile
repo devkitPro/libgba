@@ -10,7 +10,7 @@ endif
 include $(DEVKITARM)/gba_rules
 
 BUILD		:=	build
-SOURCES		:=	src src/BoyScout
+SOURCES		:=	src src/BoyScout src/disc_io
 INCLUDES	:=	include build
 DATA		:=	data
 

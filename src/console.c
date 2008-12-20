@@ -31,7 +31,7 @@
 void consolePrintChar(char c);
 
 //---------------------------------------------------------------------------------
-int con_read(struct _reent *r,int fd,char *ptr,int len) {
+ssize_t con_read(struct _reent *r,int fd,char *ptr,size_t len) {
 //---------------------------------------------------------------------------------
 	return -1;
 }
@@ -87,7 +87,7 @@ void consoleCls() {
 }
 
 //---------------------------------------------------------------------------------
-int con_write(struct _reent *r,int fd,const char *ptr,int len) {
+ssize_t con_write(struct _reent *r,int fd,const char *ptr,size_t len) {
 //---------------------------------------------------------------------------------
 	char chr;
 

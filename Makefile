@@ -68,8 +68,8 @@ clean:
 	@rm -fr $(BUILD) *.tar.bz2
 
 dist: $(BUILD)
-	@tar --exclude=*CVS* --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(DATESTRING).tar.bz2 include src data Makefile libgba_license.txt
-	@tar --exclude=*CVS* -cvjf libgba-$(DATESTRING).tar.bz2 include lib libgba_license.txt
+	@tar --exclude=*CVS* --exclude=.svn --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(DATESTRING).tar.bz2 include src data Makefile libgba_license.txt
+	@tar --exclude=*CVS* --exclude=.svn -cvjf libgba-$(DATESTRING).tar.bz2 include lib libgba_license.txt
 
 install: dist
 	mkdir -p $(DEVKITPRO)/libgba

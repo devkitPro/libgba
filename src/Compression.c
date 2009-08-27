@@ -28,56 +28,56 @@
 #include "gba_compression.h"
 
 //---------------------------------------------------------------------------------
-void BitUnPack(void  *source, void *dest, BUP* bup)
+void BitUnPack(const void  *source, void *dest, BUP* bup)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(16);
 }
 
 //---------------------------------------------------------------------------------
-void LZ77UnCompWram(void *source, void *dest)
+void LZ77UnCompWram(const void *source, void *dest)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(17);
 }
 //---------------------------------------------------------------------------------
-void LZ77UnCompVram(void *source, void *dest)
+void LZ77UnCompVram(const void *source, void *dest)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(18);
 }
 //---------------------------------------------------------------------------------
-void HuffUnComp(void *source, void *dest)
+void HuffUnComp(const void *source, void *dest)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(19);
 }
 //---------------------------------------------------------------------------------
-void RLUnCompWram(void *source, void *dest)
+void RLUnCompWram(const void *source, void *dest)
 //--------------------------------------------------------------------------------
 {
 	SystemCall(20);
 }
 //---------------------------------------------------------------------------------
-void RLUnCompVram(void *source, void *dest)
+void RLUnCompVram(const void *source, void *dest)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(21);
 }
 //---------------------------------------------------------------------------------
-void Diff8bitUnFilterWram(void *source, void *dest)
+void Diff8bitUnFilterWram(const void *source, void *dest)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(22);
 }
 //---------------------------------------------------------------------------------
-void Diff8bitUnFilterVram(void *source, void *dest)
+void Diff8bitUnFilterVram(const void *source, void *dest)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(23);
 }
 //---------------------------------------------------------------------------------
-void Diff16bitUnFilter(void *source, void *dest)
+void Diff16bitUnFilter(const void *source, void *dest)
 //---------------------------------------------------------------------------------
 {
 	SystemCall(24);

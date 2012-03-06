@@ -86,7 +86,7 @@ typedef enum LCDC_BITS {
 	OBJ_ENABLE		=	OBJ_ON, 	/*!< enable sprites			*/
 	WIN0_ENABLE		=	WIN0_ON,	/*!< enable window 0		*/
 	WIN1_ENABLE		=	WIN1_ON,	/*!< enable window 1		*/
-	OBJ_WIN_ENABLE	=	BG0_ON, 	/*!< enable obj window		*/
+	OBJ_WIN_ENABLE	=	OBJ_WIN_ON, /*!< enable obj window		*/
 
 	BG_ALL_ON		=	BG0_ON | BG1_ON | BG2_ON | BG3_ON, 	    /*!< All Backgrounds on.		*/
 	BG_ALL_ENABLE	=	BG0_ON | BG1_ON | BG2_ON | BG3_ON	    /*!< All Backgrounds enabled.	*/

@@ -75,8 +75,8 @@ static int consoleX, consoleY;
 static int savedX, savedY;
 static int consoleMap, consolePalette;
 
-static const int CONSOLE_WIDTH=30;
-static const int CONSOLE_HEIGHT=20;
+#define CONSOLE_WIDTH	30
+#define CONSOLE_HEIGHT	20
 
 //---------------------------------------------------------------------------------
 void consoleCls() {
@@ -295,14 +295,12 @@ static void newRow() {
 void consolePrintChar(char c) {
 //---------------------------------------------------------------------------------
 
-
-	u16*	ScreenBase = (u16 *)(VRAM + (SCREEN_BASE(consoleMap)<<3) + (consoleX<<1) + (consoleY<<6) );
-
 	if(consoleX >= CONSOLE_WIDTH) {
 		consoleX = 0;
 		newRow();
 	}
 
+	u16*	ScreenBase = (u16 *)(VRAM + (SCREEN_BASE(consoleMap)<<3) + (consoleX<<1) + (consoleY<<6) );
 
 	switch(c) {
 

@@ -49,7 +49,7 @@
 
 */
 #define	IWRAM		0x03000000
-/*! \def IWRAM
+/*! \def EWRAM
 
     \brief Base address of gba external work ram.
 

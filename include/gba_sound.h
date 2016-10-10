@@ -193,7 +193,7 @@ fedcba9876543210
 #define DSOUNDCTRL_AR        0x0100
 #define DSOUNDCTRL_AL        0x0200
 #define DSOUNDCTRL_ATIMER(x) ((x) << 10)
-#define DSOUNDCTRL_ARESET    0x0400
+#define DSOUNDCTRL_ARESET    0x0800
 #define DSOUNDCTRL_BR        0x1000
 #define DSOUNDCTRL_BL        0x2000
 #define DSOUNDCTRL_BTIMER(x) ((x) << 14)

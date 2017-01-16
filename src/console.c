@@ -31,13 +31,13 @@
 void consolePrintChar(char c);
 
 //---------------------------------------------------------------------------------
-ssize_t con_read(struct _reent *r,int fd,char *ptr,size_t len) {
+ssize_t con_read(struct _reent *r,void *fileStruct,char *ptr,size_t len) {
 //---------------------------------------------------------------------------------
 	return -1;
 }
 
 //---------------------------------------------------------------------------------
-int con_close(struct _reent *r,int fd) {
+int con_close(struct _reent *r,void *fileStruct) {
 //---------------------------------------------------------------------------------
 	return -1;
 }
@@ -87,7 +87,7 @@ void consoleCls() {
 }
 
 //---------------------------------------------------------------------------------
-ssize_t con_write(struct _reent *r,int fd,const char *ptr,size_t len) {
+ssize_t con_write(struct _reent *r,void *fileStruct ,const char *ptr,size_t len) {
 //---------------------------------------------------------------------------------
 	char chr;
 

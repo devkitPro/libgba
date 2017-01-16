@@ -14,7 +14,12 @@ SOURCES		:=	src src/BoyScout src/disc_io
 INCLUDES	:=	include build
 DATA		:=	data
 
-DATESTRING	:=	$(shell date +%Y)$(shell date +%m)$(shell date +%d)
+
+export LIBGBA_MAJOR	:= 0
+export LIBGBA_MINOR	:= 5
+export LIBGBA_PATCH	:= 0
+
+VERSION	:=	$(LIBGBA_MAJOR).$(LIBGBA_MINOR).$(LIBGBA_PATCH)
 
 ARCH	:=	-mthumb -mthumb-interwork
 
@@ -68,12 +73,12 @@ clean:
 	@rm -fr $(BUILD) *.tar.bz2
 
 dist: $(BUILD)
-	@tar --exclude=*CVS* --exclude=.svn --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(DATESTRING).tar.bz2 include src data Makefile libgba_license.txt
-	@tar --exclude=*CVS* --exclude=.svn -cvjf libgba-$(DATESTRING).tar.bz2 include lib libgba_license.txt
+	@tar --exclude=*CVS* --exclude=.svn --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(VERSION).tar.bz2 include src data Makefile libgba_license.txt
+	@tar --exclude=*CVS* --exclude=.svn -cvjf libgba-$(VERSION).tar.bz2 include lib libgba_license.txt
 
 install: dist
 	mkdir -p $(DEVKITPRO)/libgba
-	bzip2 -cd libgba-$(DATESTRING).tar.bz2 | tar -xvf - -C $(DEVKITPRO)/libgba
+	bzip2 -cd libgba-$(VERSION).tar.bz2 | tar -xvf - -C $(DEVKITPRO)/libgba
 
 
 #---------------------------------------------------------------------------------

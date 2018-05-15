@@ -17,7 +17,7 @@ DATA		:=	data
 
 export LIBGBA_MAJOR	:= 0
 export LIBGBA_MINOR	:= 5
-export LIBGBA_PATCH	:= 0
+export LIBGBA_PATCH	:= 1
 
 VERSION	:=	$(LIBGBA_MAJOR).$(LIBGBA_MINOR).$(LIBGBA_PATCH)
 
@@ -77,8 +77,8 @@ dist: $(BUILD)
 	@tar --exclude=*CVS* --exclude=.svn -cvjf libgba-$(VERSION).tar.bz2 include lib libgba_license.txt
 
 install: dist
-	mkdir -p $(DEVKITPRO)/libgba
-	bzip2 -cd libgba-$(VERSION).tar.bz2 | tar -xvf - -C $(DEVKITPRO)/libgba
+	mkdir -p $(DESTDIR)$(DEVKITPRO)/libgba
+	bzip2 -cd libgba-$(VERSION).tar.bz2 | tar -xvf - -C $(DESTDIR)$(DEVKITPRO)/libgba
 
 
 #---------------------------------------------------------------------------------

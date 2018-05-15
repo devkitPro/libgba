@@ -36,11 +36,10 @@ void mbv2_dprintf(char *str, ...)
 //---------------------------------------------------------------------------------
 {
 	va_list args;
-	int i;
 	char *string = __outstr;
 
 	va_start(args, str);
-	i=vsprintf(__outstr,str,args);
+	vsprintf(__outstr,str,args);
 	va_end(args);
 
 	while (*string)
@@ -52,11 +51,10 @@ void mbv2_dfprintf(int fp, char *str, ...)
 //---------------------------------------------------------------------------------
 {
 	va_list args;
-	int i;
 	char *string = __outstr;
 
 	va_start(args, str);
-	i=vsprintf(__outstr,str,args);
+	vsprintf(__outstr,str,args);
 	va_end(args);
 
 

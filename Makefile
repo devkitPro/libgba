@@ -30,25 +30,11 @@ CFLAGS	:=	-g -O3 -Wall -Wno-switch -Wno-multichar $(ARCH) $(INCLUDE)
 ASFLAGS	:=	-g -Wa,--warn $(ARCH)
 
 #---------------------------------------------------------------------------------
-# path to tools - this can be deleted if you set the path in windows
-#---------------------------------------------------------------------------------
-export PATH		:=	$(DEVKITARM)/bin:$(PATH)
-
-
-#---------------------------------------------------------------------------------
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 
 export TARGET	:=	$(CURDIR)/lib/libgba.a
 
 export VPATH	:=	$(foreach dir,$(DATA),$(CURDIR)/$(dir)) $(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
-
-PREFIX	:=	arm-elf-
-
-export CC	:=	$(PREFIX)gcc
-export AS	:=	$(PREFIX)as
-export LD	:=	$(PREFIX)gcc
-export AR	:=	$(PREFIX)ar
-export OBJCOPY	:=	$(PREFIX)objcopy
 
 CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))

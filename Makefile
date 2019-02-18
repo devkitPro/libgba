@@ -40,7 +40,14 @@ CFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 SFILES		:=	$(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.s)))
 BINFILES	:=	$(foreach dir,$(DATA),$(notdir $(wildcard $(dir)/*.*)))
 
-export OFILES	:=	$(addsuffix .o,$(BINFILES)) $(CFILES:.c=.o) $(SFILES:.s=.o)
+export OFILES_BIN	:=	$(addsuffix .o,$(BINFILES))
+
+export OFILES_SRC	:=	$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(SFILES:.s=.o)
+
+export OFILES	:=	$(OFILES_BIN) $(OFILES_SRC)
+
+export HFILES	:=	$(addsuffix .h,$(subst .,_,$(BINFILES)))
+
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir))
 export DEPSDIR	:=	$(CURDIR)/build
 
@@ -75,13 +82,15 @@ DEPENDS	:=	$(OFILES:.o=.d)
 #---------------------------------------------------------------------------------
 $(TARGET): $(OFILES)
 
+$(OFILES_SRC)	: $(HFILES)
+
 #---------------------------------------------------------------------------------
 %.a: $(OFILES)
 	@echo $@
 	@rm -f $@
 	@$(AR) rcs $@ $(OFILES)
 
-%.fnt.o	:	%.fnt
+%_fnt.h %.fnt.o	:	%.fnt
 #---------------------------------------------------------------------------------
 	@echo $(notdir $<)
 	@$(bin2o)

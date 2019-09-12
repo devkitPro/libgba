@@ -26,6 +26,7 @@
 
 #include "gba_interrupt.h"
 #include "gba_video.h"
+#include "gba_timers.h"
 
 //---------------------------------------------------------------------------------
 struct IntTable IntrTable[MAX_INTS];
@@ -91,6 +92,10 @@ void irqEnable ( int mask ) {
 	if (mask & IRQ_VBLANK) REG_DISPSTAT |= LCDC_VBL;
 	if (mask & IRQ_HBLANK) REG_DISPSTAT |= LCDC_HBL;
 	if (mask & IRQ_VCOUNT) REG_DISPSTAT |= LCDC_VCNT;
+	if (mask & IRQ_TIMER0) REG_TM0CNT_H |= TIMER_IRQ;
+	if (mask & IRQ_TIMER1) REG_TM1CNT_H |= TIMER_IRQ;
+	if (mask & IRQ_TIMER2) REG_TM2CNT_H |= TIMER_IRQ;
+	if (mask & IRQ_TIMER3) REG_TM3CNT_H |= TIMER_IRQ;
 	REG_IE |= mask;
 	REG_IME	= 1;
 }
@@ -109,8 +114,10 @@ void irqDisable(int mask) {
 	if (mask & IRQ_VBLANK) REG_DISPSTAT &= ~LCDC_VBL;
 	if (mask & IRQ_HBLANK) REG_DISPSTAT &= ~LCDC_HBL;
 	if (mask & IRQ_VCOUNT) REG_DISPSTAT &= ~LCDC_VCNT;
+	if (mask & IRQ_TIMER0) REG_TM0CNT_H &= ~TIMER_IRQ;
+	if (mask & IRQ_TIMER1) REG_TM1CNT_H &= ~TIMER_IRQ;
+	if (mask & IRQ_TIMER2) REG_TM2CNT_H &= ~TIMER_IRQ;
+	if (mask & IRQ_TIMER3) REG_TM3CNT_H &= ~TIMER_IRQ;
 	REG_IE &= ~mask;
-
 	REG_IME	= 1;
-
 }

@@ -54,6 +54,51 @@ typedef struct {
 	s16 pd;
 } ALIGN(4) OBJAFFINE;
 
+typedef struct {
+  /* Attribute 0 */
+  u16 Y:8;
+  u16 RotationScaling:1;
+  u16 Disable:1;
+  u16 Mode:2;
+  u16 Mosaic:1;
+  u16 ColorMode:1;
+  u16 Shape:2;
+  /* Attribute 1 */
+  u16 X:9;
+  u16 NotUsed:3;
+  u16 HFlip:1;
+  u16 VFlip:1;
+  u16 Size:2;
+  /* Attribute 2 */
+  u16 Character:10;
+  u16 Priority:2;
+  u16 Palette:4;
+  /* Attribute 3 */
+  u16 dummy;
+} ALIGN(4) Sprite;
+
+typedef struct {
+  /* Attribute 0 */
+  u16 Y:8;
+  u16 RotationScaling:1;
+  u16 DoubleSize:1;
+  u16 Mode:2;
+  u16 Mosaic:1;
+  u16 ColorMode:1;
+  u16 Shape:2;
+  /* Attribute 1 */
+  u16 X:9;
+  u16 Affine:5;
+  u16 Size:2;
+  /* Attribute 2 */
+  u16 Character:10;
+  u16 Priority:2;
+  u16 Palette:4;
+  /* Attribute 3 */
+  u16 dummy;
+} ALIGN(4) AffineSprite;
+
+
 #define	OAM					((OBJATTR *)0x07000000)
 #define OBJ_BASE_ADR		((void *)(VRAM + 0x10000))
 #define SPRITE_GFX			((u16 *)(VRAM + 0x10000))

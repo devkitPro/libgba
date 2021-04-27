@@ -99,11 +99,11 @@ static inline void Stop()	{ SystemCall(3); }
 //---------------------------------------------------------------------------------
 static inline u32 BiosCheckSum() {
 //---------------------------------------------------------------------------------
-	register u32 result;
+	register u32 result asm("r0");
 	#if	defined	( __thumb__ )
-		__asm ("SWI	0x0d\nmov %0,r0\n" :  "=r"(result) :: "r1", "r2", "r3");
+		__asm ("SWI	0x0d" :  "=r"(result) :: "r1", "r2", "r3");
 	#else
-		__asm ("SWI	0x0d<<16\nmov %0,r0\n" : "=r"(result) :: "r1", "r2", "r3");
+		__asm ("SWI	0x0d<<16" : "=r"(result) :: "r1", "r2", "r3");
 	#endif
 	return result;
 }

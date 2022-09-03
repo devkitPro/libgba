@@ -201,7 +201,7 @@ enum BG_CTRL_BITS {
 	BG_SIZE_0		=	BG_SIZE(0),	/*!< Map Size 256x256	*/
 	BG_SIZE_1		=	BG_SIZE(1),	/*!< Map Size 512x256	*/
 	BG_SIZE_2		=	BG_SIZE(2),	/*!< Map Size 256x512	*/
-	BG_SIZE_3		=	BG_SIZE(3),	/*!< Map Size 512x512	*/
+	BG_SIZE_3		=	BG_SIZE(3)	/*!< Map Size 512x512	*/
 };
 
 #define	CHAR_BASE(m)		((m) << 2)

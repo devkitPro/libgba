@@ -38,7 +38,7 @@
 
 /*! \def BG_COLORS
 */
-#define BG_COLORS		((u16 *)0x05000000)	// Background color table
+#define BG_COLORS		((vu16 *)0x05000000)	// Background color table
 #define BG_PALETTE		((u16 *)0x05000000)	// Background color table
 /*! \def OBJ_COLORS
 */
@@ -166,27 +166,27 @@ typedef struct {
 
 #define BG_OFFSET ((bg_scroll *)(REG_BASE + 0x10))
 
-#define	REG_BG0HOFS		*((u16 *)(REG_BASE + 0x10))	// BG 0 H Offset
-#define	REG_BG0VOFS		*((u16 *)(REG_BASE + 0x12))	// BG 0 V Offset
-#define	REG_BG1HOFS		*((u16 *)(REG_BASE + 0x14))	// BG 1 H Offset
-#define	REG_BG1VOFS		*((u16 *)(REG_BASE + 0x16))	// BG 1 V Offset
-#define	REG_BG2HOFS		*((u16 *)(REG_BASE + 0x18))	// BG 2 H Offset
-#define	REG_BG2VOFS		*((u16 *)(REG_BASE + 0x1a))	// BG 2 V Offset
-#define	REG_BG3HOFS		*((u16 *)(REG_BASE + 0x1c))	// BG 3 H Offset
-#define	REG_BG3VOFS		*((u16 *)(REG_BASE + 0x1e))	// BG 3 V Offset
+#define	REG_BG0HOFS		*((vu16 *)(REG_BASE + 0x10))	// BG 0 H Offset
+#define	REG_BG0VOFS		*((vu16 *)(REG_BASE + 0x12))	// BG 0 V Offset
+#define	REG_BG1HOFS		*((vu16 *)(REG_BASE + 0x14))	// BG 1 H Offset
+#define	REG_BG1VOFS		*((vu16 *)(REG_BASE + 0x16))	// BG 1 V Offset
+#define	REG_BG2HOFS		*((vu16 *)(REG_BASE + 0x18))	// BG 2 H Offset
+#define	REG_BG2VOFS		*((vu16 *)(REG_BASE + 0x1a))	// BG 2 V Offset
+#define	REG_BG3HOFS		*((vu16 *)(REG_BASE + 0x1c))	// BG 3 H Offset
+#define	REG_BG3VOFS		*((vu16 *)(REG_BASE + 0x1e))	// BG 3 V Offset
 
-#define	REG_BG2PA	*((s16 *)(REG_BASE + 0x20))
-#define	REG_BG2PB	*((s16 *)(REG_BASE + 0x22))
-#define	REG_BG2PC	*((s16 *)(REG_BASE + 0x24))
-#define	REG_BG2PD	*((s16 *)(REG_BASE + 0x26))
-#define	REG_BG2X	*((s32 *)(REG_BASE + 0x28))
-#define	REG_BG2Y	*((s32 *)(REG_BASE + 0x2c))
-#define	REG_BG3PA	*((s16 *)(REG_BASE + 0x30))
-#define	REG_BG3PB	*((s16 *)(REG_BASE + 0x32))
-#define	REG_BG3PC	*((s16 *)(REG_BASE + 0x34))
-#define	REG_BG3PD	*((s16 *)(REG_BASE + 0x36))
-#define	REG_BG3X	*((s32 *)(REG_BASE + 0x38))
-#define	REG_BG3Y	*((s32 *)(REG_BASE + 0x3c))
+#define	REG_BG2PA	*((vs16 *)(REG_BASE + 0x20))
+#define	REG_BG2PB	*((vs16 *)(REG_BASE + 0x22))
+#define	REG_BG2PC	*((vs16 *)(REG_BASE + 0x24))
+#define	REG_BG2PD	*((vs16 *)(REG_BASE + 0x26))
+#define	REG_BG2X	*((vs32 *)(REG_BASE + 0x28))
+#define	REG_BG2Y	*((vs32 *)(REG_BASE + 0x2c))
+#define	REG_BG3PA	*((vs16 *)(REG_BASE + 0x30))
+#define	REG_BG3PB	*((vs16 *)(REG_BASE + 0x32))
+#define	REG_BG3PC	*((vs16 *)(REG_BASE + 0x34))
+#define	REG_BG3PD	*((vs16 *)(REG_BASE + 0x36))
+#define	REG_BG3X	*((vs32 *)(REG_BASE + 0x38))
+#define	REG_BG3Y	*((vs32 *)(REG_BASE + 0x3c))
 
 #define BG_SIZE(m)		((m<<14))
 /*! \enum BG_CTRL_BITS

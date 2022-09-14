@@ -284,7 +284,7 @@ static void newRow() {
 
 		int i;
 		for ( i = 0; i < CONSOLE_HEIGHT; i++ ) {
-			CpuFastSet( src, dst, COPY32 | (CONSOLE_WIDTH/2) );
+			CpuSet( src, dst, COPY32 | (CONSOLE_WIDTH/2) );
 			dst += (1<<5);
 			src += (1<<5);
 		}

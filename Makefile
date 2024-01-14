@@ -17,7 +17,7 @@ DATA		:=	data
 
 export LIBGBA_MAJOR	:= 0
 export LIBGBA_MINOR	:= 5
-export LIBGBA_PATCH	:= 2
+export LIBGBA_PATCH	:= 3
 
 VERSION	:=	$(LIBGBA_MAJOR).$(LIBGBA_MINOR).$(LIBGBA_PATCH)
 

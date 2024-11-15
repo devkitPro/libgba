@@ -32,6 +32,17 @@ extern "C" {
 #include "gba_base.h"
 
 // Make console interaction a little less eye-crossing
+#define CONSOLE_ESC(x) "\x1b[" #x
+#define CONSOLE_RESET   CONSOLE_ESC(0m)
+#define CONSOLE_BLACK   CONSOLE_ESC(30m)
+#define CONSOLE_RED     CONSOLE_ESC(31;1m)
+#define CONSOLE_GREEN   CONSOLE_ESC(32;1m)
+#define CONSOLE_YELLOW  CONSOLE_ESC(33;1m)
+#define CONSOLE_BLUE    CONSOLE_ESC(34;1m)
+#define CONSOLE_MAGENTA CONSOLE_ESC(35;1m)
+#define CONSOLE_CYAN    CONSOLE_ESC(36;1m)
+#define CONSOLE_WHITE   CONSOLE_ESC(37;1m)
+
 #define CON_CLS()		"\033[2J"
 #define CON_POS(_x, _y) "\033[" #_y ";" #_x "H"
 #define CON_UP(_dy)		"\033[" #_dy "A"

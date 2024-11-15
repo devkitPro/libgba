@@ -65,14 +65,9 @@ clean:
 	@echo clean ...
 	@rm -fr $(BUILD) *.tar.bz2
 
-dist: $(BUILD)
-	@tar --exclude=*CVS* --exclude=.svn --exclude=*build* --exclude=*.bz2 -cvjf libgba-src-$(VERSION).tar.bz2 include src data Makefile libgba_license.txt
-	@tar --exclude=*CVS* --exclude=.svn -cvjf libgba-$(VERSION).tar.bz2 include lib libgba_license.txt
-
-install: dist
+install: $(BUILD)
 	mkdir -p $(DESTDIR)$(DEVKITPRO)/libgba
-	bzip2 -cd libgba-$(VERSION).tar.bz2 | tar -xvf - -C $(DESTDIR)$(DEVKITPRO)/libgba
-
+	cp -rv include lib libgba_license.txt $(DESTDIR)$(DEVKITPRO)/libgba
 
 #---------------------------------------------------------------------------------
 else

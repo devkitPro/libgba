@@ -32,16 +32,12 @@
 */
 
 #include <disc_io.h>
+#include <dldi.h>
 
-// Include known io-interfaces:
-#include "io_mpcf.h"
-#include "io_m3cf.h"
-#include "io_sccf.h"
-#include "io_scsd.h"
-#include "io_m3sd.h"
+extern const DLDI_INTERFACE _io_dldi_stub;
 
 static const DISC_INTERFACE* discInterfaces[] = {
-	&_io_mpcf, &_io_m3cf, &_io_sccf, &_io_scsd, &_io_m3sd
+	&_io_dldi_stub.ioInterface
 };
 
 const DISC_INTERFACE* discGetInterface (void)
@@ -55,4 +51,3 @@ const DISC_INTERFACE* discGetInterface (void)
 	}
 	return NULL;
 }
-

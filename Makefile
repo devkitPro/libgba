@@ -21,7 +21,7 @@ export LIBGBA_PATCH	:= 4
 
 VERSION	:=	$(LIBGBA_MAJOR).$(LIBGBA_MINOR).$(LIBGBA_PATCH)
 
-ARCH	:=	-mthumb -mthumb-interwork
+ARCH	:=	-march=armv4t -mtune=arm7tdmi -mthumb
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -80,15 +80,9 @@ $(TARGET): $(OFILES)
 $(OFILES_SRC)	: $(HFILES)
 
 #---------------------------------------------------------------------------------
-%.a: $(OFILES)
-	@echo $@
-	@rm -f $@
-	@$(AR) rcs $@ $(OFILES)
-
 %_fnt.h %.fnt.o	:	%.fnt
-#---------------------------------------------------------------------------------
-	@echo $(notdir $<)
-	@$(bin2o)
+	$(SILENTMSG) $(notdir $<)
+	$(SILENTCMD) $(bin2o)
 
 -include $(DEPENDS)
 

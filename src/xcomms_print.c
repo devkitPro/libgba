@@ -26,9 +26,7 @@
 */
 #include <stdarg.h>
 #include <stdio.h>
-#include <string.h>
 
-#include "gba_sio.h"
 #include "xcomms_cmd.h"
 #include "xcomms.h"
 

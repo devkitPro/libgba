@@ -16,7 +16,7 @@ If you link the application to a modified version of libgba, then the changes mu
 
 However, programs must still identify their use of libgba. The following example statement can be included in user documentation to satisfy this requirement:
 
-program/work] is based in part on the work of the devkitpro project (http://sourceforge.net/projects/devkitpro).
+[program/work] is based in part on the work of devkitPro (https://devkitpro.org).
 
 GNU LIBRARY GENERAL PUBLIC LICENSE
 

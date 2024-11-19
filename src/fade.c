@@ -51,8 +51,8 @@ s16 FadeTable[512*3*2] EWRAM_BSS;
 static void GetCurrentPalette() {
 //---------------------------------------------------------------------------------
 	int i;
-	u16 * Src = BG_COLORS;
-	u16 * Dest = (u16 *)CurrentPalette;
+	vu16 * Src = BG_COLORS;
+	vu16 * Dest = CurrentPalette;
 	for (i = 0; i<512; i++) {
 		*(Dest++) = *(Src++);
 	}

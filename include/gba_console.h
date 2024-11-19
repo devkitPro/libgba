@@ -55,7 +55,7 @@ extern "C" {
 void consoleInit(	int charBase, int mapBase, int background,
 					const u8* font, int fontsize, int palette);
 
-void consoleDemoInit();
+void consoleDemoInit(void);
 				
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

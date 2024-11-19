@@ -87,26 +87,26 @@ void scanKeys(void);
 	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
 	Keys which are pressed will not be reported again until they are released.
 */
-u16	keysDown();
+u16	keysDown(void);
 /*! \fn u16 keysDownRepeat()
 	\brief obtain the current keypad pressed state with repeat.
 
 */
-u16	keysDownRepeat();
+u16	keysDownRepeat(void);
 /*! \fn u16 keysUp()
 	\brief obtain the current keypad released.
 
 	Returns the keys which have been pressed since the last call to KeysDown(), the keys are reset on this call.
 	Keys which are pressed will not be reported again until they have been held for the times specified using SetRepeat().
 */
-u16 keysUp();
+u16 keysUp(void);
 /*! \fn u16 keysHeld()
 	\brief obtain the current keypad held state.
 
 	Returns the keys which have been pressed since the last call to KeysUp(), the keys are reset on this call.
 	Keys which are released will not be reported again until they are pressed.
 */
-u16 keysHeld();
+u16 keysHeld(void);
 
 
 /*! \fn setRepeat(int SetDelay, int SetRepeat)

@@ -79,7 +79,7 @@ static int consoleMap, consolePalette;
 #define CONSOLE_HEIGHT	20
 
 //---------------------------------------------------------------------------------
-void consoleCls() {
+void consoleCls(void) {
 //---------------------------------------------------------------------------------
 
 	*((u32 *)MAP_BASE_ADR(consoleMap)) = 0x00200020;
@@ -249,7 +249,7 @@ void consoleInit(	int charBase, int mapBase, int background,
 }
 
 //---------------------------------------------------------------------------------
-void consoleDemoInit() {
+void consoleDemoInit(void) {
 //---------------------------------------------------------------------------------
 	// initialise the console
 	// setting NULL & 0 for the font address & size uses the default font
@@ -272,7 +272,7 @@ void consoleDemoInit() {
 }
 
 //---------------------------------------------------------------------------------
-static void newRow() {
+static void newRow(void) {
 //---------------------------------------------------------------------------------
 	consoleY++;
 

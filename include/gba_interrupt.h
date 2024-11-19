@@ -108,7 +108,7 @@ extern struct IntTable IntrTable[];
 
 */
 void InitInterrupt(void) __attribute__ ((deprecated));
-void irqInit();
+void irqInit(void);
 
 /*! \fn IntFn *irqSet(irqMASK mask, IntFn function)
     \brief sets the interrupt handler for a particular interrupt.
@@ -134,7 +134,7 @@ void irqEnable(int mask);
 void DisableInterrupt(irqMASK mask) __attribute__ ((deprecated));
 void irqDisable(int mask);
 
-void IntrMain();
+void IntrMain(void);
 
 
 

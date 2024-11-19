@@ -48,7 +48,7 @@ u16 CurrentPalette[512] EWRAM_BSS;
 s16 FadeTable[512*3*2] EWRAM_BSS;
 
 //---------------------------------------------------------------------------------
-static void GetCurrentPalette() {
+static void GetCurrentPalette(void) {
 //---------------------------------------------------------------------------------
 	int i;
 	vu16 * Src = BG_COLORS;

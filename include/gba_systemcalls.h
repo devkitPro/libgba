@@ -93,11 +93,11 @@ void RegisterRamReset(int ResetFlags);
 /*! \def static inline void Halt()
 */
 
-static inline void Halt()	{ SystemCall(2); }
-static inline void Stop()	{ SystemCall(3); }
+static inline void Halt(void)	{ SystemCall(2); }
+static inline void Stop(void)	{ SystemCall(3); }
 
 //---------------------------------------------------------------------------------
-static inline u32 BiosCheckSum() {
+static inline u32 BiosCheckSum(void) {
 //---------------------------------------------------------------------------------
 	register u32 result __asm("r0");
 	#if	defined	( __thumb__ )
@@ -182,7 +182,7 @@ void IntrWait(u32 ReturnFlag, u32 IntFlag);
 
 */
 static inline
-void VBlankIntrWait()	{ SystemCall(5); }
+void VBlankIntrWait(void)	{ SystemCall(5); }
 
 //---------------------------------------------------------------------------------
 #ifdef __cplusplus

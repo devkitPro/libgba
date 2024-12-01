@@ -43,7 +43,7 @@ void	xcomms_dprintf	(char *str, ...);
 void	xcomms_dfprintf	(int handle, char *str, ...);
 void	xcomms_dputchar	(int c);
 
-u8		xcomms_dfopen	(const char *file, const char *type);
+int		xcomms_dfopen	(const char *file, const char *type);
 void	xcomms_dfclose	(int handle);
 u8		xcomms_dfgetc	(int handle);
 void	xcomms_dfputc	(int ch, int handle);
